@@ -1,0 +1,70 @@
+Subject: [PATCH] grr
+---
+Index: Scratch5/A/index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Scratch5/A/index.html b/Scratch5/A/index.html
+--- a/Scratch5/A/index.html	(revision 840402e38b79073bcb240ec48dfe6f0771b746b4)
++++ b/Scratch5/A/index.html	(revision 2d85179e40b1e581814496b30d24cae72cd10714)
+@@ -51,7 +51,7 @@
+     <div class="category">
+         <a href="A-05.html">D</a>
+     </div>
+-    <button onclick="window.location.href='../Scratch5/index.html'" style="padding: 10px 20px; font-size: 16px; background-color: #00ff37; color: white; border: none; border-radius: 5px; cursor: pointer;">
++    <button onclick="window.location.href='../index.html'" style="padding: 10px 20px; font-size: 16px; background-color: #00ff37; color: white; border: none; border-radius: 5px; cursor: pointer;">
+         Zur Übersicht
+     </button>
+     
+Index: Scratch5/B/index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Scratch5/B/index.html b/Scratch5/B/index.html
+--- a/Scratch5/B/index.html	(revision 840402e38b79073bcb240ec48dfe6f0771b746b4)
++++ b/Scratch5/B/index.html	(revision 2d85179e40b1e581814496b30d24cae72cd10714)
+@@ -42,7 +42,7 @@
+     <div class="category">
+         <a href="B-02.html">B</a>
+     </div>
+-    <button onclick="window.location.href='../Scratch5/index.html'" style="padding: 10px 20px; font-size: 16px; background-color: #00ff37; color: white; border: none; border-radius: 5px; cursor: pointer;">
++    <button onclick="window.location.href='../index.html'" style="padding: 10px 20px; font-size: 16px; background-color: #00ff37; color: white; border: none; border-radius: 5px; cursor: pointer;">
+         Zur Übersicht
+     </button>
+ </body>
+Index: Scratch5/C/index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Scratch5/C/index.html b/Scratch5/C/index.html
+--- a/Scratch5/C/index.html	(revision 840402e38b79073bcb240ec48dfe6f0771b746b4)
++++ b/Scratch5/C/index.html	(revision 2d85179e40b1e581814496b30d24cae72cd10714)
+@@ -64,7 +64,7 @@
+     <div class="not">
+         <a href="nicht verfügbar">D</a>
+     </div>
+-    <button onclick="window.location.href='../Scratch5/index.html'" style="padding: 10px 20px; font-size: 16px; background-color: #00ff37; color: white; border: none; border-radius: 5px; cursor: pointer;">
++    <button onclick="window.location.href='../index.html'" style="padding: 10px 20px; font-size: 16px; background-color: #00ff37; color: white; border: none; border-radius: 5px; cursor: pointer;">
+         Zur Übersicht
+     </button>
+ </body>
+Index: Scratch5/D/index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Scratch5/D/index.html b/Scratch5/D/index.html
+--- a/Scratch5/D/index.html	(revision 840402e38b79073bcb240ec48dfe6f0771b746b4)
++++ b/Scratch5/D/index.html	(revision 2d85179e40b1e581814496b30d24cae72cd10714)
+@@ -42,7 +42,7 @@
+     <div class="category">
+         <a href="D-02.html">B</a>
+     </div>
+-    <button onclick="window.location.href='../Scratch5/index.html'" style="padding: 10px 20px; font-size: 16px; background-color: #00ff37; color: white; border: none; border-radius: 5px; cursor: pointer;">
++    <button onclick="window.location.href='../index.html'" style="padding: 10px 20px; font-size: 16px; background-color: #00ff37; color: white; border: none; border-radius: 5px; cursor: pointer;">
+         Zur Übersicht
+     </button>
+ </body>

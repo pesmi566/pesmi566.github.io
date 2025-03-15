@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lösungen Kapitel A</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: white;
+            color: black;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+        .folders {
+            display: flex;
+            flex-direction: column; /* Stapelt die Ordner untereinander */
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+        }
+        .folder {
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #f0f0f0;
+            text-align: center;
+            width: 300px;
+        }
+        .gallery img {
+            width: 150px;
+            height: 100px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
+        .theme-toggle {
+            margin: 20px;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+        }
+        .button-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .button-container button {
+            padding: 10px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+        }
+        .btn-purple {
+            background-color: #8800ff;
+        }
+        .btn-green {
+            background-color: #00ff37;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lösungen Kapitel A</h1>
+    <button class="theme-toggle" onclick="toggleTheme()">Dark Mode umschalten</button>
+
+    <div class="folders">
+        <div class="folder" style="background-color: #1dc21d;">
+            <h2>A-01</h2>
+            <div class="gallery">
+                <img src="A-01 - Katze.jpg" alt="A-01 - Katze" onclick="openModal(this)">
+            </div>
+        </div>
+
+        <div class="folder" style="background-color: #07d5cf;">
+            <h2>A-02</h2>
+            <div class="gallery">
+                <img src="A-02 - Katze.jpg" alt="A-02 - Katze" onclick="openModal(this)">
+            </div>
+        </div>
+        <div class="folder" style="background-color: #6e07d5;">
+            <h2>A-03</h2>
+            <div class="gallery">
+                <img src="A-03 - Katze.jpg" alt="A-03 - Katze" onclick="openModal(this)">
+                <img src="A-03 - Bär.jpg" alt="A-03 - Bär" onclick="openModal(this)">
+            </div>
+    </div>
+    <div class="folder" style="background-color: #b3d507;">
+        <h2>A-04</h2>
+        <div class="gallery">
+            <img src="A-04 - Katze.jpg" alt="A-04 - Katze" onclick="openModal(this)">
+            <img src="A-04 - Bär.jpg" alt="A-04 - Bär" onclick="openModal(this)">
+
+        </div>
+     
+    
+
+    </div>
+    <div class="folder" style="background-color: #d58907;">
+        <h2>A-05</h2>
+        <div class="gallery">
+            <img src="A-05 - Katze.jpg" alt="A-05 - Katze" onclick="openModal(this)">
+            <img src="A-04 - Bär.jpg" alt="A-05 - Bär" onclick="openModal(this)">
+
+            
+        </div>
+        
+    </div>
+
+    <div class="modal" id="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="modal-img">
+    </div>
+
+    <div class="button-container">
+        <button class="btn-purple" onclick="window.location.href='../index.html'">Zu Kapitel A</button>
+        <button class="btn-green" onclick="window.location.href='/Scratch5/index.html'">Zur Übersicht</button>
+    </div>
+
+    <script>
+        let images = [];
+        let currentIndex = 0;
+
+        function openModal(imgElement) {
+            images = Array.from(document.querySelectorAll(".gallery img"));
+            currentIndex = images.indexOf(imgElement);
+            document.getElementById("modal-img").src = imgElement.src;
+            document.getElementById("modal").style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle("dark-mode");
+        }
+    </script>
+</body>
+</html>
