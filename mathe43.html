@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lernzettel Maths 4GPM – Ch. 6 & 7</title>
+<style>
+:root{--bleu:#2563eb;--vert:#16a34a;--rouge:#dc2626;--orange:#ea580c;--violet:#7c3aed;--jaune:#ca8a04;--bg-bleu:#eff6ff;--bg-vert:#f0fdf4;--bg-rouge:#fef2f2;--bg-violet:#f5f3ff;--bg-jaune:#fef9c3;--bg-orange:#fff7ed;--gris:#f8fafc;--border:#e2e8f0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;line-height:1.75;color:#1e293b;max-width:920px;margin:0 auto;padding:24px;font-size:15px}
+/* HEADER */
+.header{background:linear-gradient(135deg,#2563eb 0%,#7c3aed 100%);color:#fff;padding:36px 30px;border-radius:16px;margin-bottom:30px;text-align:center}
+.header h1{font-size:30px;letter-spacing:-0.5px;margin-bottom:6px}
+.header p{opacity:.88;font-size:14px;margin-top:4px}
+/* TOC */
+.toc{background:var(--gris);border:1px solid var(--border);border-radius:12px;padding:20px 26px;margin-bottom:32px}
+.toc h2{font-size:15px;color:var(--bleu);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px}
+.toc ul{list-style:none;padding:0}
+.toc>ul>li{margin:7px 0;font-weight:700;font-size:14px}
+.toc ul ul{margin-left:18px;font-weight:400;font-size:13px}
+.toc a{color:#475569;text-decoration:none}
+.toc a:hover{color:var(--bleu);text-decoration:underline}
+/* CHAPTER TITLES */
+.ch-header{border-left:6px solid var(--bleu);padding:10px 16px;margin:44px 0 20px;border-radius:0 8px 8px 0;background:var(--bg-bleu)}
+.ch-header h2{font-size:22px;color:var(--bleu)}
+.ch-header.violet{border-left-color:var(--violet);background:var(--bg-violet)}
+.ch-header.violet h2{color:var(--violet)}
+.ch-header.purple{border-left-color:#a21caf;background:#fdf4ff}
+.ch-header.purple h2{color:#a21caf}
+/* SECTION HEADERS */
+h3{font-size:18px;color:#1e293b;margin:30px 0 12px;padding-bottom:6px;border-bottom:2px solid var(--border)}
+h4{font-size:15px;color:#374151;margin:18px 0 8px;font-weight:700}
+/* BOXES */
+.box{border-radius:10px;padding:16px 20px;margin:14px 0}
+.def{background:var(--bg-bleu);border-left:4px solid var(--bleu)}
+.formule{background:var(--bg-violet);border-left:4px solid var(--violet)}
+.exemple{background:var(--bg-vert);border-left:4px solid var(--vert)}
+.methode{background:var(--bg-orange);border-left:4px solid var(--orange)}
+.attention{background:var(--bg-rouge);border-left:4px solid var(--rouge)}
+.astuce{background:var(--bg-jaune);border-left:4px solid var(--jaune)}
+.exam{background:#fdf4ff;border-left:4px solid #a21caf}
+.box-label{font-size:11px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:8px;opacity:.75}
+/* MATH DISPLAY */
+.mcode{font-family:'Courier New',monospace;background:#f1f5f9;padding:2px 7px;border-radius:4px;font-size:14px}
+.math-block{font-family:'Courier New',monospace;background:#1e293b;color:#e2e8f0;padding:16px 20px;border-radius:10px;margin:12px 0;font-size:14px;line-height:2;overflow-x:auto;white-space:pre}
+.math-block .step{color:#94a3b8;font-size:12px}
+.math-block .res{color:#4ade80;font-weight:700}
+.math-block .hi{color:#fbbf24}
+/* TABLES */
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px}
+th{background:var(--bleu);color:#fff;padding:10px 13px;text-align:left;font-weight:600}
+td{padding:9px 13px;border-bottom:1px solid var(--border)}
+tr:nth-child(even) td{background:var(--gris)}
+/* NUMBERED STEPS */
+.steps{counter-reset:stp;list-style:none;padding:0}
+.steps li{position:relative;padding-left:46px;margin:11px 0}
+.steps li::before{counter-increment:stp;content:counter(stp);position:absolute;left:0;top:1px;width:30px;height:30px;background:var(--orange);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px}
+/* EXERCISES */
+.ex-section{background:linear-gradient(135deg,#eff6ff,#f5f3ff);border-radius:14px;padding:24px;margin:30px 0}
+.ex-section h3{border-bottom-color:#c7d2fe;margin-top:0}
+.exercice{background:#fff;border:1px solid var(--border);border-radius:10px;padding:18px;margin:14px 0;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.exercice h4{color:var(--bleu);margin-top:0;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.diff{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;margin-left:10px;vertical-align:middle}
+.easy{background:#dcfce7;color:#166534}
+.med{background:#fef9c3;color:#854d0e}
+.hard{background:#fee2e2;color:#991b1b}
+/* SOLUTIONS */
+.sol-section{margin:24px 0}
+.solution{background:var(--gris);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:12px 0}
+.solution h4{color:var(--vert);margin-top:0;margin-bottom:10px}
+/* TWO-COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0}
+@media(max-width:640px){.two-col{grid-template-columns:1fr}}
+/* CHECKLIST */
+.checklist{list-style:none;padding:0}
+.checklist li{padding:5px 0 5px 28px;position:relative}
+.checklist li::before{position:absolute;left:0}
+.ok li::before{content:'✅'}
+.nok li::before{content:'❌'}
+/* MISC */
+p{margin:7px 0}
+ul,ol{margin:8px 0;padding-left:24px}
+li{margin:4px 0}
+hr.sep{border:none;border-top:3px dashed var(--border);margin:44px 0}
+.hl-b{color:var(--bleu);font-weight:700}
+.hl-r{color:var(--rouge);font-weight:700}
+.hl-g{color:var(--vert);font-weight:700}
+.hl-o{color:var(--orange);font-weight:700}
+.big-formula{font-size:20px;text-align:center;padding:12px;background:var(--bg-violet);border-radius:8px;margin:12px 0;font-family:'Courier New',monospace;color:var(--violet);font-weight:700}
+</style>
+</head>
+<body>
+
+<!-- ============================================================ HEADER -->
+<div class="header">
+  <h1>📐 LERNZETTEL MATHÉMATIQUES · 4GPM</h1>
+  <p>Luxembourg · Nachprüfung</p>
+  <p style="margin-top:6px;font-size:13px;opacity:.8">
+    Chapitre 6 : Fonctions affines &amp; équations de droites &nbsp;·&nbsp; Chapitre 7 : Systèmes d'équations
+  </p>
+</div>
+
+<!-- ============================================================ TOC -->
+<div class="toc">
+  <h2>📋 Table des matières</h2>
+  <ul>
+    <li><a href="#ch6">📘 Chapitre 6 – Fonctions affines et équations de droites</a>
+      <ul>
+        <li><a href="#s61">6.1 Différence : fonction linéaire vs fonction affine</a></li>
+        <li><a href="#s62">6.2 Définition officielle et cas particuliers</a></li>
+        <li><a href="#s63">6.3 Identifier une fonction affine (mettre sous la forme ax+b)</a></li>
+        <li><a href="#s64">6.4 Représentation graphique</a></li>
+        <li><a href="#s65">6.5 Coefficient directeur – taux d'accroissement</a></li>
+        <li><a href="#s66">6.6 Trouver l'expression algébrique à partir de deux points/valeurs</a></li>
+        <li><a href="#s67">6.7 Équations de droites</a></li>
+        <li><a href="#s68">6.8 Droites parallèles</a></li>
+        <li><a href="#ex6">📝 Exercices Chapitre 6</a></li>
+        <li><a href="#sol6">✅ Solutions Chapitre 6</a></li>
+      </ul>
+    </li>
+    <li><a href="#ch7">📗 Chapitre 7 – Systèmes de deux équations à deux inconnues</a>
+      <ul>
+        <li><a href="#s71">7.1 Définition et résolution graphique</a></li>
+        <li><a href="#s72">7.2 Méthode par substitution</a></li>
+        <li><a href="#s73">7.3 Méthode par combinaisons linéaires</a></li>
+        <li><a href="#s74">7.4 Résolution de problèmes en contexte</a></li>
+        <li><a href="#ex7">📝 Exercices Chapitre 7</a></li>
+        <li><a href="#sol7">✅ Solutions Chapitre 7</a></li>
+      </ul>
+    </li>
+    <li><a href="#pruefung">🎯 Analyse de la Prüfung &amp; Conseils pour la Nachprüfung</a></li>
+  </ul>
+</div>
+
+<!-- ================================================================
+     CHAPITRE 6
+     ================================================================ -->
+<div id="ch6" class="ch-header">
+  <h2>📘 Chapitre 6 : Fonctions affines et équations de droites</h2>
+</div>
+
+<!-- 6.1 -->
+<h3 id="s61">6.1 Différence : fonction linéaire vs fonction affine</h3>
+
+<div class="box def">
+  <div class="box-label" style="color:var(--bleu)">📖 Les deux types</div>
+  <div class="two-col">
+    <div>
+      <p><strong>Fonction LINÉAIRE :</strong></p>
+      <p>f(x) = <span class="hl-b">a</span>x &nbsp;&nbsp;(pas de terme constant !)</p>
+      <p>La droite <strong>passe par l'origine (0 ; 0)</strong></p>
+      <p>Représente une <strong>situation de proportionnalité</strong></p>
+      <p>Exemple : f(x) = 0,5x</p>
+    </div>
+    <div>
+      <p><strong>Fonction AFFINE :</strong></p>
+      <p>f(x) = <span class="hl-b">a</span>x + <span class="hl-o">b</span></p>
+      <p>La droite <strong>ne passe généralement pas</strong> par l'origine</p>
+      <p>La fonction linéaire est un <strong>cas particulier</strong> (b = 0)</p>
+      <p>Exemple : g(x) = 0,2x + 6</p>
+    </div>
+  </div>
+</div>
+
+<div class="box exemple">
+  <div class="box-label" style="color:var(--vert)">✏️ Exemple de la vie réelle (du cours)</div>
+  <p><strong>Alberto</strong> : 0,50 € / km → <span class="mcode">y = 0,5x</span> → Fonction <strong>linéaire</strong> (pas de forfait fixe)</p>
+  <p><strong>Bernardo</strong> : 6 € de forfait + 0,20 € / km → <span class="mcode">y = 0,2x + 6</span> → Fonction <strong>affine</strong></p>
+  <p style="margin-top:8px;color:#166534">💡 Bernardo facture 6 € même si on ne roule pas du tout → c'est le "b".</p>
+  <p>Les deux droites se croisent pour x = 20 km : pour 20 km, les frais sont identiques (10 €).</p>
+</div>
+
+<!-- 6.2 -->
+<h3 id="s62">6.2 Définition officielle et cas particuliers</h3>
+
+<div class="box formule">
+  <div class="box-label" style="color:var(--violet)">📐 Définition officielle</div>
+  <p>Une fonction f définie par <strong>f(x) = ax + b</strong> (a, b ∈ ℝ) est appelée une <strong>fonction affine</strong>.</p>
+  <p style="margin-top:12px"><strong>Dans l'équation y = ax + b d'une droite d :</strong></p>
+  <ul>
+    <li><span class="hl-b">a</span> est appelé le <strong>coefficient directeur</strong> de la droite d</li>
+    <li><span class="hl-o">b</span> est appelé l'<strong>ordonnée à l'origine</strong> de la droite d<br>
+        (la droite passe par le point de coordonnées <strong>(0 ; b)</strong>)</li>
+  </ul>
+</div>
+
+<h4>Tableau des cas particuliers :</h4>
+<table>
+  <tr><th>Nom</th><th>Forme f(x)</th><th>Valeur de a</th><th>Valeur de b</th><th>Exemple</th></tr>
+  <tr><td><strong>Fonction affine</strong></td><td>ax + b</td><td>quelconque ≠ 0</td><td>quelconque</td><td>f(x) = 2x – 5</td></tr>
+  <tr><td><strong>Fonction linéaire</strong></td><td>ax</td><td>quelconque ≠ 0</td><td><strong>b = 0</strong></td><td>f(x) = 3x</td></tr>
+  <tr><td><strong>Fonction constante</strong></td><td>b</td><td><strong>a = 0</strong></td><td>quelconque</td><td>f(x) = –4</td></tr>
+</table>
+
+<div class="box attention">
+  <div class="box-label" style="color:var(--rouge)">⚠️ Fonctions qui NE SONT PAS affines — à connaître !</div>
+  <ul>
+    <li><strong>f(x) = 4x²</strong> → ❌ Fonction carré (degré 2)</li>
+    <li><strong>f(x) = 3/(5x)</strong> → ❌ Fonction inverse (x est au dénominateur)</li>
+    <li><strong>f(x) = –3 – 5x²</strong> → ❌ Degré 2</li>
+    <li><strong>f(x) = √5 · x – 5</strong> → ✅ AFFINE ! a = √5 est un réel, b = –5</li>
+  </ul>
+</div>
+
+<!-- 6.3 -->
+<h3 id="s63">6.3 Identifier une fonction affine (mettre sous la forme ax + b)</h3>
+
+<div class="box methode">
+  <div class="box-label" style="color:var(--orange)">🔧 Le truc fondamental</div>
+  <p>On développe et simplifie l'expression, puis on identifie :</p>
+  <ul>
+    <li><strong>a</strong> = le coefficient devant x (le nombre qui multiplie x)</li>
+    <li><strong>b</strong> = le terme sans x (le nombre "seul")</li>
+  </ul>
+  <p>Si on peut écrire f(x) = ax + b → c'est une <strong>fonction affine</strong>.</p>
+</div>
+
+<div class="box exemple">
+  <div class="box-label" style="color:var(--vert)">✏️ Exemples complets (Exercices 1 &amp; 2 du cours)</div>
+
+  <p><strong>1) f(x) = 5x + 1</strong> → déjà sous la forme → <strong>Affine</strong>, a = 5, b = 1</p>
+
+  <p style="margin-top:10px"><strong>2) f(x) = 4x²</strong> → degré 2 → <strong>PAS affine</strong> (fonction carré)</p>
+
+  <p style="margin-top:10px"><strong>3) f(x) = –5x</strong> → f(x) = –5x + 0 → <strong>Linéaire</strong>, a = –5, b = 0</p>
+
+  <p style="margin-top:10px"><strong>4) f(x) = –4</strong> → f(x) = 0·x + (–4) → <strong>Constante</strong>, a = 0, b = –4</p>
+
+  <p style="margin-top:10px"><strong>5) f(x) = 7 – 3x</strong> → f(x) = –3x + 7 → <strong>Affine</strong>, a = –3, b = 7</p>
+
+  <p style="margin-top:10px"><strong>6) f(x) = 2(x – 1) – 4(x + 3)</strong><br>
+  = 2x – 2 – 4x – 12 = –2x – 14 → <strong>Affine</strong>, a = –2, b = –14</p>
+
+  <p style="margin-top:10px"><strong>7) f(x) = (x + 1)² – x²</strong><br>
+  = x² + 2x + 1 – x² = 2x + 1 → <strong>Affine</strong>, a = 2, b = 1</p>
+
+  <p style="margin-top:10px"><strong>8) f(x) = x² – (x – 2)(x – 2)</strong><br>
+  = x² – (x² – 4x + 4) = x² – x² + 4x – 4 = 4x – 4 → <strong>Affine</strong>, a = 4, b = –4</p>
+
+  <p style="margin-top:10px"><strong>9) f(x) = (3x – 2)/3</strong><br>
+  = 3x/3 – 2/3 = x – 2/3 → <strong>Affine</strong>, a = 1, b = –2/3</p>
+</div>
+
+<!-- 6.4 -->
+<h3 id="s64">6.4 Représentation graphique d'une fonction affine</h3>
+
+<div class="box def">
+  <div class="box-label" style="color:var(--bleu)">📖 Propriété centrale</div>
+  <p>La représentation graphique d'une fonction affine f(x) = ax + b est une <strong>droite d</strong> d'équation <strong>y = ax + b</strong>.</p>
+  <ul>
+    <li>Si a &gt; 0 : la droite <strong>monte</strong> ↗</li>
+    <li>Si a &lt; 0 : la droite <strong>descend</strong> ↘</li>
+    <li>Si a = 0 : droite <strong>horizontale</strong> →</li>
+  </ul>
+</div>
+
+<h4>Méthode 1 : Tableau de valeurs (toujours possible)</h4>
+<div class="box methode">
+  <div class="box-label" style="color:var(--orange)">🔧 Étapes</div>
+  <ol class="steps">
+    <li>Choisir au moins 2 valeurs de x (ex : 0 et 1, ou 0 et 2)</li>
+    <li>Calculer f(x) pour chaque valeur</li>
+    <li>Placer les points dans le repère</li>
+    <li>Tracer la droite passant par ces points (prolonger dans les deux sens)</li>
+  </ol>
+</div>
+
+<div class="box exemple">
+  <div class="box-label" style="color:var(--vert)">✏️ Exemple : f(x) = 2x + 5</div>
+  <p>Si x = 0 : f(0) = 2·0 + 5 = <strong>5</strong> → Point A(0 ; 5)</p>
+  <p>Si x = –3 : f(–3) = 2·(–3) + 5 = –6 + 5 = <strong>–1</strong> → Point B(–3 ; –1)</p>
+  <p>On trace la droite passant par A et B.</p>
+  <p style="color:#166534;margin-top:6px">💡 b = 5 = ordonnée à l'origine → le point (0 ; 5) est là où la droite coupe l'axe y.</p>
+</div>
+
+<h4>Méthode 2 : b + coefficient directeur (Δy/Δx)</h4>
+<div class="box methode">
+  <div class="box-label" style="color:var(--orange)">🔧 Utiliser le taux d'accroissement</div>
+  <ol class="steps">
+    <li>Placer l'ordonnée à l'origine : le point (0 ; b) sur l'axe y</li>
+    <li>Utiliser a = Δy/Δx pour trouver un 2ème point<br>
+        <em>Ex : si a = 2/3, aller 3 cases à droite (Δx=3) et 2 cases en haut (Δy=2)</em><br>
+        <em>Ex : si a = –2/3, aller 3 cases à droite et 2 cases en bas</em></li>
+    <li>Tracer la droite passant par ces deux points</li>
+  </ol>
+</div>
+
+<h4>Un point appartient-il à une droite ? — Méthode clé de la Prüfung</h4>
+<div class="box formule">
+  <div class="box-label" style="color:var(--violet)">📐 Propriété fondamentale (Exercice 2 de la Prüfung)</div>
+  <p>Un point D(x₀ ; y₀) appartient à la droite d ⟺ <strong>f(x₀) = y₀</strong></p>
+  <p>→ On substitue la coordonnée <strong>x</strong> dans f(x) et on vérifie si on obtient la coordonnée <strong>y</strong>.</p>
+</div>
+
+<div class="box exemple">
+  <div class="box-label" style="color:var(--vert)">✏️ Exemple complet — Prüfung Exercice 2 : f(x) = –4x + 1</div>
+<pre class="math-block"><span class="step">Question :</span> A(1 ; –3) appartient-il à la droite ?
+
+f(1) = –4·1 + 1 = –4 + 1 = <span class="res">–3</span>
+Comme f(1) = –3 = y_A ✅ → A(1 ; –3) <span class="res">appartient</span> à la droite.
+
+<span class="step">Question :</span> B(2/3 ; –2) appartient-il à la droite ?
+
+f(2/3) = –4·(2/3) + 1 = –8/3 + 3/3 = <span class="hi">–5/3</span>
+Comme f(2/3) = –5/3 ≠ –2 = y_B ❌ → B(2/3 ; –2) <span class="hi">n'appartient pas</span> à la droite.</pre>
+</div>
+
+<div class="box attention">
+  <div class="box-label" style="color:var(--rouge)">⚠️ Erreur fréquente — Prüfung</div>
+  <p>Pour vérifier si B(2/3 ; –2) appartient à une droite :</p>
+  <p>❌ FAUX : calculer f(–2) → c'est la <em>deuxième</em> coordonnée, pas la première !</p>
+  <p>✅ JUSTE : toujours substituer la <strong>coordonnée x</strong> (la première) dans f(x)</p>
+  <p>La coordonnée x est toujours la première dans (x ; y).</p>
+</div>
+
+<!-- 6.5 -->
+<h3 id="s65">6.5 Coefficient directeur – taux d'accroissement</h3>
+
+<div class="big-formula">a = Δy / Δx = (f(x₂) – f(x₁)) / (x₂ – x₁)</div>
+
+<div class="box formule">
+  <div class="box-label" style="color:var(--violet)">📐 Formule essentielle</div>
+  <p>Pour deux points x₁ et x₂ distincts d'une droite :</p>
+  <p><strong>a = (accroissement des ordonnées) / (accroissement des abscisses) = Δy / Δx</strong></p>
+  <p>Cette formule permet de calculer le coefficient directeur à partir de n'importe quels deux points de la droite.</p>
+</div>
+
+<div class="box exemple">
+  <div class="box-label" style="color:var(--vert)">✏️ Exemples du cours</div>
+  <p><strong>Ex 1 :</strong> f(0) = 2 et f(1) = –3. Calculer a :</p>
+<pre class="math-block">a = (f(1) – f(0)) / (1 – 0) = (–3 – 2) / 1 = <span class="res">–5</span>
+Donc f(x) = –5x + 2</pre>
+
+  <p><strong>Ex 2 :</strong> f(–3) = 1 et f(2) = 5. Calculer a :</p>
+<pre class="math-block">a = (f(2) – f(–3)) / (2 – (–3)) = (5 – 1) / (2 + 3) = 4/5 = <span class="res">4/5</span></pre>
+</div>
+
+<table>
+  <tr><th>Valeur de a</th><th>La droite…</th></tr>
+  <tr><td>a &gt; 0</td><td>monte de gauche à droite ↗ (croissante)</td></tr>
+  <tr><td>a &lt; 0</td><td>descend de gauche à droite ↘ (décroissante)</td></tr>
+  <tr><td>a = 0</td><td>est horizontale (fonction constante) →</td></tr>
+  <tr><td>|a| grand</td><td>est très inclinée (pente raide)</td></tr>
+  <tr><td>|a| petit</td><td>est presque horizontale (pente douce)</td></tr>
+</table>
+
+<!-- 6.6 -->
+<h3 id="s66">6.6 Trouver l'expression algébrique à partir de deux points/valeurs</h3>
+
+<div class="box methode">
+  <div class="box-label" style="color:var(--orange)">🔧 Méthode en 4 étapes — LA méthode la plus importante !</div>
+  <ol class="steps">
+    <li><strong>Poser</strong> f(x) = ax + b (car f est affine)</li>
+    <li><strong>Calculer a</strong> avec la formule a = (y₂ – y₁)/(x₂ – x₁)<br>
+        <em>Astuce : Si on connaît f(0), alors b = f(0) directement !</em></li>
+    <li><strong>Trouver b</strong> en substituant les coordonnées d'un point dans f(x) = ax + b</li>
+    <li><strong>Écrire</strong> la réponse : f(x) = ax + b</li>
+  </ol>
+</div>
+
+<div class="box exemple">
+  <div class="box-label" style="color:var(--vert)">✏️ Exemple 1 — Prüfung Exercice 4.1 : f(0) = 3 et f(2) = –5</div>
+<pre class="math-block"><span class="step">Étape 1 :</span> f est affine → f(x) = ax + b
+
+<span class="step">Étape 2 :</span> f(0) = 3 → b = f(0) = <span class="hi">3</span>  (astuce directe !)
+
+<span class="step">Étape 3 :</span> f(2) = –5 → a·2 + 3 = –5
+              ⟺ 2a = –5 – 3 = –8
+              ⟺ a = <span class="hi">–4</span>
+
+<span class="step">Résultat :</span> <span class="res">f(x) = –4x + 3</span></pre>
+</div>
+
+<div class="box exemple">
+  <div class="box-label" style="color:var(--vert)">✏️ Exemple 2 — Prüfung Exercice 4.2 : g(2) = 3 et g(–1) = 4</div>
+<pre class="math-block"><span class="step">Étape 1 :</span> g est affine → g(x) = ax + b
+
+<span class="step">Étape 2 :</span> a = (g(–1) – g(2)) / (–1 – 2) = (4 – 3) / (–3) = 1/(–3) = <span class="hi">–1/3</span>
+
+<span class="step">Étape 3 :</span> g(x) = –(1/3)x + b
+           g(2) = 3  →  –(1/3)·2 + b = 3
+                  →  –2/3 + b = 3
+                  →  b = 3 + 2/3 = 9/3 + 2/3 = <span class="hi">11/3</span>
+
+<span class="step">Résultat :</span> <span class="res">g(x) = –(1/3)x + 11/3</span></pre>
+</div>
+
+<div class="box exemple">
+  <div class="box-label" style="color:var(--vert)">✏️ Exemple 3 — Exercice 8 du cours : f(0) = 2 et f(5) = 4</div>
+<pre class="math-block"><span class="step">Astuce :</span> f(0) = 2 → b = 2 directement !
+
+<span class="step">Calcul :</span> a = (f(5) – f(0)) / (5 – 0) = (4 – 2) / 5 = 2/5
+
+<span class="step">Résultat :</span> <span class="res">f(x) = (2/5)x + 2</span></pre>
+</div>
+
+<div class="box astuce">
+  <div class="box-label" style="color:var(--jaune)">💡 Astuce clé — À mémoriser !</div>
+  <p>Si on connaît <strong>f(0)</strong>, alors <strong>b = f(0)</strong> directement ! Pas besoin de calcul supplémentaire.</p>
+  <p>Exemple : f(0) = –7 → b = –7 immédiatement.</p>
+</div>
+
+<h4>Trouver x tel que f(x) = k</h4>
+<div class="box exemple">
+  <div class="box-label" style="color:var(--vert)">✏️ Exemple — Prüfung Exercice 2b : f(x) = –4x + 1, trouver x tel que f(x) = –4</div>
+<pre class="math-block">f(x) = –4  ⟺  –4x + 1 = –4   | –1
+           ⟺  –4x = –5        | :(–4)
+           ⟺  <span class="res">x = 5/4</span></pre>
+</div>
+
+<!-- 6.7 -->
+<h3 id="s67">6.7 Équations de droites</h3>
+
+<div class="box formule">
+  <div class="box-label" style="color:var(--violet)">📐 Rappel — Les 3 types d'équations</div>
+  <table style="margin:0">
+    <tr><th>Équation</th><th>Type de droite</th><th>C'est une fonction ?</th></tr>
+    <tr><td>y = ax + b</td><td>Droite oblique ou horizontale</td><td>✅ OUI</td></tr>
+    <tr><td>y = c (constante)</td><td>Droite horizontale (parallèle à l'axe x)</td><td>✅ OUI — fonction constante</td></tr>
+    <tr><td>x = c (constante)</td><td>Droite verticale (parallèle à l'axe y)</td><td>❌ NON — pas une fonction !</td></tr>
+  </table>
+</div>
+
+<div class="box attention">
+  <div class="box-label" style="color:var(--rouge)">⚠️ Important — Droite verticale ≠ fonction !</div>
+  <p>Une droite d'équation <strong>x = c</strong> (ex : x = 2, x = –4) <strong>n'est PAS une fonction</strong>.</p>
+  <p>Pour x = 2, il y aurait une infinité de valeurs y → impossible d'associer une seule image.</p>
+  <p>Mais on peut quand même lui donner une équation et la dessiner dans un repère.</p>
+</div>
+
+<h4>Trouver l'équation d'une droite — Méthode complète</h4>
+<div class="box methode">
+  <div class="box-label" style="color:var(--orange)">🔧 Méthode — 3 cas différents</div>
+
+  <p><strong>Cas 1 : On connaît le coefficient directeur a et un point (x₀ ; y₀)</strong></p>
+  <ol class="steps">
+    <li>Écrire y = ax + b avec le a donné</li>
+    <li>Substituer (x₀ ; y₀) pour trouver b : y₀ = a·x₀ + b → b = y₀ – a·x₀</li>
+    <li>Écrire la réponse : y = ax + b</li>
+  </ol>
+
+  <p style="margin-top:14px"><strong>Cas 2 : On connaît deux points (x₁;y₁) et (x₂;y₂)</strong></p>
+  <ol class="steps">
+    <li>Calculer a = (y₂ – y₁)/(x₂ – x₁)</li>
+    <li>Substituer un des deux points pour trouver b</li>
+    <li>Écrire la réponse</li>
+  </ol>
+
+  <p style="margin-top:14px"><strong>Cas 3 : Droite parallèle à un axe</strong></p>
+  <ul>
+    <li>Parallèle à l'axe des <em>abscisses</em> (axe x) → <strong>y = k</strong> (k = l'ordonnée du point)</li>
+    <li>Parallèle à l'axe des <em>ordonnées</em> (axe y) → <strong>x = k</strong> (k = l'abscisse du point)</li>
+  </ul>
+</div>
+
+<div class="box exemple">
+  <div class="box-label" style="color:var(--vert)">✏️ Exercice 5 de la Prüfung — 3 sous-questions</div>
+
+  <p><strong>5.1 : a = 2, point A(5 ; –5)</strong></p>
+<pre class="math-block">y = 2x + b
+A(5 ; –5) ∈ d₁  →  –5 = 2·5 + b  →  –5 = 10 + b  →  b = –15
+<span class="res">d₁ : y = 2x – 15</span>
+
+⚠️ ERREUR FRÉQUENTE : confondre a (= 2, donné) avec la coordonnée y du point (= –5) !
+   Toujours utiliser le a de l'énoncé, pas les coordonnées du point.</pre>
+
+  <p><strong>5.2 : Points B(2 ; –3) et C(–10 ; 5)</strong></p>
+<pre class="math-block">a = (5 – (–3)) / (–10 – 2) = 8 / (–12) = <span class="hi">–2/3</span>
+
+y = –(2/3)x + b
+B(2 ; –3) ∈ d₂  →  –3 = –(2/3)·2 + b
+                 →  –3 = –4/3 + b
+                 →  b = –3 + 4/3 = –9/3 + 4/3 = <span class="hi">–5/3</span>
+<span class="res">d₂ : y = –(2/3)x – 5/3</span></pre>
+
+  <p><strong>5.3 : Point C(2 ; –12), parallèle à l'axe des abscisses</strong></p>
+<pre class="math-block">Parallèle à l'axe des abscisses = droite horizontale
+Équation de la forme y = k → k = l'ordonnée du point = –12
+<span class="res">d₃ : y = –12</span></pre>
+</div>
+
+<h4>Lire les équations sur un graphique (Prüfung Exercice 7)</h4>
+<div class="box methode">
+  <div class="box-label" style="color:var(--orange)">🔧 Méthode — Identifier visuellement</div>
+  <ol class="steps">
+    <li>Trouver l'<strong>ordonnée à l'origine b</strong> : où la droite coupe l'axe y</li>
+    <li>Choisir 2 points "propres" sur la droite (à des coordonnées entières)</li>
+    <li>Calculer a = Δy/Δx avec ces deux points</li>
+    <li>Écrire l'équation y = ax + b</li>
+  </ol>
+  <p>Cas spéciaux :</p>
+  <ul>
+    <li>Droite horizontale → y = b, a = 0</li>
+    <li>Droite verticale → x = c (pas une fonction !)</li>
+    <li>Droite passant par l'origine → b = 0, donc y = ax</li>
+  </ul>
+</div>
+
+<!-- 6.8 -->
+<h3 id="s68">6.8 Droites parallèles</h3>
+
+<div class="big-formula">d ∥ d'  ⟺  a_d = a_d'</div>
+
+<div class="box formule">
+  <div class="box-label" style="color:var(--violet)">📐 Propriété des droites parallèles</div>
+  <p>Deux droites (non verticales) sont <strong>parallèles</strong> si et seulement si elles ont le <strong>même coefficient directeur</strong>.</p>
+  <p>C'est-à-dire : même pente, mais ordonnées à l'origine différentes.</p>
+</div>
+
+<div class="box exemple">
+  <div class="box-label" style="color:var(--vert)">✏️ Exemples</div>
+  <p><strong>Parallèles ✅ :</strong> d : y = –3x – 2 et d' : y = –3x + 4 → a_d = –3 = a_d' ✅</p>
+  <p><strong>PAS parallèles ❌ :</strong> d₁ : y = (3/2)x + 5 et d₂ : y = –(3/2)x + 5</p>
+  <p>→ a₁ = 3/2 ≠ –3/2 = a₂ → <strong>PAS parallèles</strong> !</p>
+  <p style="color:#166534;margin-top:6px">💡 Même valeur absolue MAIS signes opposés → coefficients directeurs différents → PAS parallèles !</p>
+  <p style="margin-top:10px">C'est l'erreur de la Prüfung Exercice 3.2 ! Les élèves ont confondu |3/2| = |–3/2|.</p>
+</div>
+
+<h4>Trouver une droite parallèle passant par un point donné</h4>
+<div class="box methode">
+  <div class="box-label" style="color:var(--orange)">🔧 Méthode</div>
+  <ol class="steps">
+    <li>La nouvelle droite a le <strong>même a</strong> que la droite de référence</li>
+    <li>Écrire y = ax + b avec ce a</li>
+    <li>Substituer le point donné pour calculer b</li>
+    <li>Écrire la réponse</li>
+  </ol>
+</div>
+
+<div class="box exemple">
+  <div class="box-label" style="color:var(--vert)">✏️ Exemple (Exercice 28 du cours)</div>
+  <p><strong>Droite d passant par A(–4 ; –2), parallèle à d₂ : 2x + y – 3 = 0</strong></p>
+<pre class="math-block">D'abord réécrire d₂ : y = –2x + 3  →  a₂ = –2
+Donc d : y = –2x + b
+A(–4 ; –2) ∈ d  →  –2 = –2·(–4) + b  →  –2 = 8 + b  →  b = –10
+<span class="res">d : y = –2x – 10</span></pre>
+</div>
+
+<!-- ================================================================
+     EXERCICES CH6
+     ================================================================ -->
+<div id="ex6" class="ex-section">
+  <h3>📝 Exercices – Chapitre 6</h3>
+
+  <div class="exercice">
+    <h4>Exercice 1 <span class="diff easy">Facile</span></h4>
+    <p>Parmi les fonctions suivantes, lesquelles sont affines, linéaires ou constantes ? Donner a et b dans les cas affines.</p>
+    <ol type="a">
+      <li>f(x) = 3x – 7</li>
+      <li>f(x) = 5</li>
+      <li>f(x) = –2x</li>
+      <li>f(x) = x² + 1</li>
+      <li>f(x) = (4x – 2)/2</li>
+      <li>f(x) = 3(x – 1) – 3x + 5</li>
+      <li>f(x) = (x + 1)² – x²</li>
+    </ol>
+  </div>
+
+  <div class="exercice">
+    <h4>Exercice 2 <span class="diff easy">Facile</span></h4>
+    <p>Soit f(x) = 3x – 2. Sans dessiner la droite, dire si les points suivants appartiennent à la représentation graphique de f :</p>
+    <ol type="a">
+      <li>A(1 ; 1)</li>
+      <li>B(0 ; –2)</li>
+      <li>C(–1 ; –4)</li>
+      <li>D(2/3 ; 0)</li>
+    </ol>
+  </div>
+
+  <div class="exercice">
+    <h4>Exercice 3 <span class="diff easy">Facile</span></h4>
+    <p>Soit f(x) = –2x + 5.</p>
+    <ol type="a">
+      <li>Calculer f(–3), f(0), f(1) et f(2). Résumer dans un tableau de valeurs.</li>
+      <li>Déterminer x tel que f(x) = 12.</li>
+      <li>Représenter f dans un repère orthogonal.</li>
+    </ol>
+  </div>
+
+  <div class="exercice">
+    <h4>Exercice 4 <span class="diff med">Moyen</span></h4>
+    <p>Trouver l'expression algébrique de f dans chaque cas :</p>
+    <ol type="a">
+      <li>f(0) = 4 et f(3) = 10</li>
+      <li>f(1) = 5 et f(3) = 11</li>
+      <li>f(–1) = 7 et f(2) = –2</li>
+      <li>f(0) = –3 et f(–2) = 5</li>
+    </ol>
+  </div>
+
+  <div class="exercice">
+    <h4>Exercice 5 <span class="diff med">Moyen</span></h4>
+    <p>Déterminer une équation de la droite :</p>
+    <ol type="a">
+      <li>de coefficient directeur 4 et passant par A(3 ; 2)</li>
+      <li>passant par B(0 ; –5) et C(2 ; 1)</li>
+      <li>passant par D(–3 ; 4) et E(1 ; –4)</li>
+      <li>passant par F(4 ; –1) et parallèle à la droite d : y = 3x – 2</li>
+      <li>passant par G(2 ; 5) et parallèle à l'axe des abscisses</li>
+    </ol>
+  </div>
+
+  <div class="exercice">
+    <h4>Exercice 6 <span class="diff med">Moyen</span></h4>
+    <p>Vrai ou faux ? Justifier.</p>
+    <ol type="a">
+      <li>f(x) = –5x est une fonction affine.</li>
+      <li>Les droites d₁ : y = (3/2)x + 5 et d₂ : y = –(3/2)x + 5 sont parallèles.</li>
+      <li>Les droites d₃ : y = (1/2)x – 4 et d₄ : y = (1/2)x + 9 sont parallèles.</li>
+      <li>Une droite d'équation x = 5 représente une fonction.</li>
+      <li>f(x) = √3 · x – 2 est une fonction affine.</li>
+    </ol>
+  </div>
+
+  <div class="exercice">
+    <h4>Exercice 7 <span class="diff hard">Difficile</span></h4>
+    <p>Soit la droite d d'équation y = (1/2)x – 1.</p>
+    <ol type="a">
+      <li>Est-ce que C(–1 ; –2) appartient à d ? Justifier par un calcul.</li>
+      <li>Déterminer x tel que A(x ; 1) appartient à d.</li>
+      <li>Déterminer y tel que B(2 ; y) appartient à d.</li>
+      <li>Représenter d dans un repère orthogonal.</li>
+      <li>Trouver l'équation d'une droite d' parallèle à d et passant par P(4 ; 3).</li>
+    </ol>
+  </div>
+
+  <div class="exercice">
+    <h4>Exercice 8 <span class="diff hard">Difficile</span></h4>
+    <p>On donne les points A(–3 ; 4) et B(1 ; –4).</p>
+    <ol type="a">
+      <li>Calculer le coefficient directeur de la droite (AB).</li>
+      <li>Déterminer une équation de la droite (AB).</li>
+      <li>Déterminer une équation de la droite d₂ parallèle à (AB) et passant par C(5 ; –1).</li>
+    </ol>
+  </div>
+</div>
+
+<!-- ================================================================
+     SOLUTIONS CH6
+     ================================================================ -->
+<div id="sol6" class="sol-section">
+  <h3>✅ Solutions – Chapitre 6</h3>
+
+  <div class="solution">
+    <h4>Solution Exercice 1</h4>
+    <ol type="a">
+      <li>f(x) = 3x – 7 → <strong>Affine</strong>, a = 3, b = –7</li>
+      <li>f(x) = 5 → <strong>Constante</strong> (affine avec a = 0, b = 5)</li>
+      <li>f(x) = –2x → <strong>Linéaire</strong> (affine avec a = –2, b = 0)</li>
+      <li>f(x) = x² + 1 → <strong>PAS affine</strong> (degré 2)</li>
+      <li>f(x) = (4x–2)/2 = 2x – 1 → <strong>Affine</strong>, a = 2, b = –1</li>
+      <li>f(x) = 3x – 3 – 3x + 5 = 2 → <strong>Constante</strong>, a = 0, b = 2</li>
+      <li>f(x) = x² + 2x + 1 – x² = 2x + 1 → <strong>Affine</strong>, a = 2, b = 1</li>
+    </ol>
+  </div>
+
+  <div class="solution">
+    <h4>Solution Exercice 2 — f(x) = 3x – 2</h4>
+    <ol type="a">
+      <li>f(1) = 3·1 – 2 = 1 → A(1;1) <strong>appartient</strong> ✅</li>
+      <li>f(0) = 3·0 – 2 = –2 → B(0;–2) <strong>appartient</strong> ✅</li>
+      <li>f(–1) = 3·(–1) – 2 = –5 ≠ –4 → C(–1;–4) <strong>n'appartient pas</strong> ❌</li>
+      <li>f(2/3) = 3·(2/3) – 2 = 2 – 2 = 0 → D(2/3;0) <strong>appartient</strong> ✅</li>
+    </ol>
+  </div>
+
+  <div class="solution">
+    <h4>Solution Exercice 3 — f(x) = –2x + 5</h4>
+<pre class="math-block">a) f(–3) = –2·(–3) + 5 = 6 + 5 = 11     f(0) = 5
+   f(1)  = –2·1 + 5 = 3                  f(2) = –2·2 + 5 = 1
+
+   x   | –3 |  0 |  1 |  2
+   f(x)|  11|  5 |  3 |  1
+
+b) f(x) = 12  ⟺  –2x + 5 = 12  ⟺  –2x = 7  ⟺  <span class="res">x = –7/2 = –3,5</span>
+
+c) Points : (0 ; 5) et (1 ; 3) → tracer la droite</pre>
+  </div>
+
+  <div class="solution">
+    <h4>Solution Exercice 4</h4>
+    <ol type="a">
+      <li>b = f(0) = 4. a = (10–4)/(3–0) = 6/3 = 2. → <strong>f(x) = 2x + 4</strong></li>
+      <li>a = (11–5)/(3–1) = 6/2 = 3. f(1)=5 → 3+b=5 → b=2. → <strong>f(x) = 3x + 2</strong></li>
+      <li>a = (–2–7)/(2–(–1)) = –9/3 = –3. f(–1)=7 → –3·(–1)+b=7 → 3+b=7 → b=4. → <strong>f(x) = –3x + 4</strong></li>
+      <li>b = f(0) = –3. a = (5–(–3))/(–2–0) = 8/(–2) = –4. → <strong>f(x) = –4x – 3</strong></li>
+    </ol>
+  </div>
+
+  <div class="solution">
+    <h4>Solution Exercice 5</h4>
+    <ol type="a">
+      <li>a=4, y=4x+b. A(3;2)→2=4·3+b→b=2–12=–10. → <strong>y = 4x – 10</strong></li>
+      <li>b = –5. a=(1–(–5))/(2–0)=6/2=3. → <strong>y = 3x – 5</strong></li>
+      <li>a=(–4–4)/(1–(–3))=–8/4=–2. D(–3;4)→4=–2·(–3)+b→4=6+b→b=–2. → <strong>y = –2x – 2</strong></li>
+      <li>d ∥ y=3x–2 → a=3. F(4;–1)→–1=3·4+b→b=–13. → <strong>y = 3x – 13</strong></li>
+      <li>Horizontale, ordonnée du point = 5. → <strong>y = 5</strong></li>
+    </ol>
+  </div>
+
+  <div class="solution">
+    <h4>Solution Exercice 6</h4>
+    <ol type="a">
+      <li><strong>Vrai</strong> — f(x) = –5x = –5x + 0 est affine avec a = –5, b = 0 (linéaire = cas particulier d'affine)</li>
+      <li><strong>Faux</strong> — a₁ = 3/2 ≠ –3/2 = a₂. Même valeur absolue mais signes opposés → PAS parallèles !</li>
+      <li><strong>Vrai</strong> — a₃ = 1/2 = a₄ → même coefficient directeur → parallèles</li>
+      <li><strong>Faux</strong> — x = 5 est une droite verticale. Pour x = 5, il y a une infinité de points (5;0), (5;1)... → ce n'est pas une fonction</li>
+      <li><strong>Vrai</strong> — √3 est un nombre réel → f(x) = √3·x – 2 est affine avec a = √3, b = –2</li>
+    </ol>
+  </div>
+
+  <div class="solution">
+    <h4>Solution Exercice 7 — y = (1/2)x – 1</h4>
+<pre class="math-block">a) f(–1) = (1/2)·(–1) – 1 = –1/2 – 1 = –3/2 ≠ –2  →  C n'appartient pas ❌
+
+b) f(x) = 1  ⟺  (1/2)x – 1 = 1  ⟺  (1/2)x = 2  ⟺  x = 4  →  A(4 ; 1)
+
+c) f(2) = (1/2)·2 – 1 = 1 – 1 = 0  →  B(2 ; 0)
+
+d) Points : (0;–1) et (2;0) → tracer la droite avec pente 1/2
+
+e) d' ∥ d  →  a = 1/2. y = (1/2)x + b.
+   P(4;3) ∈ d'  →  3 = (1/2)·4 + b  →  3 = 2 + b  →  b = 1
+   <span class="res">d' : y = (1/2)x + 1</span></pre>
+  </div>
+
+  <div class="solution">
+    <h4>Solution Exercice 8 — A(–3;4) et B(1;–4)</h4>
+<pre class="math-block">a) a = (–4 – 4) / (1 – (–3)) = –8/4 = <span class="res">–2</span>
+
+b) y = –2x + b. A(–3;4) ∈ (AB)  →  4 = –2·(–3) + b  →  4 = 6 + b  →  b = –2
+   <span class="res">(AB) : y = –2x – 2</span>
+
+c) d₂ ∥ (AB)  →  a = –2. y = –2x + b.
+   C(5;–1) ∈ d₂  →  –1 = –2·5 + b  →  –1 = –10 + b  →  b = 9
+   <span class="res">d₂ : y = –2x + 9</span></pre>
+  </div>
+</div>
+
+<hr class="sep">
+
+<!-- ================================================================
+     CHAPITRE 7
+     ================================================================ -->
+<div id="ch7" class="ch-header violet">
+  <h2>📗 Chapitre 7 : Systèmes de deux équations à deux inconnues</h2>
+</div>
+
+<!-- 7.1 -->
+<h3 id="s71">7.1 Définition et résolution graphique</h3>
+
+<div class="box def">
+  <div class="box-label" style="color:var(--bleu)">📖 Définition</div>
+  <p>Un <strong>système de deux équations du premier degré à deux inconnues x et y</strong> est de la forme :</p>
+<pre class="math-block">{ ax + by + c = 0
+{ a'x + b'y + c' = 0</pre>
+  <p><strong>Résoudre un système</strong> = trouver le(s) couple(s) (x ; y) qui vérifient <strong>les deux équations simultanément</strong>.</p>
+  <p>La solution s'écrit <strong>S = {(x ; y)}</strong> — avec des parenthèses pour le couple !</p>
+</div>
+
+<table>
+  <tr><th>Situation géométrique</th><th>Nombre de solutions</th></tr>
+  <tr><td>Les deux droites se croisent en un point</td><td><strong>Une unique solution</strong></td></tr>
+  <tr><td>Les deux droites sont parallèles (même a, b différent)</td><td><strong>Aucune solution</strong></td></tr>
+  <tr><td>Les deux droites sont confondues (identiques)</td><td><strong>Infinité de solutions</strong></td></tr>
+</table>
+
+<h4>Résolution graphique</h4>
+<div class="box methode">
+  <div class="box-label" style="color:var(--orange)">🔧 Méthode graphique</div>
+  <ol class="steps">
+    <li>Réécrire chaque équation sous la forme <strong>y = ax + b</strong></li>
+    <li>Tracer les deux droites dans le même repère orthogonal</li>
+    <li>Lire les coordonnées du point d'intersection → c'est la solution</li>
+  </ol>
+  <p>⚠️ La résolution graphique est <em>approximative</em>. Pour la valeur exacte → calcul algébrique.</p>
+</div>
+
+<div class="box exemple">
+  <div class="box-label" style="color:var(--vert)">✏️ Exemple — Prüfung Exercice 8.1 : {4x – 2y = 6 ; 2x + y = 4}</div>
+<pre class="math-block">Éq. 1 : 4x – 2y = 6  →  2y = 4x – 6  →  <span class="hi">y = 2x – 3</span>
+Éq. 2 : 2x + y = 4   →  <span class="hi">y = –2x + 4</span>
+
+Tracer les deux droites → point d'intersection ≈ (1,75 ; 0,5)
+<span class="res">S = {(7/4 ; 1/2)}</span>  [valeur exacte par calcul]</pre>
+</div>
+
+<!-- 7.2 -->
+<h3 id="s72">7.2 Méthode par substitution</h3>
+
+<div class="box def">
+  <div class="box-label" style="color:var(--bleu)">📖 Principe</div>
+  <p>On exprime une inconnue en fonction de l'autre dans une équation, puis on <strong>substitue</strong> cette expression dans la <em>deuxième</em> équation. On obtient une équation à une seule inconnue.</p>
+</div>
+
+<div class="box methode">
+  <div class="box-label" style="color:var(--orange)">🔧 Méthode par substitution — 7 étapes</div>
+  <ol class="steps">
+    <li>Choisir l'équation la plus simple (idéalement celle avec un coefficient = 1)</li>
+    <li>Exprimer une inconnue en fonction de l'autre dans cette équation<br>
+        <em>Ex : de x + 4y = 3, tirer x = 3 – 4y</em></li>
+    <li>Appeler cette expression (3) pour s'y référer</li>
+    <li>Substituer (3) dans l'<strong>AUTRE</strong> équation — JAMAIS dans la même !</li>
+    <li>Résoudre l'équation à une inconnue obtenue</li>
+    <li>Substituer la valeur trouvée dans (3) pour calculer la 2ème inconnue</li>
+    <li>Écrire S = {(x ; y)} et vérifier dans les deux équations</li>
+  </ol>
+</div>
+
+<div class="box exemple">
+  <div class="box-label" style="color:var(--vert)">✏️ Exemple complet du cours : {2x + 3y = –4 ; 4x – 5y = –30}</div>
+<pre class="math-block">{ 2x + 3y = –4    ...(1)
+{ 4x – 5y = –30   ...(2)
+
+<span class="step">Étape 1 :</span> Choisir (1) et exprimer x :
+(1)  ⟺  2x = –3y – 4
+     ⟺  x = –(3/2)y – 2    ...(3)
+
+<span class="step">Étape 2 :</span> Substituer (3) dans (2)  [PAS dans (1) !]
+4·(–(3/2)y – 2) – 5y = –30
+⟺ –6y – 8 – 5y = –30
+⟺ –11y – 8 = –30
+⟺ –11y = –22
+⟺ <span class="hi">y = 2</span>    ...(4)
+
+<span class="step">Étape 3 :</span> Substituer (4) dans (3) :
+x = –(3/2)·2 – 2 = –3 – 2 = <span class="hi">–5</span>
+
+<span class="step">Résultat :</span> <span class="res">S = {(–5 ; 2)}</span>
+
+<span class="step">Vérification :</span>
+(1) : 2·(–5) + 3·2 = –10 + 6 = –4 ✅
+(2) : 4·(–5) – 5·2 = –20 – 10 = –30 ✅</pre>
+</div>
+
+<div class="box exemple">
+  <div class="box-label" style="color:var(--vert)">✏️ Exemple simple : {y = 2x ; 2x – 3y = 4}</div>
+<pre class="math-block">y = 2x est déjà exprimé ! → substituer directement dans la 2ème :
+2x – 3·(2x) = 4
+⟺ 2x – 6x = 4
+⟺ –4x = 4  →  <span class="hi">x = –1</span>
+y = 2·(–1) = <span class="hi">–2</span>
+<span class="res">S = {(–1 ; –2)}</span></pre>
+</div>
+
+<div class="box exemple">
+  <div class="box-label" style="color:var(--vert)">✏️ Exemple — Prüfung Exercice 8.2b : {y = –5 + 3x ; x + 3y = 10}</div>
+<pre class="math-block">{ y = –5 + 3x    ...(1)
+{ x + 3y = 10    ...(2)
+
+(1) donne y directement → substituer dans (2) :
+x + 3·(–5 + 3x) = 10
+⟺ x – 15 + 9x = 10
+⟺ 10x = 25  →  <span class="hi">x = 5/2</span>
+
+Dans (1) : y = –5 + 3·(5/2) = –5 + 15/2 = –10/2 + 15/2 = <span class="hi">5/2</span>
+
+<span class="res">S = {(5/2 ; 5/2)}</span></pre>
+</div>
+
+<!-- 7.3 -->
+<h3 id="s73">7.3 Méthode par combinaisons linéaires</h3>
+
+<div class="box def">
+  <div class="box-label" style="color:var(--bleu)">📖 Principe</div>
+  <p>On multiplie les équations par des nombres pour que les coefficients d'une inconnue soient <strong>opposés</strong> (l'un est +k, l'autre –k). En additionnant les deux équations membre à membre, cette inconnue <strong>disparaît</strong>.</p>
+</div>
+
+<div class="box methode">
+  <div class="box-label" style="color:var(--orange)">🔧 Méthode par combinaisons linéaires — 6 étapes</div>
+  <ol class="steps">
+    <li>Choisir quelle inconnue éliminer (ex : éliminer x)</li>
+    <li>Multiplier une ou les deux équations par des nombres appropriés<br>
+        <em>But : avoir des coefficients opposés pour cette inconnue</em><br>
+        <em>Ex : coefficients 2x et 4x → multiplier la 1ère par (–2) pour avoir –4x et +4x</em></li>
+    <li>Additionner les deux équations membre à membre → l'inconnue choisie disparaît</li>
+    <li>Résoudre l'équation à une inconnue obtenue</li>
+    <li>Substituer cette valeur dans une des équations <em>originales</em> pour trouver la 2ème inconnue</li>
+    <li>Écrire S = {(x ; y)} et vérifier</li>
+  </ol>
+</div>
+
+<div class="box exemple">
+  <div class="box-label" style="color:var(--vert)">✏️ Exemple du cours : {2x + 3y = –4 ; 4x – 5y = –30}</div>
+<pre class="math-block">{ 2x + 3y = –4    ...(1) × (–2)
+{ 4x – 5y = –30   ...(2)
+
+(1) × (–2) :  –4x – 6y = 8    ...(1')
+(2) :          4x – 5y = –30   ...(2)
+
+(1') + (2) :  (–4x + 4x) + (–6y – 5y) = 8 + (–30)
+              0 – 11y = –22
+              <span class="hi">y = 2</span>
+
+Dans (1) : 2x + 3·2 = –4  →  2x = –10  →  <span class="hi">x = –5</span>
+<span class="res">S = {(–5 ; 2)}</span></pre>
+</div>
+
+<div class="box exemple">
+  <div class="box-label" style="color:var(--vert)">✏️ Exemple — Prüfung Exercice 8.2a : {2x – 3y = –9 ; 4x – 3y = –5}</div>
+<pre class="math-block">{ 2x – 3y = –9    ...(1) × (–1)
+{ 4x – 3y = –5    ...(2)
+
+(1) × (–1) :  –2x + 3y = 9     ...(1')
+(2) :          4x – 3y = –5    ...(2)
+
+(1') + (2) :  2x = 4  →  <span class="hi">x = 2</span>
+
+Dans (1) : 2·2 – 3y = –9  →  4 – 3y = –9  →  –3y = –13  →  <span class="hi">y = 13/3</span>
+<span class="res">S = {(2 ; 13/3)}</span></pre>
+</div>
+
+<div class="box astuce">
+  <div class="box-label" style="color:var(--jaune)">💡 Quelle méthode choisir ?</div>
+  <table style="margin:0">
+    <tr><th>Situation</th><th>Méthode recommandée</th></tr>
+    <tr><td>Une équation donne déjà y = … ou x = …</td><td>Substitution (plus rapide !)</td></tr>
+    <tr><td>Une des équations a un coefficient 1 devant x ou y</td><td>Substitution</td></tr>
+    <tr><td>Les coefficients d'une inconnue sont identiques ou facilement rendus opposés</td><td>Combinaisons linéaires</td></tr>
+    <tr><td>Coefficients compliqués / fractions</td><td>Combinaisons linéaires</td></tr>
+  </table>
+</div>
+
+<div class="box attention">
+  <div class="box-label" style="color:var(--rouge)">⚠️ Erreurs fréquentes avec les systèmes — À éviter !</div>
+  <ul class="checklist nok">
+    <li>Substituer dans la MÊME équation (il faut toujours substituer dans l'AUTRE !)</li>
+    <li>Oublier de changer le signe lors de la multiplication par un nombre négatif<br>
+        <em>Ex : –(2x – 3y = –9) → –2x + 3y = +9 (les DEUX membres changent de signe !)</em></li>
+    <li>Calculer une seule inconnue et oublier de calculer la deuxième</li>
+    <li>Écrire S = {–5 ; 2} au lieu de S = {(–5 ; 2)} — le couple a des parenthèses !</li>
+    <li>Ne pas vérifier la solution dans les DEUX équations</li>
+    <li>Confondre les équations du système (travailler avec une équation déjà modifiée)</li>
+  </ul>
+</div>
+
+<!-- 7.4 -->
+<h3 id="s74">7.4 Résolution de problèmes en contexte</h3>
+
+<div class="box methode">
+  <div class="box-label" style="color:var(--orange)">🔧 Méthode générale en 6 étapes</div>
+  <ol class="steps">
+    <li>Lire attentivement et identifier les deux quantités inconnues</li>
+    <li>Nommer ces quantités : x = … et y = …</li>
+    <li>Écrire deux équations qui traduisent mathématiquement le problème</li>
+    <li>Résoudre le système d'équations par substitution ou combinaisons linéaires</li>
+    <li>Vérifier que la solution correspond aux données du problème</li>
+    <li>Formuler la réponse en une phrase complète</li>
+  </ol>
+</div>
+
+<div class="box exemple">
+  <div class="box-label" style="color:var(--vert)">✏️ Exemple 1 — MathFon Inc. (Activité 1 du cours)</div>
+  <p>EU : 16 M téléphones + 8 M écouteurs = 2000 M$. USA : 25 M téléphones + 10 M écouteurs = 3000 M$.</p>
+<pre class="math-block">Variables : x = bénéfice/téléphone, y = bénéfice/écouteur (en M$)
+
+{ 16x + 8y = 2000   ...(1) × 5
+{ 25x + 10y = 3000  ...(2) × (–4)
+
+(1)×5 :     80x + 40y = 10000
+(2)×(–4) : –100x – 40y = –12000
+
+Somme : –20x = –2000  →  <span class="hi">x = 100</span>
+
+Dans (1) : 16·100 + 8y = 2000  →  1600 + 8y = 2000  →  8y = 400  →  <span class="hi">y = 50</span>
+
+<span class="res">Le bénéfice par téléphone est 100 M$ et par écouteur est 50 M$.</span></pre>
+</div>
+
+<div class="box exemple">
+  <div class="box-label" style="color:var(--vert)">✏️ Exemple 2 — Classeur et cahier (Exercice 4 du cours)</div>
+  <p>Un classeur coûte 1 € de plus qu'un cahier. 2 classeurs + 3 cahiers = 17 €.</p>
+<pre class="math-block">Variables : x = prix d'un classeur, y = prix d'un cahier
+
+{ x = y + 1       ...(1)
+{ 2x + 3y = 17   ...(2)
+
+Substituer (1) dans (2) :
+2(y + 1) + 3y = 17
+⟺ 2y + 2 + 3y = 17
+⟺ 5y = 15  →  <span class="hi">y = 3</span>
+
+Dans (1) : x = 3 + 1 = <span class="hi">4</span>
+
+<span class="res">Un classeur coûte 4 € et un cahier coûte 3 €.</span>
+Vérification : 2·4 + 3·3 = 8 + 9 = 17 ✅</pre>
+</div>
+
+<div class="box exemple">
+  <div class="box-label" style="color:var(--vert)">✏️ Exemple 3 — Bouquets de fleurs (Exercice 7 du cours : Activité 2)</div>
+  <p>3 iris + 4 roses = 4,80 €. 5 iris + 6 roses = 7,50 €.</p>
+<pre class="math-block">Variables : x = prix d'un iris, y = prix d'une rose
+
+{ 3x + 4y = 4,80   ...(1) × 3
+{ 5x + 6y = 7,50   ...(2) × (–2)
+
+(1)×3 :    9x + 12y = 14,40
+(2)×(–2) : –10x – 12y = –15,00
+
+Somme : –x = –0,60  →  <span class="hi">x = 0,60</span>
+
+Dans (1) : 3·0,60 + 4y = 4,80  →  1,80 + 4y = 4,80  →  4y = 3,00  →  <span class="hi">y = 0,75</span>
+
+<span class="res">Un iris coûte 0,60 € et une rose coûte 0,75 €.</span></pre>
+</div>
+
+<!-- ================================================================
+     EXERCICES CH7
+     ================================================================ -->
+<div id="ex7" class="ex-section">
+  <h3>📝 Exercices – Chapitre 7</h3>
+
+  <div class="exercice">
+    <h4>Exercice 1 <span class="diff easy">Facile</span> — Substitution</h4>
+    <p>Résoudre par la méthode de substitution :</p>
+    <div class="two-col">
+      <div>
+        <p>a) { y = 2x<br>&nbsp;&nbsp;&nbsp;&nbsp;{ 2x – 3y = 4</p>
+        <p style="margin-top:12px">b) { x = –3<br>&nbsp;&nbsp;&nbsp;&nbsp;{ 3x – 5y = 2</p>
+      </div>
+      <div>
+        <p>c) { y = 3x – 2<br>&nbsp;&nbsp;&nbsp;&nbsp;{ 2x + 3y = 16</p>
+        <p style="margin-top:12px">d) { x + y = 1<br>&nbsp;&nbsp;&nbsp;&nbsp;{ 4x + y = 2</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercice">
+    <h4>Exercice 2 <span class="diff easy">Facile</span> — Combinaisons linéaires</h4>
+    <p>Résoudre par combinaisons linéaires :</p>
+    <div class="two-col">
+      <div>
+        <p>a) { 4x – 2y = 6<br>&nbsp;&nbsp;&nbsp;&nbsp;{ 4x + 3y = 3</p>
+        <p style="margin-top:12px">b) { 2x + y = 5<br>&nbsp;&nbsp;&nbsp;&nbsp;{ x – y = 1</p>
+      </div>
+      <div>
+        <p>c) { 2x – 3y = –9<br>&nbsp;&nbsp;&nbsp;&nbsp;{ 4x – 3y = –5</p>
+        <p style="margin-top:12px">d) { 3x + 2y = 7<br>&nbsp;&nbsp;&nbsp;&nbsp;{ x – 2y = –3</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercice">
+    <h4>Exercice 3 <span class="diff med">Moyen</span> — Méthode au choix</h4>
+    <p>Résoudre algébriquement :</p>
+    <div class="two-col">
+      <div>
+        <p>a) { y = 2x – 3<br>&nbsp;&nbsp;&nbsp;&nbsp;{ x + 4y = 12</p>
+        <p style="margin-top:12px">b) { 2x – 3y = 4<br>&nbsp;&nbsp;&nbsp;&nbsp;{ 4x – 2y = 6</p>
+      </div>
+      <div>
+        <p>c) { 4x – 2y = 6<br>&nbsp;&nbsp;&nbsp;&nbsp;{ 2x + y = 4</p>
+        <p style="margin-top:12px">d) { y = –5 + 3x<br>&nbsp;&nbsp;&nbsp;&nbsp;{ x + 3y = 10</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercice">
+    <h4>Exercice 4 <span class="diff med">Moyen</span> — Résolution graphique ET algébrique</h4>
+    <p>Pour le système { 4x + y = 2 et { x + y = 1 :</p>
+    <ol type="a">
+      <li>Exprimer y en fonction de x pour chaque équation</li>
+      <li>Tracer les deux droites dans un repère orthogonal</li>
+      <li>Lire graphiquement les coordonnées du point d'intersection</li>
+      <li>Résoudre algébriquement et comparer avec le résultat graphique</li>
+    </ol>
+  </div>
+
+  <div class="exercice">
+    <h4>Exercice 5 <span class="diff med">Moyen</span> — Problème</h4>
+    <p>Annabelle fait un voyage de 721 km en deux étapes. La deuxième étape est de 53 km de plus que la première. Déterminer la longueur de chaque étape.</p>
+  </div>
+
+  <div class="exercice">
+    <h4>Exercice 6 <span class="diff hard">Difficile</span> — Problème</h4>
+    <p>À la braderie, Élénore a vendu des jeux de société et gagné 26 €. Elle a reçu en tout 33 pièces de monnaie : des pièces de 1 € et des pièces de 0,5 €. Combien a-t-elle de pièces de chaque type ?</p>
+  </div>
+
+  <div class="exercice">
+    <h4>Exercice 7 <span class="diff hard">Difficile</span> — Problème complexe</h4>
+    <p>Un hôtel comprend en total 132 lits répartis sur 82 chambres (chambres à 1 lit ou à 2 lits). Déterminer le nombre de chambres à 1 lit et à 2 lits.</p>
+  </div>
+
+  <div class="exercice">
+    <h4>Exercice 8 <span class="diff hard">Difficile</span> — Système avec fractions</h4>
+    <p>Résoudre par la méthode de votre choix :</p>
+    <p>{ (1/2)x – (1/3)y = 5<br>
+    &nbsp;&nbsp;{ 3x – 4y = 0</p>
+  </div>
+</div>
+
+<!-- ================================================================
+     SOLUTIONS CH7
+     ================================================================ -->
+<div id="sol7" class="sol-section">
+  <h3>✅ Solutions – Chapitre 7</h3>
+
+  <div class="solution">
+    <h4>Solution Exercice 1 — Substitution</h4>
+<pre class="math-block"><span class="step">a) { y = 2x ; 2x – 3y = 4</span>
+Substituer y = 2x :  2x – 3·(2x) = 4  →  –4x = 4  →  x = –1
+y = 2·(–1) = –2
+<span class="res">S = {(–1 ; –2)}</span>
+
+<span class="step">b) { x = –3 ; 3x – 5y = 2</span>
+Substituer x = –3 :  3·(–3) – 5y = 2  →  –9 – 5y = 2  →  –5y = 11  →  y = –11/5
+<span class="res">S = {(–3 ; –11/5)}</span>
+
+<span class="step">c) { y = 3x – 2 ; 2x + 3y = 16</span>
+2x + 3·(3x – 2) = 16  →  2x + 9x – 6 = 16  →  11x = 22  →  x = 2
+y = 3·2 – 2 = 4
+<span class="res">S = {(2 ; 4)}</span>
+
+<span class="step">d) { x + y = 1 ; 4x + y = 2</span>
+De (1) : y = 1 – x. Dans (2) : 4x + (1 – x) = 2  →  3x = 1  →  x = 1/3
+y = 1 – 1/3 = 2/3
+<span class="res">S = {(1/3 ; 2/3)}</span></pre>
+  </div>
+
+  <div class="solution">
+    <h4>Solution Exercice 2 — Combinaisons linéaires</h4>
+<pre class="math-block"><span class="step">a) { 4x – 2y = 6 ; 4x + 3y = 3</span>
+(1) × (–1) : –4x + 2y = –6
+(2) :         4x + 3y = 3
+Somme : 5y = –3  →  y = –3/5
+Dans (1) : 4x – 2·(–3/5) = 6  →  4x = 6 – 6/5 = 24/5  →  x = 6/5
+<span class="res">S = {(6/5 ; –3/5)}</span>
+
+<span class="step">b) { 2x + y = 5 ; x – y = 1</span>
+Additionner directement (y s'élimine) : 3x = 6  →  x = 2
+Dans (2) : 2 – y = 1  →  y = 1
+<span class="res">S = {(2 ; 1)}</span>
+
+<span class="step">c) { 2x – 3y = –9 ; 4x – 3y = –5</span>
+(1) × (–1) : –2x + 3y = 9
+(2) :          4x – 3y = –5
+Somme : 2x = 4  →  x = 2
+Dans (1) : 2·2 – 3y = –9  →  –3y = –13  →  y = 13/3
+<span class="res">S = {(2 ; 13/3)}</span>
+
+<span class="step">d) { 3x + 2y = 7 ; x – 2y = –3</span>
+Additionner (2y s'élimine) : 4x = 4  →  x = 1
+Dans (2) : 1 – 2y = –3  →  –2y = –4  →  y = 2
+<span class="res">S = {(1 ; 2)}</span></pre>
+  </div>
+
+  <div class="solution">
+    <h4>Solution Exercice 3 — Méthode au choix</h4>
+<pre class="math-block"><span class="step">a) { y = 2x – 3 ; x + 4y = 12</span>
+x + 4·(2x – 3) = 12  →  x + 8x – 12 = 12  →  9x = 24  →  x = 8/3
+y = 2·(8/3) – 3 = 16/3 – 9/3 = 7/3
+<span class="res">S = {(8/3 ; 7/3)}</span>
+
+<span class="step">b) { 2x – 3y = 4 ; 4x – 2y = 6</span>
+(1) × (–2) : –4x + 6y = –8
+(2) :          4x – 2y = 6
+Somme : 4y = –2  →  y = –1/2
+Dans (1) : 2x – 3·(–1/2) = 4  →  2x + 3/2 = 4  →  2x = 5/2  →  x = 5/4
+<span class="res">S = {(5/4 ; –1/2)}</span>
+
+<span class="step">c) { 4x – 2y = 6 ; 2x + y = 4</span>  [Prüfung Exercice 8.1 !]
+De (2) : y = –2x + 4. Dans (1) : 4x – 2(–2x + 4) = 6  →  4x + 4x – 8 = 6  →  8x = 14
+x = 7/4. y = –2·(7/4) + 4 = –7/2 + 8/2 = 1/2
+<span class="res">S = {(7/4 ; 1/2)}</span>
+
+<span class="step">d) { y = –5 + 3x ; x + 3y = 10</span>  [Prüfung Exercice 8.2b !]
+x + 3(–5 + 3x) = 10  →  x – 15 + 9x = 10  →  10x = 25  →  x = 5/2
+y = –5 + 3·(5/2) = –10/2 + 15/2 = 5/2
+<span class="res">S = {(5/2 ; 5/2)}</span></pre>
+  </div>
+
+  <div class="solution">
+    <h4>Solution Exercice 4</h4>
+<pre class="math-block">a) y = –4x + 2  et  y = –x + 1
+b &amp; c) Tracer les deux droites → intersection ≈ (1/3 ; 2/3)
+d) –4x + 2 = –x + 1  →  –3x = –1  →  x = 1/3.  y = –(1/3) + 1 = 2/3
+<span class="res">S = {(1/3 ; 2/3)}</span>  — correspond au résultat graphique ✅</pre>
+  </div>
+
+  <div class="solution">
+    <h4>Solution Exercice 5 — Annabelle</h4>
+<pre class="math-block">Variables : x = 1ère étape (km), y = 2ème étape (km)
+{ x + y = 721        ...(1)
+{ y = x + 53         ...(2)
+
+Substituer (2) dans (1) :
+x + (x + 53) = 721  →  2x + 53 = 721  →  2x = 668  →  x = 334
+y = 334 + 53 = 387
+
+<span class="res">La 1ère étape fait 334 km et la 2ème étape fait 387 km.</span>
+Vérification : 334 + 387 = 721 ✅  et  387 – 334 = 53 ✅</pre>
+  </div>
+
+  <div class="solution">
+    <h4>Solution Exercice 6 — Élénore</h4>
+<pre class="math-block">Variables : x = nb pièces de 1 €, y = nb pièces de 0,5 €
+{ x + y = 33          ...(1)
+{ x + 0,5y = 26       ...(2)
+
+(1) – (2) : 0,5y = 7  →  y = 14
+x = 33 – 14 = 19
+
+<span class="res">Élénore a 19 pièces de 1 € et 14 pièces de 0,5 €.</span>
+Vérification : 19·1 + 14·0,5 = 19 + 7 = 26 € ✅  et  19 + 14 = 33 ✅</pre>
+  </div>
+
+  <div class="solution">
+    <h4>Solution Exercice 7 — Hôtel</h4>
+<pre class="math-block">Variables : x = nb chambres à 1 lit, y = nb chambres à 2 lits
+{ x + y = 82          ...(1)
+{ x + 2y = 132        ...(2)
+
+(2) – (1) : y = 50
+x = 82 – 50 = 32
+
+<span class="res">L'hôtel a 32 chambres à 1 lit et 50 chambres à 2 lits.</span>
+Vérification : 32 + 50 = 82 chambres ✅  et  32 + 2·50 = 32 + 100 = 132 lits ✅</pre>
+  </div>
+
+  <div class="solution">
+    <h4>Solution Exercice 8 — Système avec fractions</h4>
+<pre class="math-block">{ (1/2)x – (1/3)y = 5    ...(1) × 6
+{ 3x – 4y = 0            ...(2)
+
+(1) × 6 :  3x – 2y = 30    ...(1')
+
+(1') – (2) : (3x – 2y) – (3x – 4y) = 30 – 0
+→ 2y = 30  →  <span class="hi">y = 15</span>
+
+Dans (2) : 3x – 4·15 = 0  →  3x = 60  →  <span class="hi">x = 20</span>
+<span class="res">S = {(20 ; 15)}</span>
+Vérif (1) : (1/2)·20 – (1/3)·15 = 10 – 5 = 5 ✅</pre>
+  </div>
+</div>
+
+<hr class="sep">
+
+<!-- ================================================================
+     PRUEFUNG ANALYSIS
+     ================================================================ -->
+<div id="pruefung" class="ch-header purple">
+  <h2>🎯 Analyse de la Prüfung &amp; Conseils pour la Nachprüfung</h2>
+</div>
+
+<h3>📊 Importance de chaque exercice de la Prüfung</h3>
+
+<div class="box exam">
+  <div class="box-label" style="color:#a21caf">🔍 Récapitulatif des exercices de la Prüfung (Devoir II,3)</div>
+  <table>
+    <tr><th>Exercice</th><th>Tâche demandée</th><th>Points</th><th>Priorité</th></tr>
+    <tr><td><strong>Ex. 1</strong></td><td>Compléter les définitions (coefficient directeur, ordonnée à l'origine)</td><td>3 pts</td><td>⭐ Gratuit à mémoriser !</td></tr>
+    <tr><td><strong>Ex. 2</strong></td><td>Vérifier si des points appartiennent à une droite ; trouver x pour f(x) = valeur</td><td>5 pts</td><td>⭐⭐⭐</td></tr>
+    <tr><td><strong>Ex. 3</strong></td><td>Vrai/faux : identifier fonctions affines et droites parallèles</td><td>4 pts</td><td>⭐⭐</td></tr>
+    <tr><td><strong>Ex. 4</strong></td><td>Trouver l'expression algébrique à partir de valeurs données (2 sous-questions)</td><td>10 pts</td><td>⭐⭐⭐ Essentiel !</td></tr>
+    <tr><td><strong>Ex. 5</strong></td><td>Équation de droite : 3 cas (a+point, 2 points, parallèle à axe)</td><td>10 pts</td><td>⭐⭐⭐ Essentiel !</td></tr>
+    <tr><td><strong>Ex. 6</strong></td><td>Travailler avec une équation donnée y = (1/2)x – 1</td><td>6 pts</td><td>⭐⭐</td></tr>
+    <tr><td><strong>Ex. 7</strong></td><td>Lire les équations depuis un graphique (5 droites)</td><td>7 pts</td><td>⭐⭐</td></tr>
+    <tr><td><strong>Ex. 8</strong></td><td>Résoudre un système graphiquement + algébriquement (2 méthodes)</td><td>15 pts</td><td>⭐⭐⭐ Le plus de points !</td></tr>
+  </table>
+  <p style="margin-top:10px;color:#6b21a8"><strong>Total : 60 points.</strong> Exercices 4, 5 et 8 représentent 35 pts = plus de la moitié !</p>
+</div>
+
+<h3>🔴 Erreurs identifiées dans la Prüfung — À ne pas répéter !</h3>
+
+<div class="box attention">
+  <div class="box-label" style="color:var(--rouge)">⚠️ Erreurs concrètes analysées</div>
+
+  <h4 style="color:var(--rouge)">Erreur 1 — Exercice 5.1 : Confusion entre a et la coordonnée y</h4>
+  <p>L'énoncé : coefficient directeur = 2, point A(5 ; –5)</p>
+  <p>❌ Erreur faite : écrire <strong>y = –5x – 15</strong> (le –5 vient de la coordonnée y du point, pas du coefficient directeur !)</p>
+  <p>✅ Correct : a = 2 (donné dans l'énoncé !). y = 2x + b. → –5 = 2·5 + b → b = –15 → <strong>y = 2x – 15</strong></p>
+  <p>→ <em>Ne JAMAIS confondre a (coefficient directeur) avec les coordonnées du point !</em></p>
+
+  <h4 style="color:var(--rouge);margin-top:16px">Erreur 2 — Exercice 3.2 : Droites "parallèles" avec coefficients opposés</h4>
+  <p>d₁ : y = (3/2)x + 5 et d₂ : y = –(3/2)x + 5</p>
+  <p>❌ Erreur possible : penser qu'elles sont parallèles car même valeur absolue 3/2</p>
+  <p>✅ Correct : a₁ = 3/2 ≠ –3/2 = a₂ → <strong>PAS parallèles</strong> ! Signe opposé = coefficient différent !</p>
+
+  <h4 style="color:var(--rouge);margin-top:16px">Erreur 3 — Exercice 2 : Mauvaise coordonnée substituée</h4>
+  <p>Pour vérifier si B(2/3 ; –2) appartient à f(x) = –4x + 1 :</p>
+  <p>❌ Risque : calculer f(–2) → c'est la coordonnée y, pas x !</p>
+  <p>✅ Correct : substituer <strong>x = 2/3</strong> → f(2/3) = –8/3 + 1 = –5/3 ≠ –2 → B n'appartient pas</p>
+
+  <h4 style="color:var(--rouge);margin-top:16px">Erreur 4 — Exercice 8 : Résolution graphique = approximation</h4>
+  <p>Lire (1,75 ; 0,5) sur le graphique est correct, mais la valeur exacte est (7/4 ; 1/2).</p>
+  <p>✅ Toujours confirmer la valeur exacte algébriquement !</p>
+</div>
+
+<h3>✅ Checklist de préparation — Ce qu'il faut maîtriser parfaitement</h3>
+
+<div class="box astuce">
+  <div class="box-label" style="color:var(--jaune)">💡 Tout cocher avant la Nachprüfung</div>
+  <ul class="checklist ok">
+    <li>Définitions par cœur : <em>coefficient directeur (a)</em> et <em>ordonnée à l'origine (b)</em></li>
+    <li>Identifier si f(x) = ax + b est affine / linéaire / constante et trouver a, b</li>
+    <li>Mettre une expression sous la forme f(x) = ax + b (développer, simplifier)</li>
+    <li>Vérifier si un point appartient à une droite : calculer f(x₀) et comparer à y₀</li>
+    <li>Trouver x tel que f(x) = k (résoudre une équation du 1er degré)</li>
+    <li>Calculer a = Δy/Δx = (y₂ – y₁)/(x₂ – x₁)</li>
+    <li>Trouver b en substituant un point : si f(0) connu → b = f(0) directement !</li>
+    <li>Trouver l'équation d'une droite (3 cas : a+point / 2 points / parallèle à axe)</li>
+    <li>Reconnaître des droites parallèles : même a, b différent</li>
+    <li>Trouver une droite parallèle à une droite donnée passant par un point</li>
+    <li>Résoudre un système par <strong>substitution</strong></li>
+    <li>Résoudre un système par <strong>combinaisons linéaires</strong></li>
+    <li>Vérifier une solution de système dans les DEUX équations</li>
+    <li>Modéliser un problème par un système d'équations</li>
+  </ul>
+</div>
+
+<h3>⚡ Fiches express — À mémoriser</h3>
+
+<div class="two-col">
+  <div class="box formule">
+    <div class="box-label" style="color:var(--violet)">📐 Formules Chapitre 6</div>
+    <p><strong>Fonction affine :</strong> f(x) = ax + b</p>
+    <p><strong>Coefficient directeur :</strong><br>a = (y₂ – y₁)/(x₂ – x₁) = Δy/Δx</p>
+    <p><strong>Point sur la droite :</strong><br>D(x₀ ; y₀) ∈ d  ⟺  f(x₀) = y₀</p>
+    <p><strong>Ordonnée à l'origine :</strong><br>b = f(0)</p>
+    <p><strong>Droites parallèles :</strong><br>d ∥ d'  ⟺  a_d = a_d'</p>
+    <p><strong>Droite horizontale :</strong> y = k<br>
+    <strong>Droite verticale :</strong> x = k (≠ fonction !)</p>
+  </div>
+  <div class="box formule">
+    <div class="box-label" style="color:var(--violet)">📐 Formules Chapitre 7</div>
+    <p><strong>Système :</strong><br>{ ax + by = c<br>{ a'x + b'y = c'</p>
+    <p><strong>Solution :</strong> S = {(x ; y)} — parenthèses obligatoires !</p>
+    <p><strong>Substitution :</strong><br>Exprimer → Substituer dans L'AUTRE → Résoudre</p>
+    <p><strong>Comb. linéaires :</strong><br>Multiplier → Additionner → coefficients opposés s'annulent</p>
+    <p><strong>Vérification :</strong><br>Substituer dans les DEUX équations</p>
+  </div>
+</div>
+
+<h3>💪 Conseils finaux pour la Nachprüfung</h3>
+
+<div class="box" style="background:linear-gradient(135deg,#f0fdf4,#eff6ff);border:2px solid var(--bleu);border-radius:12px;padding:20px">
+  <ul style="list-style:none;padding:0">
+    <li style="padding:7px 0">📝 <strong>Montrer toutes les étapes de calcul</strong> — même pour un calcul simple, le raisonnement rapporte des points</li>
+    <li style="padding:7px 0">✅ <strong>Toujours vérifier les solutions</strong> en les substituant dans les équations de départ</li>
+    <li style="padding:7px 0">🎯 <strong>Commencer par Ex. 1</strong> (définitions = 3 pts gratuits si mémorisés)</li>
+    <li style="padding:7px 0">⏱️ <strong>Priorité à Ex. 8</strong> (15 pts !) — bien s'entraîner sur les systèmes</li>
+    <li style="padding:7px 0">🧮 <strong>Soigner les calculs de signes</strong> — surtout quand on multiplie par un nombre négatif</li>
+    <li style="padding:7px 0">📐 <strong>Copie propre et soignée</strong> — exigé dans l'énoncé de la Prüfung !</li>
+    <li style="padding:7px 0">💡 <strong>Si f(0) est donné, b = f(0) directement</strong> — ne pas faire un calcul inutile</li>
+    <li style="padding:7px 0">⚠️ <strong>Ex. 3.2 : attention aux signes !</strong> — (3/2) ≠ (–3/2), donc pas parallèles</li>
+    <li style="padding:7px 0">📊 <strong>Pour lire les équations sur un graphique</strong> : toujours identifier b (intersection avec axe y) et calculer a = Δy/Δx avec deux points bien lisibles</li>
+    <li style="padding:7px 0">🔢 <strong>Pour les systèmes</strong> : choisir la méthode la plus rapide selon l'énoncé (si y = … est déjà donné → substitution !)</li>
+  </ul>
+</div>
+
+<div style="text-align:center;margin:40px 0 20px;color:#94a3b8;font-size:13px">
+  <p>📐 Lernzettel Mathématiques · 4GPM · Luxembourg · Nachprüfung</p>
+  <p style="margin-top:4px;font-size:15px;color:#374151">Tu as tout le matériel nécessaire — bon courage ! 💪</p>
+</div>
+
+</body>
+</html>
