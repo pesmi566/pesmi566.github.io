@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cinder — Complete Study Guide</title>
+<style>
+  :root{
+    --ink:#1c1c24; --sub:#5a5a68; --line:#e3e1db;
+    --accent:#8b2e2e; --accent2:#2e5c8b; --paper:#faf8f3; --card:#ffffff;
+  }
+  body{margin:0;font-family:Georgia,'Iowan Old Style',serif;background:var(--paper);color:var(--ink);line-height:1.6;}
+  .wrap{max-width:900px;margin:0 auto;padding:40px 24px 100px;}
+  header.hero{text-align:center;padding:50px 20px;border-bottom:4px double var(--accent);margin-bottom:40px;}
+  header.hero h1{font-size:2.6em;margin:0 0 6px;letter-spacing:1px;}
+  header.hero p{color:var(--sub);font-style:italic;margin:4px 0;}
+  nav.toc{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:20px 26px;margin-bottom:40px;}
+  nav.toc h2{margin-top:0;font-size:1.1em;text-transform:uppercase;letter-spacing:1px;color:var(--accent);}
+  nav.toc ol{columns:2;column-gap:30px;padding-left:20px;}
+  nav.toc li{margin-bottom:6px;break-inside:avoid;}
+  nav.toc a{color:var(--accent2);text-decoration:none;}
+  nav.toc a:hover{text-decoration:underline;}
+  section{margin-bottom:50px;}
+  h2.section-title{font-size:1.7em;color:var(--accent);border-bottom:2px solid var(--line);padding-bottom:8px;margin-bottom:20px;}
+  h3{color:var(--accent2);font-size:1.25em;margin-top:28px;}
+  h4{margin-bottom:6px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:18px 22px;margin-bottom:18px;}
+  .chapgroup{border-left:4px solid var(--accent);background:var(--card);padding:16px 22px;margin-bottom:22px;border-radius:0 8px 8px 0;}
+  .chapgroup h3{margin-top:0;}
+  table{width:100%;border-collapse:collapse;margin:14px 0;}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+  th{background:#f1efe8;}
+  ul{padding-left:22px;}
+  li{margin-bottom:4px;}
+  .tag{display:inline-block;background:#f1efe8;color:var(--accent);font-size:.78em;padding:2px 8px;border-radius:10px;margin:2px 4px 2px 0;font-family:Verdana,sans-serif;text-transform:uppercase;letter-spacing:.5px;}
+  .quote{font-style:italic;color:var(--accent);border-left:3px solid var(--accent);padding-left:12px;margin:10px 0;}
+  .qbox{background:#fbf6ec;border:1px dashed #c9a86a;border-radius:6px;padding:12px 16px;margin:10px 0;}
+  .note{background:#eef3f8;border-left:4px solid var(--accent2);padding:10px 16px;margin:14px 0;font-size:.95em;}
+  .checklist li{list-style:none;margin-bottom:8px;}
+  .checklist li:before{content:"☐ ";color:var(--accent);font-weight:bold;}
+  .exam-q{margin-bottom:10px;}
+  .answer{color:var(--sub);font-size:.95em;margin-left:14px;}
+  footer{text-align:center;color:var(--sub);font-size:.85em;margin-top:60px;border-top:1px solid var(--line);padding-top:20px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <h1>CINDER</h1>
+  <p>A Complete Study Guide — The Lunar Chronicles, Book One</p>
+  <p>By Marissa Meyer</p>
+</header>
+
+<nav class="toc">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#overview">Novel Overview</a></li>
+    <li><a href="#world">World-Building Guide</a></li>
+    <li><a href="#characters">Character Guide</a></li>
+    <li><a href="#relationships">Relationship Map</a></li>
+    <li><a href="#timeline">Full Timeline</a></li>
+    <li><a href="#chapters">Chapter-by-Chapter Analysis</a></li>
+    <li><a href="#themes">Major Themes</a></li>
+    <li><a href="#symbols">Symbols &amp; Motifs</a></li>
+    <li><a href="#vocab">Vocabulary List</a></li>
+    <li><a href="#examprep">Exam Preparation</a></li>
+    <li><a href="#revision">Final Revision Sheet</a></li>
+  </ol>
+</nav>
+
+<section id="overview">
+  <h2 class="section-title">1. Novel Overview</h2>
+  <div class="card">
+    <p><strong>Cinder</strong> is a science-fiction retelling of the Cinderella fairy tale, set generations after a devastating war in a futuristic version of Beijing, now called New Beijing, capital of the Eastern Commonwealth. The protagonist, Linh Cinder, is a gifted mechanic who is also a cyborg — part human, part machine — a status that makes her a second-class citizen. When Prince Kai brings her his damaged android for repair, Cinder is pulled into a chain of events involving a deadly plague (letumosis), a threatening Lunar queen, and a secret about her own identity that could change the fate of the Commonwealth.</p>
+    <p>The novel blends fairy-tale structure with dystopian world-building and mystery, and it ends on a major cliffhanger that is resolved later in the series (<em>Scarlet</em>, <em>Cress</em>, <em>Winter</em>). For exam purposes, focus on: Cinder's identity mystery, the plague crisis, the political tension with Luna, and how each fairy-tale element (stepmother, ball, glass slipper, curfew/midnight) is reimagined.</p>
+  </div>
+</section>
+
+<section id="world">
+  <h2 class="section-title">2. World-Building Guide</h2>
+  <div class="card">
+    <h3>New Beijing &amp; the Eastern Commonwealth</h3>
+    <p>New Beijing is the capital of the Eastern Commonwealth, one of several Earthen nations that arose after "World War IV," a catastrophic conflict that reshaped the globe. Commonwealth society is a mix of advanced technology (androids, hover-rails, advanced medicine) and rigid social hierarchy — cyborgs are legally treated as lesser citizens, required to be listed on a national register and are the population the government uses for compulsory plague research.</p>
+    <h3>Luna and the Lunar Monarchy</h3>
+    <p>Luna is a human colony on the Moon that broke away from Earth generations ago. Lunars have evolved (or been engineered) a "gift" — the ability to manipulate bioelectricity, letting them control others' emotions, perceptions, and actions ("glamour" and manipulation). Luna is ruled by Queen Levana, a manipulative, image-obsessed monarch who wants to marry Prince Kai to merge Luna and the Commonwealth under her control. Lunars are fascinating to Earthens but also feared, since their gift makes them capable of forcing others to see or feel whatever they want.</p>
+    <h3>Cyborgs and Androids</h3>
+    <p>Cyborgs are humans who have been fitted with mechanical parts (limbs, organs, a control panel) after accidents — Cinder has a mechanical hand, foot, and leg, plus a retina display in one eye. They are viewed with suspicion, seen as "less human," and denied full legal rights. Androids are fully mechanical service robots (e.g., Kai's android Nainsi, Cinder's assistant Iko) with programmed personalities but no legal personhood — though the novel repeatedly questions where the line between "person" and "machine" really lies.</p>
+    <h3>Letumosis (the Plague)</h3>
+    <p>Letumosis is a fatal, highly contagious blue-fever plague sweeping the Commonwealth, for which there is no cure. It is used as the story's ticking clock and its politics: the palace conducts forced research on cyborgs (since they are considered more "expendable") to find an antidote, and the emperor himself falls ill with it.</p>
+  </div>
+</section>
+
+<section id="characters">
+  <h2 class="section-title">3. Character Guide</h2>
+
+  <div class="card">
+    <h3>Linh Cinder</h3>
+    <p><span class="tag">Protagonist</span><span class="tag">Cyborg</span><span class="tag">Mechanic</span></p>
+    <p><strong>Description:</strong> Sixteen years old, part-cyborg with a mechanical hand and leg hidden under gloves/boots, works as a mechanic at the New Beijing market.</p>
+    <p><strong>Personality:</strong> Practical, guarded, self-deprecating about her cyborg status, secretly brave and resourceful.</p>
+    <p><strong>Motivations/Goals:</strong> Initially just to survive her stepmother's household and support her sister Peony; later, to understand her own hidden identity and to help stop Levana.</p>
+    <p><strong>Arc:</strong> Moves from shame and self-hiding to self-acceptance, discovering she is Princess Selene, the lost Lunar heir long believed dead — the twist that reframes the entire novel as a "secret princess" fairy tale.</p>
+    <p><strong>Symbolism:</strong> Represents the blurred line between human and machine, and the idea that identity is chosen, not just inherited.</p>
+  </div>
+
+  <div class="card">
+    <h3>Prince Kai (Kaito)</h3>
+    <p><span class="tag">Love interest</span><span class="tag">Heir to the throne</span></p>
+    <p>Charming, dutiful, and increasingly burdened as his father's illness worsens and he is forced toward a political marriage with Levana to protect the Commonwealth. His arc is about the conflict between personal feeling and political duty — the "prince" of the fairy tale, but one trapped by realpolitik rather than romance alone.</p>
+  </div>
+
+  <div class="card">
+    <h3>Adri (Stepmother) &amp; Pearl (Stepsister)</h3>
+    <p>Adri, Cinder's legal guardian, resents and exploits Cinder, blaming her for her husband's death and Peony's infection; she ultimately signs Cinder over for lethal plague research. Pearl mirrors Adri's coldness and social climbing. Together they update the "cruel stepmother and stepsister" fairy-tale roles.</p>
+  </div>
+
+  <div class="card">
+    <h3>Peony</h3>
+    <p>Cinder's younger stepsister, the one family member who is kind to her. Her death from letumosis is a major emotional turning point that hardens Cinder's resolve and deepens the plague's stakes for the reader.</p>
+  </div>
+
+  <div class="card">
+    <h3>Iko</h3>
+    <p>Cinder's android companion at the shop, given a bubbly, loyal, almost teenage-girl personality despite having no body of her own for most of the book. Iko is central to the novel's "what counts as a person?" theme.</p>
+  </div>
+
+  <div class="card">
+    <h3>Dr. Dmitri Erland</h3>
+    <p>A palace researcher who takes special interest in Cinder, guides her toward the truth about her Lunar heritage, and serves as a mentor/mystery figure — his true motives and Lunar background are gradually revealed.</p>
+  </div>
+
+  <div class="card">
+    <h3>Queen Levana</h3>
+    <p><span class="tag">Antagonist</span></p>
+    <p>Ruler of Luna, vain and ruthless, uses her Lunar gift to maintain a beautiful "glamour" over her scarred true appearance, and seeks to control Earth through a forced marriage to Kai. She represents the corrupting potential of power and the theme of appearance vs. reality.</p>
+  </div>
+
+  <div class="card">
+    <h3>Emperor Rikan</h3>
+    <p>Kai's dying father, whose illness with letumosis sets much of the plot's political urgency in motion.</p>
+  </div>
+</section>
+
+<section id="relationships">
+  <h2 class="section-title">4. Relationship Map</h2>
+  <table>
+    <tr><th>Relationship</th><th>Type</th><th>Evolution</th></tr>
+    <tr><td>Cinder &amp; Kai</td><td>Romantic</td><td>Begins as a customer/mechanic exchange, grows into mutual attraction complicated by Cinder's hidden cyborg/Lunar identity and Kai's political obligations.</td></tr>
+    <tr><td>Cinder &amp; Adri</td><td>Family (guardian)</td><td>Resentment and exploitation from the start; worsens until Adri sells Cinder into fatal research, severing the relationship entirely.</td></tr>
+    <tr><td>Cinder &amp; Peony</td><td>Family (sibling)</td><td>The one warm family bond Cinder has; ends in grief when Peony dies of the plague.</td></tr>
+    <tr><td>Cinder &amp; Iko</td><td>Friendship</td><td>Loyal companionship that questions the human/android divide.</td></tr>
+    <tr><td>Kai &amp; Levana</td><td>Political/forced romance</td><td>An arranged, coercive alliance Kai is pressured into to save the Commonwealth from war and plague.</td></tr>
+    <tr><td>Cinder &amp; Dr. Erland</td><td>Mentor</td><td>Starts as a doctor-patient/research relationship, becomes central to Cinder discovering her true identity.</td></tr>
+  </table>
+</section>
+
+<section id="timeline">
+  <h2 class="section-title">5. Full Timeline of Major Events</h2>
+  <div class="card">
+    <ol>
+      <li>Prince Kai brings his android Nainsi to Cinder's shop for repair.</li>
+      <li>Cinder is revealed as a cyborg when her metal foot is exposed publicly.</li>
+      <li>Peony contracts letumosis after visiting the plague quarantines with Cinder.</li>
+      <li>Adri "volunteers" Cinder for mandatory cyborg plague research as punishment.</li>
+      <li>Dr. Erland discovers Cinder is naturally immune to the plague — an impossible trait that hints at her Lunar origins.</li>
+      <li>Peony dies from letumosis, deepening Cinder's isolation and resolve.</li>
+      <li>Emperor Rikan falls seriously ill; Kai takes on more political responsibility.</li>
+      <li>Queen Levana arrives on Earth, pressuring a political marriage with Kai and threatening war.</li>
+      <li>Dr. Erland reveals to Cinder that she may be Princess Selene, the Lunar heir presumed dead — Levana's rival claim to the throne.</li>
+      <li>The Emperor dies; Kai becomes Emperor and must decide whether to accept Levana's proposal to prevent war.</li>
+      <li>Cinder attempts to warn Kai of Levana's true nature at the royal ball, echoing the fairy-tale ball scene.</li>
+      <li>Cinder is exposed/arrested as she flees, losing her cyborg foot in the escape — the "glass slipper" moment.</li>
+      <li>Cinder escapes prison using her cyborg abilities and Dr. Erland's help, ending the novel on the run, with her true identity now known to her and the fate of the Commonwealth still unresolved.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="chapters">
+  <h2 class="section-title">6. Chapter-by-Chapter Analysis</h2>
+  <div class="note">The 36 chapters are grouped below into story-arc sections for clarity. Each group covers every chapter's key events, character development, themes, and possible exam questions. Ask if you'd like any single chapter expanded further.</div>
+
+  <div class="chapgroup">
+    <h3>Chapters 1–8: The Mechanic and the Prince</h3>
+    <p><strong>Summary:</strong> The novel opens in the New Beijing market, establishing Cinder's cyborg status, her mechanic trade, and her strained home life with Adri, Pearl, and Peony. Prince Kai visits incognito with his broken android, sparking the central relationship. We learn about letumosis, the looming Lunar threat, and Cinder's mysterious missing childhood memories (she has no recollection of life before age eleven, when she was fitted as a cyborg). Cinder is publicly humiliated when her mechanical foot is exposed, reinforcing the "othering" of cyborgs.</p>
+    <p><strong>Key Events:</strong> Kai's shop visit; introduction of Iko; Cinder's foot exposed in public; establishing letumosis as a citywide crisis; hints that Cinder's past is hidden or erased.</p>
+    <p><strong>Character Development:</strong> Cinder is shown as competent but ashamed of her cyborg body; Kai as approachable despite his royal status; Adri and Pearl as coldly dismissive.</p>
+    <p><strong>Themes:</strong> Identity and shame, prejudice against cyborgs, the fairy-tale "servant meets prince" setup.</p>
+    <p><strong>Literary Analysis:</strong> The missing-memory detail is early foreshadowing of the identity twist. The Cinderella parallel (ash-smudged mechanic, cruel stepfamily) is intentionally visible to alert readers to the retelling structure.</p>
+    <p><strong>Possible Exam Questions:</strong></p>
+    <ul>
+      <li>How does the opening chapter establish Cinder as an outsider in her own society?</li>
+      <li>What effect does the public exposure of Cinder's foot have on the reader's understanding of cyborg prejudice?</li>
+      <li>Short answer: What details in these chapters hint that Cinder's past is not what it seems?</li>
+    </ul>
+  </div>
+
+  <div class="chapgroup">
+    <h3>Chapters 9–16: The Plague Closes In</h3>
+    <p><strong>Summary:</strong> Cinder and Peony visit the quarantine out of curiosity/kindness, leading to Peony's infection. Adri, blaming Cinder, forces her to be registered for mandatory cyborg plague research at the palace. There, Dr. Erland discovers her natural immunity to letumosis — a biological impossibility for a normal human, planting the central mystery. Meanwhile, Kai's political burdens grow as his father's illness worsens and the threat from Luna intensifies.</p>
+    <p><strong>Key Events:</strong> Peony's infection; Cinder volunteered for lethal research; the immunity discovery; Dr. Erland's growing interest in Cinder.</p>
+    <p><strong>Character Development:</strong> Cinder shifts from passive endurance to active fear and self-preservation; Dr. Erland introduced as an ambiguous, knowledgeable figure; Adri's cruelty escalates to a betrayal with lethal stakes.</p>
+    <p><strong>Themes:</strong> Sacrifice, family duty and betrayal, the ethics of using marginalized people ("expendable" cyborgs) for state research.</p>
+    <p><strong>Literary Analysis:</strong> Dramatic irony — the reader begins suspecting Cinder is Lunar before she does, since her immunity mirrors known Lunar traits established in world-building.</p>
+    <p><strong>Possible Exam Questions:</strong></p>
+    <ul>
+      <li>Analytical: What does Adri's decision to volunteer Cinder for research reveal about the novel's view of social hierarchy?</li>
+      <li>Why is Cinder's immunity to letumosis significant to the plot?</li>
+    </ul>
+  </div>
+
+  <div class="chapgroup">
+    <h3>Chapters 17–24: Loss and Political Pressure</h3>
+    <p><strong>Summary:</strong> Peony dies from the plague, devastating Cinder and cutting one of her few emotional anchors. Queen Levana arrives on Earth to press her marriage demand on Kai, using intimidation and her Lunar gift to manipulate the court. The Emperor's condition worsens. Cinder, meanwhile, continues her secret work with Dr. Erland and grows closer to Kai despite hiding her identity from him.</p>
+    <p><strong>Key Events:</strong> Peony's death; Levana's arrival and threats; Emperor's health decline; Cinder and Kai's relationship deepens amid her secrecy.</p>
+    <p><strong>Character Development:</strong> Cinder's grief hardens her resolve; Kai is shown trapped between personal desire and duty to his people; Levana established as manipulative and dangerous rather than simply villainous for its own sake.</p>
+    <p><strong>Themes:</strong> Loss and grief, power and manipulation, duty vs. desire.</p>
+    <p><strong>Literary Analysis:</strong> Levana's controlled "glamour" appearance versus her true scarred self is an early instance of the appearance-vs-reality motif that recurs through the theme of masks and secrets.</p>
+    <p><strong>Possible Exam Questions:</strong></p>
+    <ul>
+      <li>How does Peony's death function as a turning point for Cinder's character?</li>
+      <li>Discuss how Levana's introduction changes the political stakes of the novel.</li>
+    </ul>
+  </div>
+
+  <div class="chapgroup">
+    <h3>Chapters 25–30: The Secret Revealed</h3>
+    <p><strong>Summary:</strong> The Emperor dies, and Kai ascends the throne, now facing Levana's proposal as the only apparent way to avoid war. Dr. Erland reveals to Cinder that she is very likely Princess Selene — the Lunar heir believed murdered as a child — making her the one person with a legitimate claim to challenge Levana's rule. Cinder must decide whether to accept this identity and what to do with it, all while the ball (New Emperor's coronation/peace ball) approaches.</p>
+    <p><strong>Key Events:</strong> Emperor Rikan's death; Kai's coronation; the Selene revelation; Cinder's internal crisis over her identity and whether to warn Kai.</p>
+    <p><strong>Character Development:</strong> Cinder moves from denial to reluctant acceptance of her royal identity; Kai matures rapidly into his role as Emperor, showing the cost of leadership.</p>
+    <p><strong>Themes:</strong> Identity (the central "who am I really" theme reaches its climax), duty, sacrifice for the greater good.</p>
+    <p><strong>Literary Analysis:</strong> This is the novel's major plot twist and the clearest fairy-tale inversion: instead of discovering she is merely worthy of the prince, Cinder discovers she may outrank him. Foreshadowing from earlier chapters (missing memories, immunity, Dr. Erland's interest) pays off here.</p>
+    <p><strong>Possible Exam Questions:</strong></p>
+    <ul>
+      <li>Multiple choice: Who reveals Cinder's true identity to her?</li>
+      <li>Analytical: How does the revelation of Cinder's Lunar heritage change the meaning of earlier chapters?</li>
+    </ul>
+  </div>
+
+  <div class="chapgroup">
+    <h3>Chapters 31–36: The Ball and the Escape</h3>
+    <p><strong>Summary:</strong> Cinder attends the royal ball to try to warn Kai about Levana before he can be coerced into marriage, echoing the fairy-tale ball but with political stakes rather than romantic ones. Her identity is publicly exposed, and in her escape she loses her cyborg foot — the novel's version of the glass slipper. She is arrested but escapes prison with mechanical skill and Dr. Erland's help, ending the book on the run, aware of who she is but with the Commonwealth's fate still undecided.</p>
+    <p><strong>Key Events:</strong> The ball and Cinder's failed warning; public exposure; loss of the cyborg foot; arrest; prison escape; the novel's cliffhanger ending.</p>
+    <p><strong>Character Development:</strong> Cinder fully steps into agency and risk-taking rather than hiding; Kai is left confused and betrayed-feeling, setting up unresolved tension for the sequel.</p>
+    <p><strong>Themes:</strong> Freedom vs. control, sacrifice, the cost of hidden truths, appearance vs. reality (the ball itself, physical disguise, and glamour all collide).</p>
+    <p><strong>Literary Analysis:</strong> The lost mechanical foot is a direct, ironic inversion of the glass slipper — instead of a token of romantic identity, it becomes a symbol of exposure and vulnerability. The open ending is a classic techniques for serial fiction, deliberately leaving central conflicts (Kai and Levana, Cinder's claim to the throne) unresolved.</p>
+    <p><strong>Possible Exam Questions:</strong></p>
+    <ul>
+      <li>How does Meyer reinvent the glass slipper motif, and what does this reveal about the novel's themes?</li>
+      <li>Essay: Discuss how the ending of Cinder subverts the traditional "happily ever after" fairy-tale ending.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="themes">
+  <h2 class="section-title">7. Major Themes</h2>
+
+  <div class="card">
+    <h3>Identity</h3>
+    <p>The novel's central question is "who am I, really?" — explored through Cinder's cyborg body, her erased memories, and her eventual discovery that she is Lunar royalty. Teachers often ask about identity because it structures the entire plot twist.</p>
+  </div>
+  <div class="card">
+    <h3>Humanity &amp; What Makes Someone a Person</h3>
+    <p>Raised through cyborg prejudice and android characters like Iko: the novel repeatedly asks whether personhood depends on being fully biological, challenging readers to define humanity by empathy and choice rather than by body.</p>
+  </div>
+  <div class="card">
+    <h3>Prejudice</h3>
+    <p>Cyborgs are legally second-class citizens, used for forced research; this mirrors real-world discrimination and disability prejudice, making it a rich topic for essay questions about social commentary in speculative fiction.</p>
+  </div>
+  <div class="card">
+    <h3>Family &amp; Duty</h3>
+    <p>Explored through Cinder's toxic guardianship under Adri versus her genuine bond with Peony, and through Kai's duty to his nation versus his personal wishes.</p>
+  </div>
+  <div class="card">
+    <h3>Power</h3>
+    <p>Levana's rule shows power maintained through manipulation, illusion (glamour), and coercion, contrasted with Kai's more reluctant, duty-bound leadership and Cinder's still-undefined potential power as the true heir.</p>
+  </div>
+  <div class="card">
+    <h3>Appearance vs. Reality</h3>
+    <p>From Levana's glamoured beauty hiding her scars, to Cinder hiding her cyborg body, to the entire "secret princess" twist — almost every major character conceals a truth behind an appearance.</p>
+  </div>
+  <div class="card">
+    <h3>Freedom vs. Control</h3>
+    <p>Seen in Cinder's literal imprisonment and escape, cyborgs' lack of legal autonomy, and Kai being politically maneuvered into marriage against his will.</p>
+  </div>
+</section>
+
+<section id="symbols">
+  <h2 class="section-title">8. Symbols &amp; Motifs</h2>
+  <table>
+    <tr><th>Symbol/Motif</th><th>Meaning</th></tr>
+    <tr><td>The cyborg foot / "glass slipper"</td><td>Vulnerability, exposure of hidden identity, and an ironic twist on romantic fairy-tale tokens.</td></tr>
+    <tr><td>Letumosis (the plague)</td><td>Represents both literal mortality and social inequality, since cyborgs bear the burden of its research.</td></tr>
+    <tr><td>Masks / Glamour</td><td>The gap between appearance and truth — Levana's illusionary beauty, Cinder's hidden mechanical body.</td></tr>
+    <tr><td>The ball</td><td>Traditional fairy-tale romance reimagined as a stage for political danger rather than courtship.</td></tr>
+    <tr><td>Missing memories</td><td>Loss of self and the mystery of true origin/identity.</td></tr>
+  </table>
+</section>
+
+<section id="vocab">
+  <h2 class="section-title">9. Vocabulary List</h2>
+  <table>
+    <tr><th>Word</th><th>Definition</th><th>Example Sentence</th></tr>
+    <tr><td>Cyborg</td><td>A being that is part human, part machine.</td><td>Cinder hides that she is a cyborg because of how society treats them.</td></tr>
+    <tr><td>Android</td><td>A fully mechanical robot built to resemble or serve humans.</td><td>Iko is an android with a surprisingly warm personality.</td></tr>
+    <tr><td>Plague / Letumosis</td><td>A deadly, fast-spreading disease.</td><td>Letumosis kills thousands across the Commonwealth.</td></tr>
+    <tr><td>Glamour</td><td>A Lunar ability to alter how others perceive reality.</td><td>Levana uses her glamour to appear flawless.</td></tr>
+    <tr><td>Commonwealth</td><td>A political union of nations or states, here referring to the Eastern Commonwealth.</td><td>New Beijing is the capital of the Eastern Commonwealth.</td></tr>
+    <tr><td>Coercion</td><td>Forcing someone to act against their will through pressure or threats.</td><td>Levana's marriage proposal is really a form of coercion.</td></tr>
+    <tr><td>Dystopia</td><td>An imagined society characterized by inequality or suffering.</td><td>Cinder is set in a technological dystopia shaped by past war.</td></tr>
+    <tr><td>Foreshadowing</td><td>A hint about events that will happen later in the story.</td><td>Cinder's missing memories foreshadow her hidden royal identity.</td></tr>
+    <tr><td>Retelling</td><td>A new version of a well-known story, often reimagined in a different setting.</td><td>Cinder is a science-fiction retelling of Cinderella.</td></tr>
+    <tr><td>Monarchy</td><td>A government ruled by a king or queen.</td><td>Luna is governed by a monarchy led by Queen Levana.</td></tr>
+  </table>
+</section>
+
+<section id="examprep">
+  <h2 class="section-title">10. Exam Preparation</h2>
+
+  <div class="card">
+    <h3>Character Comparison Questions</h3>
+    <ul class="exam-q">
+      <li>Compare Cinder and Levana as two characters who hide their true selves. What does each hide, and why?
+        <div class="answer">Outline: Cinder hides shame/fear of prejudice; Levana hides insecurity/monstrousness behind vanity and control. Contrast motive (self-protection vs. domination) and outcome (Cinder moves toward honesty, Levana toward deeper deception).</div>
+      </li>
+      <li>Compare Kai's and Cinder's relationships to duty.
+        <div class="answer">Outline: Kai's duty is imposed by birth and crisis; Cinder's duty (as potential heir) is newly discovered and initially resisted. Both must choose between personal desire and responsibility to others.</div>
+      </li>
+    </ul>
+    <h3>Theme Questions</h3>
+    <ul class="exam-q">
+      <li>How does the novel use cyborgs to comment on prejudice in the real world?</li>
+      <li>To what extent is "Cinder" a story about the search for identity?</li>
+    </ul>
+    <h3>Quote Analysis Questions</h3>
+    <p>Practice identifying what a quote reveals about character, theme, or foreshadowing. For example, ask: what does a given line about Cinder's shame over her mechanical body reveal about the novel's stance on prejudice and self-worth? Practice writing 3–4 sentence analyses connecting a quote to a broader theme.</p>
+    <h3>Essay Prompts</h3>
+    <ul>
+      <li>Discuss how Marissa Meyer reimagines the traditional Cinderella story through science-fiction elements. What is gained by this retelling?</li>
+      <li>"Cinder is ultimately a story about choosing who you are, not simply being born into it." Discuss with reference to at least two characters.</li>
+      <li>Analyze how the novel critiques social hierarchies through its treatment of cyborgs and androids.</li>
+      <li>How does the author build suspense and use foreshadowing throughout the novel to prepare readers for the plot twist about Cinder's identity?</li>
+    </ul>
+    <h3>Discussion Questions</h3>
+    <ul>
+      <li>Do you think Cinder should have told Kai the truth earlier? Why or why not?</li>
+      <li>Is Levana purely evil, or does the novel give reasons to understand (not excuse) her actions?</li>
+      <li>What responsibilities do you think come with power, based on how Kai and Levana each use theirs?</li>
+    </ul>
+  </div>
+</section>
+
+<section id="revision">
+  <h2 class="section-title">11. Final Revision Sheet — Last-Minute Review</h2>
+  <div class="card checklist">
+    <h3>Must-Know Facts</h3>
+    <ul class="checklist">
+      <li>Cinder is a cyborg mechanic in New Beijing who turns out to be Princess Selene, the lost Lunar heir.</li>
+      <li>Letumosis is the fatal plague driving the plot's urgency; Cinder is mysteriously immune.</li>
+      <li>Prince Kai becomes Emperor after his father's death and is pressured to marry Queen Levana to avoid war.</li>
+      <li>Peony's death is the emotional turning point of the middle of the book.</li>
+      <li>The ball scene and lost cyborg foot are the novel's version of the Cinderella ball and glass slipper.</li>
+      <li>The novel ends unresolved: Cinder escapes prison but the political crisis with Levana is not settled.</li>
+    </ul>
+    <h3>Biggest Twist</h3>
+    <p>Cinder is not just a mechanic — she is Princess Selene, the presumed-dead heir to the Lunar throne, making her Levana's greatest threat.</p>
+    <h3>Easy to Forget</h3>
+    <ul class="checklist">
+      <li>Dr. Erland is the one who identifies Cinder's immunity and later reveals her likely identity.</li>
+      <li>Iko is an android, not a cyborg — a useful distinction to keep straight for exam questions.</li>
+      <li>Levana's beauty is fake, maintained through her Lunar glamour ability, not her real appearance.</li>
+    </ul>
+    <h3>Key Themes to Mention in Any Essay</h3>
+    <p>Identity • Humanity • Prejudice • Power and manipulation • Appearance vs. reality • Duty vs. desire</p>
+  </div>
+</section>
+
+<footer>
+  Study guide prepared for exam revision on <em>Cinder</em> by Marissa Meyer. Good luck!
+</footer>
+
+</div>
+</body>
+</html>
