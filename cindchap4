@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Cinder — Chapter Summaries</title>
+<style> 
+:root{ 
+--ink:#1c1c24; --sub:#5a5a68; --line:#e3e1db; 
+--accent:#8b2e2e; --accent2:#2e5c8b; --paper:#faf8f3; --card:#ffffff; 
+} 
+body{margin:0;font-family:Georgia,'Iowan Old Style',serif;background:var(--paper);color:var(--ink);line-height:1.6;} 
+.wrap{max-width:880px;margin:0 auto;padding:40px 24px 100px;} 
+header.hero{text-align:center;padding:40px 20px;border-bottom:4px double var(--accent);margin-bottom:36px;} 
+header.hero h1{font-size:2.3em;margin:0 0 6px;letter-spacing:1px;} 
+header.hero p{color:var(--sub);font-style:italic;margin:4px 0;} 
+.note{background:#eef3f8;border-left:4px solid var(--accent2);padding:12px 18px;margin:0 0 34px;font-size:.95em;} 
+h2.part{font-size:1.4em;color:var(--accent);border-bottom:2px solid var(--line);padding-bottom:6px;margin:40px 0 18px;} 
+.chapter{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent2);border-radius:0 8px 8px 0;padding:14px 20px;margin-bottom:14px;} 
+.chapter h3{margin:0 0 6px;color:var(--accent2);font-size:1.08em;} 
+.chapter p{margin:0;}
+footer{text-align:center;color:var(--sub);font-size:.85em;margin-top:50px;border-top:1px solid var(--line);padding-top:20px;}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+<header class="hero">
+
+<h1>CINDER</h1>
+
+<p>Summary of each chapter</p>
+
+<p>Marissa Meyer — The Lunar Chronicles, Book 1</p>
+
+</header>
+
+<div class="note">
+
+These summaries are written in my own words (no direct quotes from the novel) and serve as a quick review of each of the 36 chapters. For more detailed analyses (themes, quotes, exam questions), see the first Study Guide document.
+
+
+Marissa Meyer — The Lunar Chronicles, Book 1</p>
+
+</header> </div>
+
+<h2 class="part">Part 1: The Mechanic and the Prince (Chapters 1–8)</h2>
+
+<div class="chapter"><h3>Chapter 1</h3><p>Cinder works as a mechanic in the New Beijing market when a masked young man brings her a damaged android to repair. It gradually becomes clear that he is Prince Kai, traveling incognito. Cinder conceals from him that she is a cyborg.</p></div>
+
+<div class="chapter"><h3>Chapter 2</h3><p>At home, Cinder's strained relationship with her stepmother Adri and stepsister Pearl becomes apparent. Only her younger stepsister Peony treats her kindly. Cinder has to hand over her earnings and is exploited as the family's breadwinner.</p></div>
+
+<div class="chapter"><h3>Chapter 3</h3><p>Cinder learns more about the rampant Letumosis epidemic and the population's fear of it. The social standing of cyborgs as "inferior" citizens is shown more clearly, as is their fear of being discovered.</p></div>
+
+<div class="chapter"><h3>Chapter 4</h3><p>Kai returns to the workshop to pick up the repaired android Nainsi. A first intimacy develops between him and Cinder, although he doesn't suspect that she is a cyborg.</p></div>
+
+<div class="chapter"><h3>Chapter 5</h3><p>At the royal palace, Emperor Rikan's serious illness with Letumosis is addressed, increasing the political urgency in the empire. Kai is increasingly taking on responsibility.</p></div>
+<div class="chapter"><h3>Chapter 6</h3><p>Cinder is publicly humiliated in the marketplace when her mechanical foot becomes visible. The humiliation intensifies her shame about her cyborg body and reveals society's hostility towards cyborgs.</p></div>
+<div class="chapter"><h3>Chapter 7</h3><p>Cinder and Peony secretly visit a fair near the quarantine area. The tension between curiosity and the real danger of the plague becomes clear.</p></div>
+<div class="chapter"><h3>Chapter 8</h3><p>After the outing, Peony begins to show symptoms of illness. Cinder's guilt begins to surface, and the family panics at the threat of contagion.</p></div>
+
+<h2 class="part">Part 2: The Plague Draws Nearer (Chapters 9–16)</h2>
+
+<div class="chapter"><h3>Chapter 9</h3><p>Peony's illness is confirmed; she is quarantined.</p></div> Cinder is distraught, feeling responsible for the infection.</p></div>
+
+<div class="chapter"><h3>Chapter 10</h3><p>Adri blames Cinder for Peony's condition and signs her up as a "volunteer" for mandatory cyborg research to combat the epidemic—a punishment with the risk of death.</p></div>
+
+<div class="chapter"><h3>Chapter 11</h3><p>Cinder is taken to the palace, where cyborg research is being conducted to develop a cure. She meets the researcher Dr. Erland.</p></div>
+
+<div class="chapter"><h3>Chapter 12</h3><p>A test with the pathogen reveals that Cinder is immune to lethuncini—a biologically impossible result that Dr. Erland's interest in her is aroused.</p></div>
+<div class="chapter"><h3>Chapter 13</h3><p>Dr. Erland begins to examine Cinder more closely and asks unusual questions about her.
