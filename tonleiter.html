@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tonleitern — Lernzettel · Musiktheorie</title>
+<style>
+:root{
+  --bg:#14121f;
+  --bg-alt:#1b1830;
+  --card:#211d38;
+  --card-2:#241f42;
+  --inset:#2a2444;
+  --border:rgba(212,175,90,0.25);
+  --border-blue:rgba(111,168,220,0.3);
+  --text:#eee8f7;
+  --muted:#a89dc7;
+  --gold:#d4af5a;
+  --blue:#6fa8dc;
+  --green:#7cc38f;
+  --amber:#e3a857;
+  --red:#e0708a;
+  --serif:Georgia,'Iowan Old Style','Palatino Linotype',Palatino,serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:
+    radial-gradient(ellipse at top left, #201c38 0%, transparent 55%),
+    radial-gradient(ellipse at bottom right, #1a1730 0%, transparent 55%),
+    var(--bg);
+  color:var(--text);
+  font-family:var(--sans);
+  line-height:1.6;
+  font-size:16px;
+}
+.staff-lines{
+  position:fixed; inset:0; pointer-events:none; z-index:0; opacity:0.05;
+  background-image:repeating-linear-gradient(var(--text) 0 1px, transparent 1px 26px);
+}
+.wrap{position:relative; z-index:1; max-width:1000px; margin:0 auto; padding:0 20px 80px;}
+
+header.hero{
+  padding:70px 20px 50px; text-align:center; position:relative; z-index:1;
+  border-bottom:1px solid var(--border);
+  margin-bottom:10px;
+}
+.eyebrow{
+  font-family:var(--sans); letter-spacing:.25em; text-transform:uppercase;
+  color:var(--gold); font-size:.72rem; font-weight:600;
+}
+h1.title{
+  font-family:var(--serif); font-size:clamp(2.1rem,5vw,3.4rem); margin:.4em 0 .2em;
+  font-weight:700; letter-spacing:.01em;
+}
+h1.title em{color:var(--gold); font-style:normal;}
+.subtitle{color:var(--muted); font-size:1.05rem; max-width:560px; margin:0 auto;}
+.hero-meta{margin-top:26px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+.pill{border:1px solid var(--border); border-radius:999px; padding:6px 16px; font-size:.82rem; color:var(--muted); background:rgba(212,175,90,0.06);}
+
+nav.toc{background:var(--card); border:1px solid var(--border); border-radius:14px; padding:22px 26px; margin:30px 0 50px;}
+nav.toc h2{margin:0 0 12px; font-family:var(--serif); font-size:1.15rem; color:var(--gold);}
+nav.toc ol{columns:2; column-gap:30px; margin:0; padding-left:1.2em; font-size:.92rem;}
+@media(max-width:600px){nav.toc ol{columns:1;}}
+nav.toc li{margin-bottom:7px;}
+nav.toc a{color:var(--text); text-decoration:none; border-bottom:1px dotted var(--border);}
+nav.toc a:hover{color:var(--gold);}
+
+section{margin:60px 0; scroll-margin-top:20px;}
+.sec-head{display:flex; align-items:baseline; gap:14px; margin-bottom:22px;}
+.sec-num{font-family:var(--serif); font-size:1rem; color:var(--gold); border:1px solid var(--border); border-radius:50%; width:34px; height:34px; display:flex; align-items:center; justify-content:center; flex:none;}
+h2{font-family:var(--serif); font-size:1.7rem; margin:0; font-weight:700;}
+h3{font-family:var(--serif); font-size:1.25rem; color:var(--gold); margin:1.6em 0 .6em;}
+p{color:#d9d2ec;}
+.lead{font-size:1.02rem;}
+
+.card{background:var(--card); border:1px solid var(--border); border-radius:14px; padding:24px 26px; margin:18px 0;}
+.box{border-radius:12px; padding:16px 20px; margin:18px 0; font-size:.95rem; border-left:4px solid var(--gold); background:var(--inset);}
+.box.info{border-left-color:var(--blue); background:rgba(111,168,220,.08);}
+.box.warn{border-left-color:var(--amber); background:rgba(227,168,87,.08);}
+.box.tip{border-left-color:var(--green); background:rgba(124,195,143,.08);}
+.box.danger{border-left-color:var(--red); background:rgba(224,112,138,.08);}
+.box b{color:var(--text);}
+.box-label{display:block; font-weight:700; text-transform:uppercase; letter-spacing:.08em; font-size:.72rem; margin-bottom:6px; color:var(--gold);}
+.box.info .box-label{color:var(--blue);}
+.box.warn .box-label{color:var(--amber);}
+.box.tip .box-label{color:var(--green);}
+.box.danger .box-label{color:var(--red);}
+
+table{width:100%; border-collapse:collapse; margin:16px 0; font-size:.92rem;}
+th,td{padding:9px 12px; text-align:left; border-bottom:1px solid rgba(255,255,255,.08);}
+th{color:var(--gold); font-weight:600; font-family:var(--serif); font-size:.95rem;}
+tr:hover td{background:rgba(255,255,255,.02);}
+
+.pattern{display:flex; gap:3px; margin:14px 0; flex-wrap:wrap;}
+.step{height:38px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-size:.72rem; font-weight:700; color:#14121f; flex:1; min-width:38px;}
+.step.tone{background:var(--gold); flex-grow:2;}
+.step.demi{background:var(--red); flex-grow:1;}
+.pattern-legend{display:flex; gap:18px; font-size:.82rem; color:var(--muted); margin-bottom:6px;}
+.dot{display:inline-block; width:10px; height:10px; border-radius:3px; margin-right:6px; vertical-align:middle;}
+
+.keyboard-wrap{margin:18px 0 26px;}
+.keyboard{position:relative; height:130px; display:flex; background:#0f0e1a; border-radius:8px; padding:6px; border:1px solid var(--border);}
+.wkey{position:relative; flex:1; background:#f4f1ea; border:1px solid #2a2444; border-radius:0 0 6px 6px; margin-right:1px;}
+.wkey:last-child{margin-right:0;}
+.bkey{position:absolute; top:6px; width:6.2%; height:60%; background:#181522; border-radius:0 0 4px 4px; border:1px solid #000; z-index:2;}
+.keylabel{position:absolute; bottom:8px; left:50%; transform:translateX(-50%); font-size:.68rem; font-weight:700; color:#2a2444;}
+.bkey .keylabel{color:#e8e2f5; bottom:6px;}
+.deg{position:absolute; top:6px; left:50%; transform:translateX(-50%); font-size:.62rem; font-weight:800; color:#fff; background:var(--gold); width:16px; height:16px; border-radius:50%; display:flex; align-items:center; justify-content:center;}
+.wkey.hi{background:#efe3bd;}
+.wkey.hi .deg, .bkey.hi .deg{background:var(--gold); color:#14121f;}
+.bkey.hi{background:#8a6d1f;}
+.keyboard-caption{font-size:.8rem; color:var(--muted); margin-top:8px; text-align:center;}
+
+.scale-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(310px,1fr)); gap:18px; margin:20px 0;}
+.scale-card{background:var(--card-2); border:1px solid var(--border); border-radius:12px; padding:18px 20px;}
+.scale-card h4{margin:0 0 4px; font-family:var(--serif); font-size:1.15rem; color:var(--text);}
+.scale-card .sig{font-size:.8rem; color:var(--muted); margin-bottom:10px;}
+.notes-row{display:flex; gap:6px; flex-wrap:wrap; margin:8px 0;}
+.note-chip{background:var(--inset); border:1px solid var(--border); border-radius:6px; padding:4px 9px; font-size:.85rem; font-family:var(--serif);}
+.note-chip.sharp{border-color:var(--border);}
+.note-chip.flat{border-color:var(--border-blue);}
+
+.cof-wrap{display:flex; justify-content:center; margin:30px 0;}
+.cof{position:relative; width:min(480px,90vw); aspect-ratio:1/1; border-radius:50%; background:radial-gradient(circle at center, #241f42 0%, #17142a 70%, #0f0e1a 100%); border:1px solid var(--border);}
+.cof-label{position:absolute; width:70px; text-align:center; font-size:.85rem; font-family:var(--serif); transform:translate(-50%,-50%);}
+.cof-label.major{font-weight:700; color:var(--text); font-size:.95rem;}
+.cof-label.minor{color:var(--muted); font-size:.78rem;}
+.cof-center{position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center; font-family:var(--serif); font-size:.78rem; color:var(--gold); width:110px;}
+
+.ex-tabs{display:flex; gap:10px; margin-bottom:18px; flex-wrap:wrap;}
+.ex-tab{padding:8px 18px; border-radius:999px; border:1px solid var(--border); cursor:pointer; font-size:.85rem; background:transparent; color:var(--muted); font-family:var(--sans);}
+.ex-tab.active{background:var(--gold); color:#14121f; font-weight:700; border-color:var(--gold);}
+.ex-panel{display:none;}
+.ex-panel.active{display:block;}
+.ex-item{background:var(--card); border:1px solid var(--border); border-radius:10px; padding:14px 18px; margin-bottom:10px;}
+.ex-item b{color:var(--gold); margin-right:8px;}
+details.sol{background:var(--card); border:1px solid var(--border-blue); border-radius:10px; padding:14px 18px; margin-bottom:10px;}
+details.sol summary{cursor:pointer; font-weight:700; color:var(--blue);}
+details.sol .answer{margin-top:10px; color:#d9d2ec; font-size:.94rem;}
+
+.summary-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; margin:20px 0;}
+.summary-card{background:var(--card-2); border:1px solid var(--border); border-radius:12px; padding:18px 20px;}
+.summary-card h4{margin:0 0 8px; color:var(--gold); font-family:var(--serif);}
+.summary-card ul{margin:0; padding-left:1.1em; font-size:.9rem; color:#d9d2ec;}
+.summary-card li{margin-bottom:5px;}
+
+.two-col{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+@media(max-width:700px){.two-col{grid-template-columns:1fr;}}
+footer{text-align:center; color:var(--muted); font-size:.82rem; padding:40px 0 10px;}
+a.top{position:fixed; bottom:20px; right:20px; background:var(--card); border:1px solid var(--border); color:var(--gold); text-decoration:none; padding:10px 14px; border-radius:999px; font-size:.8rem; z-index:5;}
+::selection{background:var(--gold); color:#14121f;}
+
+@media print{
+  body{background:#fff; color:#000;}
+  .staff-lines,a.top{display:none;}
+  .card,.scale-card,.box,.ex-item,details.sol,.summary-card{background:#fff; border:1px solid #999; color:#000;}
+  section{page-break-inside:avoid;}
+  h1,h2,h3,.eyebrow,.box-label{color:#000 !important;}
+  .step.tone{background:#ddd;} .step.demi{background:#999;}
+}
+</style>
+</head>
+<body>
+<div class="staff-lines"></div>
+<a href="#top" class="top">↑ Übersicht</a>
+
+<header class="hero" id="top">
+  <div class="eyebrow">Compréhension Musicale · 30 Punkte</div>
+  <h1 class="title">Die <em>Tonleitern</em></h1>
+  <p class="subtitle">Vollständiger Lernzettel — Theorie, Dur- und Molltonleitern, Quintenzirkel, Übungen mit Lösungen und Wiederholung in 5 Minuten.</p>
+  <div class="hero-meta">
+    <span class="pill">🎹 15 Kapitel</span>
+    <span class="pill">📝 30 Übungen + Lösungen</span>
+    <span class="pill">⏱ 5-Minuten-Wiederholung</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+<nav class="toc">
+  <h2>Inhaltsverzeichnis</h2>
+  <ol>
+    <li><a href="#intro">Einführung</a></li>
+    <li><a href="#theorie">Musiktheorie-Grundlagen</a></li>
+    <li><a href="#dur">Dur-Tonleitern</a></li>
+    <li><a href="#moll">Moll-Tonleitern</a></li>
+    <li><a href="#quinten">Der Quintenzirkel</a></li>
+    <li><a href="#vorzeichen">Tonarten und Vorzeichen</a></li>
+    <li><a href="#weitere">Weitere Tonleiterarten</a></li>
+    <li><a href="#bilden">Tonleitern bilden</a></li>
+    <li><a href="#erkennen">Tonleitern erkennen</a></li>
+    <li><a href="#aufgabentypen">Prüfungsaufgabentypen</a></li>
+    <li><a href="#fehler">Häufige Fehler</a></li>
+    <li><a href="#merkhilfen">Merkhilfen</a></li>
+    <li><a href="#uebungen">Übungen (30)</a></li>
+    <li><a href="#loesungen">Lösungen</a></li>
+    <li><a href="#zusammenfassung">Zusammenfassung — 5 Minuten vor der Prüfung</a></li>
+  </ol>
+</nav>
+
+<!-- 1. INTRO -->
+<section id="intro">
+  <div class="sec-head"><span class="sec-num">1</span><h2>Einführung</h2></div>
+  <p class="lead">Bei einer <b>Tonleiter</b> (auch: Skala) handelt es sich um eine bestimmte Anordnung von Tonschritten, aufsteigend oder absteigend.</p>
+  <div class="box info">
+    <span class="box-label">Warum gibt es Tonleitern?</span>
+    Dur- und Moll-Tonleitern werden <b>diatonische</b> Tonleitern genannt; ihnen liegt ein bestimmter Aufbau aus sieben Tönen innerhalb einer Oktave zugrunde. Dieser Aufbau wird durch die Anordnung von <b>Ganztönen</b> und <b>Halbtönen</b> innerhalb der Skala bestimmt — sie verleiht jeder Tonleiter ihren charakteristischen Klang.
+  </div>
+  <div class="box tip">
+    <span class="box-label">Wozu werden sie verwendet?</span>
+    Tonleitern liefern den Tonvorrat eines Musikstücks: Sie bestimmen, welche Töne zu einer Tonart „gehören", sie sind das Baumaterial für Melodien und Akkorde, und sie helfen, den harmonischen Aufbau eines Stücks zu verstehen.
+  </div>
+</section>
+
+<!-- 2. THEORIE -->
+<section id="theorie">
+  <div class="sec-head"><span class="sec-num">2</span><h2>Musiktheorie-Grundlagen</h2></div>
+
+  <h3>Ganzton und Halbton</h3>
+  <p>Der <b>Halbton</b> ist die kleinste Einheit, um den Tonabstand zu beschreiben: Es ist der Abstand zwischen allen aneinandergrenzenden Tasten des Klaviers, egal ob schwarz oder weiß. Ein <b>Ganzton</b> besteht aus zwei Halbtönen (z. B. c–d).</p>
+  <div class="box warn">
+    <span class="box-label">Merke</span>
+    In jeder Oktave kommt es zweimal vor, dass zwei weiße Tasten unmittelbar aufeinander folgen, sie also nur einen Halbton auseinander liegen: <b>h–c</b> und <b>e–f</b>.
+  </div>
+
+  <h3>Die Stufen einer Tonleiter</h3>
+  <table>
+    <tr><th>Stufe</th><th>Name</th><th>Beschreibung</th></tr>
+    <tr><td>I</td><td>Tonika</td><td>Grundton, gibt der Tonleiter ihren Namen</td></tr>
+    <tr><td>II</td><td>Subdominantparallele</td><td>Ton über dem Grundton</td></tr>
+    <tr><td>III</td><td>Dominantparallele</td><td>Mittlere Note zwischen Tonika und Dominante</td></tr>
+    <tr><td>IV</td><td>Subdominante</td><td>Ton unter der Dominante</td></tr>
+    <tr><td>V</td><td>Dominante</td><td>Zweitwichtigster Ton nach dem Grundton</td></tr>
+    <tr><td>VI</td><td>Tonikaparallele</td><td>Ton über der Dominante</td></tr>
+    <tr><td>VII</td><td>Leitton</td><td>Ton, der zum Grundton leitet (einen Halbton darunter)</td></tr>
+  </table>
+
+  <h3>Intervalle, Oktave, Vorzeichen</h3>
+  <p>Ein <b>Intervall</b> misst den Abstand zwischen zwei Tönen. Die <b>Oktave</b> ist der Abstand zwischen einem Ton und demselben Ton in der nächsten Tonhöhe (c–c); sie umfasst immer 12 Halbtöne. <b>Vorzeichen</b> (Kreuz ♯, Be ♭, Auflösungszeichen ♮) verändern die Tonhöhe eines Tons um einen Halbton.</p>
+
+  <h3>Tonart und Generalvorzeichen</h3>
+  <p>Wenn ein Musikstück auf einer bestimmten Tonleiter basiert, sagt man, es steht in dieser <b>Tonart</b>. Anstatt jedes Mal ein Vorzeichen zu setzen, ist es sinnvoller, ein <b>Generalvorzeichen</b> zu verwenden, welches für das ganze Stück und alle Oktavlagen gilt. Generalvorzeichen befinden sich zu Beginn eines jeden Systems, immer nach dem Schlüssel und immer vor der Taktangabe. Bei Generalvorzeichen werden niemals Hilfslinien verwendet.</p>
+</section>
+
+<!-- 3. DUR -->
+<section id="dur">
+  <div class="sec-head"><span class="sec-num">3</span><h2>Dur-Tonleitern</h2></div>
+  <p>Allen Dur-Tonleitern liegt <b>immer</b> dasselbe Muster zugrunde, unabhängig vom Grundton:</p>
+  <div class="pattern-legend"><span><span class="dot" style="background:var(--gold)"></span>Ganzton</span><span><span class="dot" style="background:var(--red)"></span>Halbton</span></div>
+  <div class="pattern">
+    <div class="step tone">Ganz</div><div class="step tone">Ganz</div><div class="step demi">½</div>
+    <div class="step tone">Ganz</div><div class="step tone">Ganz</div><div class="step tone">Ganz</div><div class="step demi">½</div>
+  </div>
+  <p>Die Halbtonschritte befinden sich zwischen der <b>3. und 4.</b> sowie der <b>7. und 8. Stufe</b> (Oktave). Eine Dur-Tonleiter kann auf jeder Tonhöhe wiedergegeben werden — sie klingt immer gleich, weil das Muster der Ganz- und Halbtöne stets identisch bleibt.</p>
+
+  <div class="scale-grid" id="majorScales"></div>
+
+  <div class="box tip">
+    <span class="box-label">Merke</span>
+    Die C-Dur-Tonleiter ist die einzige Dur-Tonleiter ohne Vorzeichen: Sie liegt ausschließlich auf den weißen Klaviertasten.
+  </div>
+</section>
+
+<!-- 4. MOLL -->
+<section id="moll">
+  <div class="sec-head"><span class="sec-num">4</span><h2>Moll-Tonleitern</h2></div>
+  <p>Es gibt für jede Tonart <b>drei</b> Arten von Moll-Tonleitern: die <b>natürliche</b>, die <b>harmonische</b> und die <b>melodische</b>. Allen dreien ist die kleine Terz zwischen Grundton und dritter Stufe gemein — sie verleiht den Moll-Tonarten ihren charakteristischen Klang.</p>
+
+  <h3>Die natürliche Molltonleiter</h3>
+  <div class="pattern-legend"><span><span class="dot" style="background:var(--gold)"></span>Ganzton</span><span><span class="dot" style="background:var(--red)"></span>Halbton</span></div>
+  <div class="pattern">
+    <div class="step tone">Ganz</div><div class="step demi">½</div><div class="step tone">Ganz</div>
+    <div class="step tone">Ganz</div><div class="step demi">½</div><div class="step tone">Ganz</div><div class="step tone">Ganz</div>
+  </div>
+  <p>Halbtonschritte zwischen der <b>2. und 3.</b> sowie der <b>5. und 6. Stufe</b>. Das entspricht der Abfolge der weißen Tasten zwischen a und a. Wird häufig in Pop- und Volksmusik sowie im Jazz verwendet.</p>
+  <div class="keyboard-wrap" id="kbAminNat"></div>
+
+  <h3>Die harmonische Molltonleiter</h3>
+  <div class="pattern">
+    <div class="step tone">Ganz</div><div class="step demi">½</div><div class="step tone">Ganz</div>
+    <div class="step tone">Ganz</div><div class="step demi">½</div><div class="step demi" style="flex-grow:1.5;background:var(--amber)">1½</div><div class="step demi">½</div>
+  </div>
+  <p>Halbtonschritte zwischen <b>2.–3.</b> und <b>7.–8. Stufe</b>. Zwischen der 6. und 7. Stufe entsteht ein Abstand von drei Halbtönen (= übermäßige Sekunde). Diese Tonleiter heißt so, weil ihre Töne die drei „Harmonien" (Hauptdreiklänge I, IV, V) ergeben.</p>
+  <div class="keyboard-wrap" id="kbAminHarm"></div>
+
+  <h3>Die melodische Molltonleiter</h3>
+  <p>Im Gegensatz zu Dur, natürlichem und harmonischem Moll unterscheidet sich hier die aufsteigende von der absteigenden Tonleiter.</p>
+  <div class="two-col">
+    <div>
+      <p><b>Aufsteigend:</b> Ganz–½–Ganz–Ganz–Ganz–Ganz–½ (Halbtöne zwischen 2.–3. und 7.–8. Stufe)</p>
+      <div class="keyboard-wrap" id="kbAminMelUp"></div>
+    </div>
+    <div>
+      <p><b>Absteigend:</b> Ganz–Ganz–½–Ganz–Ganz–½–Ganz (Halbtöne zwischen 2.–3. und 5.–6. Stufe — identisch mit natürlichem Moll)</p>
+      <div class="keyboard-wrap" id="kbAminMelDown"></div>
+    </div>
+  </div>
+  <div class="box tip"><span class="box-label">Merke</span>Im melodischen Moll kommen keine übermäßigen Sekunden vor — die Melodieführung ist geschmeidiger.</div>
+
+  <h3>Beispiel: natürliche c-Moll-Tonleiter</h3>
+  <div class="keyboard-wrap" id="kbCminNat"></div>
+  <p style="font-size:.9rem;color:var(--muted)">Vor e, a und h sind b-Vorzeichen nötig, um die Abfolge von Ganz- und Halbtonschritten aufrechtzuerhalten.</p>
+</section>
+
+<!-- 5. QUINTEN -->
+<section id="quinten">
+  <div class="sec-head"><span class="sec-num">5</span><h2>Der Quintenzirkel</h2></div>
+  <p>Der Quintenzirkel veranschaulicht die Verwandtschaftsverhältnisse der Tonarten zueinander. Die Hauptstufen (I, IV, V) jeder Tonart stehen in unmittelbarer Nachbarschaft zum Grundton. Bei C-Dur sind dies: G (V. Stufe, Dominante) und F (IV. Stufe, Subdominante).</p>
+  <div class="box info">
+    <span class="box-label">Engste Verwandtschaft</span>
+    Die engsten Verwandtschaftsverhältnisse bestehen zur <b>Dominante</b> (V), zur <b>Subdominante</b> (IV) und zur <b>parallelen Moll- bzw. Dur-Tonart</b>. Findet innerhalb eines Musikstücks ein Tonartwechsel (eine <b>Modulation</b>) statt, wird höchstwahrscheinlich eine dieser Tonarten erreicht.
+  </div>
+  <div class="cof-wrap"><div class="cof" id="cof"><div class="cof-center">Quinten-<br>zirkel</div></div></div>
+  <div class="box warn">
+    <span class="box-label">Enharmonische Verwechslung</span>
+    Die drei letzten Dur-Tonarten des Zirkels haben jeweils zwei Bezeichnungen (Kreuz- und B-Tonart): H/Ces, Cis/Des und Fis/Ges. Dies gilt auch für die entsprechenden Moll-Tonarten.
+  </div>
+</section>
+
+<!-- 6. VORZEICHEN -->
+<section id="vorzeichen">
+  <div class="sec-head"><span class="sec-num">6</span><h2>Tonarten und Vorzeichen</h2></div>
+
+  <h3>Kreuz-Tonarten</h3>
+  <p>Kreuze treten immer in derselben Reihenfolge auf, jedes eine Quinte über dem vorherigen:</p>
+  <div class="notes-row" id="sharpOrder"></div>
+  <div class="box tip">
+    <span class="box-label">Merkregel</span>
+    Beim <b>letzten</b> Kreuz handelt es sich immer um den <b>Leitton</b> der Tonart. Jede weitere Tonart liegt eine Quinte über der vorherigen: A-Dur hat drei Kreuze, E-Dur (eine Quinte höher) hat vier.
+  </div>
+  <table>
+    <tr><th>Tonart</th><th>Anzahl Kreuze</th><th>Kreuze</th></tr>
+    <tr><td>C-Dur / a-Moll</td><td>0</td><td>—</td></tr>
+    <tr><td>G-Dur / e-Moll</td><td>1</td><td>fis</td></tr>
+    <tr><td>D-Dur / h-Moll</td><td>2</td><td>fis cis</td></tr>
+    <tr><td>A-Dur / fis-Moll</td><td>3</td><td>fis cis gis</td></tr>
+    <tr><td>E-Dur / cis-Moll</td><td>4</td><td>fis cis gis dis</td></tr>
+    <tr><td>H-Dur / gis-Moll</td><td>5</td><td>fis cis gis dis ais</td></tr>
+    <tr><td>Fis-Dur / dis-Moll</td><td>6</td><td>fis cis gis dis ais eis</td></tr>
+    <tr><td>Cis-Dur / ais-Moll</td><td>7</td><td>fis cis gis dis ais eis his</td></tr>
+  </table>
+
+  <h3>B-Tonarten</h3>
+  <p>Bes treten immer in derselben Reihenfolge auf, jedes eine Quinte unter dem vorherigen:</p>
+  <div class="notes-row" id="flatOrder"></div>
+  <div class="box tip">
+    <span class="box-label">Merkregel</span>
+    Beim <b>vorletzten</b> Be handelt es sich immer um den <b>Grundton</b> der Tonart. Jede weitere Tonart liegt eine Quinte unter der vorherigen.
+  </div>
+  <table>
+    <tr><th>Tonart</th><th>Anzahl Bes</th><th>Bes</th></tr>
+    <tr><td>C-Dur / a-Moll</td><td>0</td><td>—</td></tr>
+    <tr><td>F-Dur / d-Moll</td><td>1</td><td>b</td></tr>
+    <tr><td>B-Dur / g-Moll</td><td>2</td><td>b es</td></tr>
+    <tr><td>Es-Dur / c-Moll</td><td>3</td><td>b es as</td></tr>
+    <tr><td>As-Dur / f-Moll</td><td>4</td><td>b es as des</td></tr>
+    <tr><td>Des-Dur / b-Moll</td><td>5</td><td>b es as des ges</td></tr>
+    <tr><td>Ges-Dur / es-Moll</td><td>6</td><td>b es as des ges ces</td></tr>
+    <tr><td>Ces-Dur / as-Moll</td><td>7</td><td>b es as des ges ces fes</td></tr>
+  </table>
+
+  <h3>Parallele Tonarten</h3>
+  <p>Dur- und Moll-Tonarten mit denselben Vorzeichen nennt man <b>parallele Tonarten</b>. C-Dur ist die parallele Dur-Tonart zu a-Moll; a-Moll ist die parallele Moll-Tonart zu C-Dur. Man findet die Vorzeichen einer Moll-Tonart, indem man vom Grundton aus drei Halbtonschritte (eine kleine Terz) nach oben geht — dieser Ton ist der Grundton der parallelen Dur-Tonart.</p>
+
+  <h3>Variant-Tonarten</h3>
+  <p>Besitzen eine Dur- und eine Moll-Tonart denselben Grundton, spricht man von <b>Dur- bzw. Mollvariante</b> (z. B. C-Dur und c-Moll).</p>
+  <div class="box warn"><span class="box-label">Nicht verwechseln!</span>Parallel ≠ Variante! a-Moll ist die Parallele von C-Dur (gleiche Vorzeichen). c-Moll ist die Variante von C-Dur (gleicher Grundton, andere Vorzeichen: 3 Bes).</div>
+</section>
+
+<!-- 7. WEITERE -->
+<section id="weitere">
+  <div class="sec-head"><span class="sec-num">7</span><h2>Weitere Tonleiterarten</h2></div>
+  <p>Diese Tonleitern kommen in der Prüfung seltener vor, sind aber Teil der Unterrichtsmaterialien.</p>
+  <div class="two-col">
+    <div class="card">
+      <h4 style="margin-top:0;color:var(--gold)">Die chromatische Tonleiter</h4>
+      <p style="font-size:.92rem">Besteht aus allen <b>zwölf Tönen</b> einer Oktave und verwendet ausschließlich Halbtonschritte. Sie kann auf jedem Ton beginnen. Es werden maximal zwei Noten je Notenlinie bzw. Zwischenraum verwendet.</p>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0;color:var(--gold)">Pentatonische Skalen</h4>
+      <p style="font-size:.92rem"><b>Dur-Pentatonik:</b> Dur-Tonleiter ohne 4. und 7. Stufe. <b>Moll-Pentatonik:</b> natürliche Moll-Tonleiter ohne 2. und 6. Stufe. Weltweit vor allem in der Volksmusik verbreitet, gut geeignet für Improvisationen in Jazz, Pop und Rock.</p>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0;color:var(--gold)">Die Ganztonleiter</h4>
+      <p style="font-size:.92rem">Besteht aus sechs <b>Ganztönen</b>. Es gibt nur zwei Varianten: beginnend auf c oder auf des. Debussy verwendete sie in seinem Klavierstück <i>Voiles</i>.</p>
+    </div>
+    <div class="card">
+      <h4 style="margin-top:0;color:var(--gold)">Die oktatonische Skala</h4>
+      <p style="font-size:.92rem">Besteht aus alternierenden Ganz- und Halbtönen (Ganzton-Halbton-Skala). Strawinsky verwendet sie in den Balletten <i>Petruschka</i> und <i>Le sacre du printemps</i>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 8. BILDEN -->
+<section id="bilden">
+  <div class="sec-head"><span class="sec-num">8</span><h2>Tonleitern bilden</h2></div>
+  <p>Methode in 4 Schritten, gültig für jeden beliebigen Grundton:</p>
+  <ol>
+    <li>Schreibe die <b>7 aufeinanderfolgenden Buchstaben</b> ab dem Grundton auf (jeder Buchstabe genau einmal).</li>
+    <li>Wende das Muster der gewünschten Tonleiterart an (Dur: Ganz-Ganz-½-Ganz-Ganz-Ganz-½).</li>
+    <li>Füge die nötigen <b>Vorzeichen</b> hinzu, damit jeder Abstand dem Muster entspricht — niemals durch Ändern der Buchstaben, nur mit ♯ oder ♭.</li>
+    <li>Kontrolle: Die Tonleiter muss zur Ausgangs-Tonika zurückkehren (Oktave).</li>
+  </ol>
+
+  <div class="box tip">
+    <span class="box-label">Gelöstes Beispiel 1 — D-Dur</span>
+    Buchstaben: d-e-f-g-a-h-c-d.<br>
+    Muster: Ganz(d-e ✓) — zwischen e und f ist nur ein Halbton, es wird aber ein Ganzton benötigt → fis nötig.<br>
+    Weiter: Halbton(fis-g ✓) Ganz(g-a ✓) Ganz(a-h ✓) — zwischen h und c braucht es einen Ganzton statt Halbton → cis nötig, dann Halbton(cis-d ✓).<br>
+    Ergebnis: <b>d – e – fis – g – a – h – cis – d</b> (2 Kreuze: fis, cis).
+  </div>
+  <div class="box tip">
+    <span class="box-label">Gelöstes Beispiel 2 — B-Dur</span>
+    Buchstaben: h-c-d-e-f-g-a-h. Damit das Muster Ganz-Ganz-½-Ganz-Ganz-Ganz-½ ab b (statt h) aufgeht, wird h zu b erniedrigt, und e muss zu es werden, um den erwarteten Halbton zwischen 3. und 4. Stufe zu erhalten.<br>
+    Ergebnis: <b>b – c – d – es – f – g – a – b</b> (2 Bes: b, es).
+  </div>
+</section>
+
+<!-- 9. ERKENNEN -->
+<section id="erkennen">
+  <div class="sec-head"><span class="sec-num">9</span><h2>Tonleitern erkennen</h2></div>
+  <h3>Vorgehensweise</h3>
+  <ol>
+    <li>Notiere die in der Melodie auftretenden Vorzeichen und bringe sie in die für Generalvorzeichen übliche Reihenfolge.</li>
+    <li>Bestimme die Generalvorzeichnung (Anzahl Kreuze/Bes).</li>
+    <li>Prüfe, ob die Melodie mit dem Grundton beginnt oder endet — das deutet meist die Tonart an.</li>
+    <li>Gibt es ein <b>zusätzliches</b> Vorzeichen, das nicht zur Generalvorzeichnung gehört, handelt es sich meist um einen <b>erhöhten Leitton</b> → dann liegt <b>Moll</b> (harmonisch oder melodisch) vor.</li>
+  </ol>
+  <div class="box info">
+    <span class="box-label">Beispiel 1 — Auszug aus Humperdincks Wiegenlied</span>
+    Es gibt zwei Vorzeichen — fis und cis. Zwei Kreuze sind die Generalvorzeichen von <b>D-Dur</b> und h-Moll. Es gibt keinen erhöhten Leitton (ais), folglich handelt es sich um <b>D-Dur</b>.
+  </div>
+  <div class="box info">
+    <span class="box-label">Beispiel 2 — Preludio, Violinsonate op. 2, Nr. 1 (Vivaldi)</span>
+    Es gibt drei Vorzeichen — b, es und fis. Zwei Bes sind die Generalvorzeichen von B-Dur und <b>g-Moll</b>. Der Leitton ist erhöht (fis), folglich handelt es sich um <b>g-Moll</b>.
+  </div>
+</section>
+
+<!-- 10. AUFGABENTYPEN -->
+<section id="aufgabentypen">
+  <div class="sec-head"><span class="sec-num">10</span><h2>Prüfungsaufgabentypen</h2></div>
+  <div class="scale-grid">
+    <div class="scale-card"><h4>① Tonleiter bilden</h4><p style="font-size:.9rem">Grundton und Tonleiterart (Dur/Moll) gegeben. → 4-Schritte-Methode (Kapitel 8) anwenden.</p></div>
+    <div class="scale-card"><h4>② Tonart anhand der Vorzeichen bestimmen</h4><p style="font-size:.9rem">Anzahl Kreuze/Bes gegeben. → Tabellen aus Kapitel 6 oder Merkregel (letztes Kreuz = Leitton, vorletztes Be = Grundton).</p></div>
+    <div class="scale-card"><h4>③ Parallele / Variante finden</h4><p style="font-size:.9rem">→ Parallele: gleiche Vorzeichen, kleine Terz nach unten. Variante: gleicher Grundton, andere Vorzeichen.</p></div>
+    <div class="scale-card"><h4>④ Dur/Moll in einer Melodie erkennen</h4><p style="font-size:.9rem">→ Methode aus Kapitel 9 (Vorzeichen, Generalvorzeichnung, erhöhter Leitton).</p></div>
+    <div class="scale-card"><h4>⑤ Fehlerhafte Tonleiter korrigieren</h4><p style="font-size:.9rem">Tonleiter mit Fehler gegeben. → Muster Ganz/Halbton Ton für Ton prüfen (Kapitel 11).</p></div>
+    <div class="scale-card"><h4>⑥ Tonleiter im Quintenzirkel einordnen</h4><p style="font-size:.9rem">→ Schritte ab C im Zirkel zählen (Kapitel 5).</p></div>
+  </div>
+</section>
+
+<!-- 11. FEHLER -->
+<section id="fehler">
+  <div class="sec-head"><span class="sec-num">11</span><h2>Häufige Fehler</h2></div>
+  <div class="box danger"><span class="box-label">Fehler 1</span>Vergessen, dass jeder Buchstabe in einer Tonleiter <b>nur einmal</b> vorkommen darf. „g-a-h-c-d-e-fis-g" ist richtig, „g-a-h-c-d-e-ges" ist falsch — der Buchstabe g darf für den Leitton nicht wiederholt werden.</div>
+  <div class="box danger"><span class="box-label">Fehler 2</span>Parallele und Variante verwechseln (siehe Merkkasten in Kapitel 6).</div>
+  <div class="box danger"><span class="box-label">Fehler 3</span>Ein nötiges Vorzeichen in der Mitte der Tonleiter vergessen (am häufigsten: das fis bei G-Dur oder das b bei F-Dur).</div>
+  <div class="box danger"><span class="box-label">Fehler 4</span>Die Reihenfolge der Kreuze mit der der Bes verwechseln — es sind zwei <b>entgegengesetzte</b> Reihenfolgen.</div>
+  <div class="box danger"><span class="box-label">Fehler 5</span>Bei der harmonischen Molltonleiter die übermäßige Sekunde (3 Halbtöne) zwischen 6. und 7. Stufe vergessen.</div>
+  <div class="box danger"><span class="box-label">Fehler 6</span>Beim melodischen Moll dieselbe Form auf- und absteigend verwenden — sie unterscheiden sich!</div>
+</section>
+
+<!-- 12. MERKHILFEN -->
+<section id="merkhilfen">
+  <div class="sec-head"><span class="sec-num">12</span><h2>Merkhilfen</h2></div>
+  <div class="summary-grid">
+    <div class="summary-card"><h4>Reihenfolge der Kreuze</h4><p style="font-size:.9rem">fis cis gis dis ais eis his — Merksatz: <i>„Geh du alter Esel Haie fischen."</i> Das letzte Kreuz ist immer der Leitton.</p></div>
+    <div class="summary-card"><h4>Reihenfolge der Bes</h4><p style="font-size:.9rem">b es as des ges ces fes — Merksatz: <i>„Frische Brötchen essen Asse des Gesangs."</i> Das vorletzte Be ist immer der Grundton.</p></div>
+    <div class="summary-card"><h4>Natürliche Halbtöne</h4><p style="font-size:.9rem">Auf dem Klavier liegen nur <b>e-f</b> und <b>h-c</b> ohne schwarze Taste dazwischen.</p></div>
+    <div class="summary-card"><h4>Parallele Molltonart</h4><p style="font-size:.9rem">Drei Halbtonschritte (kleine Terz) von der Dur-Tonika nach unten gehen, um die Parallele zu finden.</p></div>
+    <div class="summary-card"><h4>Dur vs. Moll erkennen</h4><p style="font-size:.9rem">Höre auf die 3. Stufe: große Terz (2 Ganztöne) → Dur. Kleine Terz (1½ Ton) → Moll.</p></div>
+    <div class="summary-card"><h4>Schreibweise</h4><p style="font-size:.9rem">Immer <b>Großbuchstabe</b> bei Dur (G-Dur), immer <b>Kleinbuchstabe</b> bei Moll (e-Moll).</p></div>
+  </div>
+</section>
+
+<!-- 13. UEBUNGEN -->
+<section id="uebungen">
+  <div class="sec-head"><span class="sec-num">13</span><h2>Übungen</h2></div>
+  <div class="ex-tabs">
+    <button class="ex-tab active" data-tab="easy">🟢 Leicht (10)</button>
+    <button class="ex-tab" data-tab="medium">🟡 Mittel (10)</button>
+    <button class="ex-tab" data-tab="hard">🔴 Schwer (10)</button>
+  </div>
+
+  <div class="ex-panel active" id="panel-easy">
+    <div class="ex-item"><b>L1.</b> Wie lautet das Intervallmuster einer Dur-Tonleiter?</div>
+    <div class="ex-item"><b>L2.</b> Schreibe die C-Dur-Tonleiter auf.</div>
+    <div class="ex-item"><b>L3.</b> Wie viele Halbtöne umfasst eine Oktave?</div>
+    <div class="ex-item"><b>L4.</b> Wie heißt die parallele Molltonart von C-Dur?</div>
+    <div class="ex-item"><b>L5.</b> Wie viele Vorzeichen hat D-Dur, und welche?</div>
+    <div class="ex-item"><b>L6.</b> Wie nennt man die VII. Stufe einer Tonleiter?</div>
+    <div class="ex-item"><b>L7.</b> Zwischen welchen weißen Tasten liegt ein natürlicher Halbton?</div>
+    <div class="ex-item"><b>L8.</b> Schreibe die natürliche a-Moll-Tonleiter auf.</div>
+    <div class="ex-item"><b>L9.</b> Wie heißt die parallele Molltonart von G-Dur?</div>
+    <div class="ex-item"><b>L10.</b> Aus wie vielen Halbtönen besteht ein Ganzton?</div>
+  </div>
+
+  <div class="ex-panel" id="panel-medium">
+    <div class="ex-item"><b>M1.</b> Bilde die D-Dur-Tonleiter Ton für Ton und gib alle nötigen Vorzeichen an.</div>
+    <div class="ex-item"><b>M2.</b> Welche Vorzeichen hat A-Dur?</div>
+    <div class="ex-item"><b>M3.</b> Welche Molltonart ist die Parallele von F-Dur?</div>
+    <div class="ex-item"><b>M4.</b> Bilde die harmonische e-Moll-Tonleiter.</div>
+    <div class="ex-item"><b>M5.</b> In welcher Reihenfolge treten die Kreuze in Generalvorzeichnungen auf?</div>
+    <div class="ex-item"><b>M6.</b> Diese G-Dur-Tonleiter ist falsch: g-a-h-c-d-e-f-g. Finde und korrigiere den Fehler.</div>
+    <div class="ex-item"><b>M7.</b> Was unterscheidet die aufsteigende von der absteigenden melodischen Molltonleiter?</div>
+    <div class="ex-item"><b>M8.</b> Welche Dur-Tonart hat 3 Bes als Vorzeichen?</div>
+    <div class="ex-item"><b>M9.</b> Wie lautet der Leitton (VII. Stufe) von F-Dur?</div>
+    <div class="ex-item"><b>M10.</b> Warum verwendet man ein Generalvorzeichen statt einzelner Vorzeichen?</div>
+  </div>
+
+  <div class="ex-panel" id="panel-hard">
+    <div class="ex-item"><b>S1.</b> Eine Melodie enthält die Vorzeichen fis und cis, endet auf dem Ton d und zeigt keinen erhöhten Leitton. Welche Tonart liegt vor?</div>
+    <div class="ex-item"><b>S2.</b> Bilde die harmonische gis-Moll-Tonleiter mit allen nötigen Vorzeichen.</div>
+    <div class="ex-item"><b>S3.</b> Erkläre die Beziehung zwischen Cis-Dur und Des-Dur.</div>
+    <div class="ex-item"><b>S4.</b> Ein Stück hat 4 Bes als Vorzeichen und einen erhöhten Leitton. Welche Tonart liegt vor?</div>
+    <div class="ex-item"><b>S5.</b> Bilde die melodische d-Moll-Tonleiter (auf- und absteigend).</div>
+    <div class="ex-item"><b>S6.</b> Welche drei Dur-Tonarten im Quintenzirkel haben jeweils zwei Bezeichnungen?</div>
+    <div class="ex-item"><b>S7.</b> Diese Es-Dur-Tonleiter enthält einen Fehler: es-f-g-a-b-c-d-es. Finde und korrigiere ihn.</div>
+    <div class="ex-item"><b>S8.</b> Wie heißt die Variante von F-Dur?</div>
+    <div class="ex-item"><b>S9.</b> Wie viele Vorzeichen hat die parallele Molltonart von Des-Dur, und wie heißt sie?</div>
+    <div class="ex-item"><b>S10.</b> Ein Stück in C-Dur moduliert zu seiner Dominante. In welche Tonart moduliert es, und warum ist diese Tonart eng verwandt?</div>
+  </div>
+</section>
+
+<!-- 14. LOESUNGEN -->
+<section id="loesungen">
+  <div class="sec-head"><span class="sec-num">14</span><h2>Lösungen</h2></div>
+  <p style="color:var(--muted);font-size:.9rem">Auf eine Frage klicken, um die vollständige Lösung anzuzeigen.</p>
+
+  <h3>🟢 Leicht</h3>
+  <details class="sol"><summary>L1 — Muster der Dur-Tonleiter</summary><div class="answer">Ganz-Ganz-½-Ganz-Ganz-Ganz-½. Die Halbtonschritte liegen zwischen der 3. und 4. sowie zwischen der 7. Stufe und der Oktave.</div></details>
+  <details class="sol"><summary>L2 — C-Dur-Tonleiter</summary><div class="answer">c – d – e – f – g – a – h – c. Keine Vorzeichen: nur die weißen Klaviertasten.</div></details>
+  <details class="sol"><summary>L3 — Halbtöne in der Oktave</summary><div class="answer">12 Halbtöne.</div></details>
+  <details class="sol"><summary>L4 — Parallele von C-Dur</summary><div class="answer">a-Moll (gleiche Vorzeichen: 0).</div></details>
+  <details class="sol"><summary>L5 — Vorzeichen von D-Dur</summary><div class="answer">2 Kreuze: fis und cis.</div></details>
+  <details class="sol"><summary>L6 — Name der VII. Stufe</summary><div class="answer">Leitton — er „leitet" einen Halbton unterhalb zum Grundton hin.</div></details>
+  <details class="sol"><summary>L7 — Natürliche Halbtöne</summary><div class="answer">e–f und h–c: die einzigen Stellen, an denen zwei weiße Tasten ohne schwarze Taste dazwischen aufeinandertreffen.</div></details>
+  <details class="sol"><summary>L8 — a-Moll-Tonleiter</summary><div class="answer">a – h – c – d – e – f – g – a. Keine Vorzeichen (Parallele von C-Dur).</div></details>
+  <details class="sol"><summary>L9 — Parallele von G-Dur</summary><div class="answer">e-Moll (gleiche Vorzeichen: 1 Kreuz, fis).</div></details>
+  <details class="sol"><summary>L10 — Halbtöne in einem Ganzton</summary><div class="answer">2 Halbtöne.</div></details>
+
+  <h3>🟡 Mittel</h3>
+  <details class="sol"><summary>M1 — D-Dur bilden</summary><div class="answer">Buchstaben: d-e-f-g-a-h-c-d. Nach dem Muster Ganz-Ganz-½-Ganz-Ganz-Ganz-½ muss f zu fis erhöht werden (Ganzton zwischen e und fis) und c zu cis (Halbton zwischen h und cis, dann cis und d). Ergebnis: d–e–fis–g–a–h–cis–d.</div></details>
+  <details class="sol"><summary>M2 — Vorzeichen von A-Dur</summary><div class="answer">3 Kreuze: fis, cis, gis (eine Quinte über D-Dur mit 2 Kreuzen).</div></details>
+  <details class="sol"><summary>M3 — Parallele von F-Dur</summary><div class="answer">d-Moll (gleiche Vorzeichen: 1 Be, b).</div></details>
+  <details class="sol"><summary>M4 — harmonisches e-Moll</summary><div class="answer">e–fis–g–a–h–c–dis–e. Das d wird zu dis erhöht, um den Leitton und die übermäßige Sekunde zwischen c und dis zu erzeugen.</div></details>
+  <details class="sol"><summary>M5 — Reihenfolge der Kreuze</summary><div class="answer">fis, cis, gis, dis, ais, eis, his — jedes eine Quinte über dem vorherigen.</div></details>
+  <details class="sol"><summary>M6 — Korrektur G-Dur</summary><div class="answer">Es fehlt fis: g-a-h-c-d-e-fis-g. Ohne fis wäre der erwartete Halbton zwischen 7. Stufe und Oktave (fis-g) nicht erfüllt.</div></details>
+  <details class="sol"><summary>M7 — Melodisches Moll auf-/absteigend</summary><div class="answer">Aufsteigend werden 6. und 7. Stufe erhöht (wie bei Dur). Absteigend entspricht die Tonleiter wieder dem natürlichen Moll (6. und 7. Stufe nicht erhöht).</div></details>
+  <details class="sol"><summary>M8 — Tonart mit 3 Bes</summary><div class="answer">Es-Dur (b, es, as).</div></details>
+  <details class="sol"><summary>M9 — Leitton von F-Dur</summary><div class="answer">e (VII. Stufe von f-g-a-b-c-d-e-f).</div></details>
+  <details class="sol"><summary>M10 — Sinn des Generalvorzeichens</summary><div class="answer">Es erspart, dieselbe Alteration vor jeder Note erneut zu setzen, für alle Oktavlagen und die gesamte Stückdauer — übersichtlicher und schneller zu notieren.</div></details>
+
+  <h3>🔴 Schwer</h3>
+  <details class="sol"><summary>S1 — Tonart bestimmen</summary><div class="answer">2 Kreuze (fis, cis) → D-Dur oder h-Moll. Ohne erhöhten Leitton und mit Schluss auf d: <b>D-Dur</b>.</div></details>
+  <details class="sol"><summary>S2 — harmonisches gis-Moll</summary><div class="answer">Vorzeichen von gis-Moll: 5 Kreuze (fis, cis, gis, dis, ais). Tonleiter: gis–ais–h–cis–dis–e–fisis(doppelt erhöhtes fis)–gis. Der bereits erhöhte 7. Ton (fis, schon in der Vorzeichnung) muss für den Leitton nochmals um einen Halbton erhöht werden, daher fisis.</div></details>
+  <details class="sol"><summary>S3 — Cis-Dur / Des-Dur</summary><div class="answer">Es handelt sich um enharmonisch verwechselbare Tonarten: Sie klingen auf dem Klavier identisch, werden aber unterschiedlich notiert. Cis-Dur hat 7 Kreuze, Des-Dur nur 5 Bes — Komponisten bevorzugen daher meist Des-Dur, da es weniger Vorzeichen und somit bessere Lesbarkeit hat.</div></details>
+  <details class="sol"><summary>S4 — 4 Bes + erhöhter Leitton</summary><div class="answer">4 Bes → As-Dur oder f-Moll. Ein erhöhter Leitton (Vorzeichen außerhalb der Generalvorzeichnung) weist auf Moll hin: <b>f-Moll</b>.</div></details>
+  <details class="sol"><summary>S5 — melodisches d-Moll</summary><div class="answer">Aufsteigend: d–e–f–g–a–h–cis–d (h und cis erhöht). Absteigend: d–c–b–a–g–f–e–d (zurück zur normalen Vorzeichnung von d-Moll: 1 Be).</div></details>
+  <details class="sol"><summary>S6 — Tonarten mit Doppelbezeichnung</summary><div class="answer">H-Dur/Ces-Dur, Cis-Dur/Des-Dur, Fis-Dur/Ges-Dur (sowie die entsprechenden parallelen Molltonarten: gis-Moll/as-Moll, ais-Moll/b-Moll, dis-Moll/es-Moll).</div></details>
+  <details class="sol"><summary>S7 — Korrektur Es-Dur</summary><div class="answer">Es fehlt as: es-f-g-as-b-c-d-es. Ohne as wäre der Abstand zwischen g und a nur ein Ganzton, obwohl zwischen 3. und 4. Stufe ein Halbton erwartet wird.</div></details>
+  <details class="sol"><summary>S8 — Variante von F-Dur</summary><div class="answer">f-Moll (gleicher Grundton f, aber andere Vorzeichnung: 4 Bes statt 1 Be bei F-Dur).</div></details>
+  <details class="sol"><summary>S9 — Parallele von Des-Dur</summary><div class="answer">Des-Dur hat 5 Bes; die parallele Molltonart, b-Moll, hat somit ebenfalls 5 Bes.</div></details>
+  <details class="sol"><summary>S10 — Modulation zur Dominante</summary><div class="answer">C-Dur moduliert nach G-Dur (der V. Stufe, seiner Dominante). Das ist eine sehr enge Verwandtschaft: G-Dur unterscheidet sich von C-Dur nur durch ein einziges Vorzeichen (1 Kreuz), und beide Tonarten sind im Quintenzirkel unmittelbare Nachbarn.</div></details>
+</section>
+
+<!-- 15. ZUSAMMENFASSUNG -->
+<section id="zusammenfassung">
+  <div class="sec-head"><span class="sec-num">15</span><h2>Zusammenfassung — 5 Minuten vor der Prüfung</h2></div>
+  <div class="summary-grid">
+    <div class="summary-card">
+      <h4>Intervallmuster</h4>
+      <ul>
+        <li><b>Dur:</b> Ganz-Ganz-½-Ganz-Ganz-Ganz-½</li>
+        <li><b>Natürliches Moll:</b> Ganz-½-Ganz-Ganz-½-Ganz-Ganz</li>
+        <li><b>Harmonisches Moll:</b> wie natürlich + erhöhter Leitton (übermäßige Sekunde zwischen 6. und 7. Stufe)</li>
+        <li><b>Melodisches Moll ↑:</b> wie Dur, außer kleiner Terz</li>
+        <li><b>Melodisches Moll ↓:</b> identisch mit natürlichem Moll</li>
+      </ul>
+    </div>
+    <div class="summary-card">
+      <h4>Reihenfolge der Vorzeichen</h4>
+      <ul>
+        <li>Kreuze: fis cis gis dis ais eis his</li>
+        <li>Bes: b es as des ges ces fes</li>
+        <li>Letztes Kreuz = Leitton</li>
+        <li>Vorletztes Be = Grundton</li>
+      </ul>
+    </div>
+    <div class="summary-card">
+      <h4>Beziehungen zwischen Tonarten</h4>
+      <ul>
+        <li><b>Parallele:</b> gleiche Vorzeichen, kleine Terz tiefer für Moll</li>
+        <li><b>Variante:</b> gleicher Grundton, andere Vorzeichen</li>
+        <li><b>Enge Verwandtschaft:</b> Dominante (V), Subdominante (IV), Parallele</li>
+      </ul>
+    </div>
+    <div class="summary-card">
+      <h4>Fehler vermeiden</h4>
+      <ul>
+        <li>Jeder Buchstabe nur einmal pro Tonleiter</li>
+        <li>Parallele nicht mit Variante verwechseln</li>
+        <li>Jeden Abstand einzeln nachprüfen</li>
+        <li>Dur = Großbuchstabe, Moll = Kleinbuchstabe</li>
+      </ul>
+    </div>
+  </div>
+  <div class="box tip" style="margin-top:20px"><span class="box-label">Letzter Tipp</span>Tonart bestimmen: Vorzeichen zählen → prüfen, ob ein zusätzlicher erhöhter Leitton vorhanden ist → wenn nein: Dur, wenn ja: Moll. Und denk daran: Der Leitton „zieht" immer zum Grundton!</div>
+</section>
+
+</div>
+
+<footer>Viel Erfolg bei der Prüfung Compréhension Musicale — du bist bereit! 🎼</footer>
+
+<script>
+const WHITE = [0,2,4,5,7,9,11];
+
+function renderKeyboard(containerId, highlights, opts={}){
+  const el = document.getElementById(containerId);
+  if(!el) return;
+  const kb = document.createElement('div');
+  kb.className='keyboard';
+  WHITE.forEach((pc)=>{
+    const w = document.createElement('div');
+    w.className='wkey';
+    if(highlights[pc]){ w.classList.add('hi'); }
+    const lbl = document.createElement('div'); lbl.className='keylabel';
+    lbl.textContent = highlights[pc] ? highlights[pc].label : '';
+    w.appendChild(lbl);
+    if(highlights[pc] && highlights[pc].degree){
+      const d = document.createElement('div'); d.className='deg'; d.textContent = highlights[pc].degree;
+      w.appendChild(d);
+    }
+    kb.appendChild(w);
+  });
+  const blackPositions = {1:1,3:2,6:4,8:5,10:6};
+  Object.keys(blackPositions).forEach(pcStr=>{
+    const pc = parseInt(pcStr);
+    const idx = blackPositions[pc];
+    const b = document.createElement('div'); b.className='bkey';
+    const leftPct = (idx*(100/7)) - (6.2/2);
+    b.style.left = leftPct+'%';
+    if(highlights[pc]){ b.classList.add('hi'); }
+    const lbl = document.createElement('div'); lbl.className='keylabel';
+    lbl.textContent = highlights[pc] ? highlights[pc].label : '';
+    b.appendChild(lbl);
+    if(highlights[pc] && highlights[pc].degree){
+      const d = document.createElement('div'); d.className='deg'; d.textContent = highlights[pc].degree;
+      b.appendChild(d);
+    }
+    kb.appendChild(b);
+  });
+  el.appendChild(kb);
+  if(opts.caption){
+    const cap = document.createElement('div'); cap.className='keyboard-caption'; cap.textContent = opts.caption;
+    el.appendChild(cap);
+  }
+}
+
+function scaleToHighlights(notes){
+  const h = {};
+  notes.forEach(n=>{ h[n.pc] = {label:n.name, degree:n.degree}; });
+  return h;
+}
+
+// Dur-Tonleitern (Auswahl mit Kreuzen und Bes)
+const majorScales = [
+  {name:'C-Dur', sig:'0 Vorzeichen', notes:[['c',0,1],['d',2,2],['e',4,3],['f',5,4],['g',7,5],['a',9,6],['h',11,7]]},
+  {name:'G-Dur', sig:'1 Kreuz (fis)', notes:[['g',7,1],['a',9,2],['h',11,3],['c',0,4],['d',2,5],['e',4,6],['fis',6,7]]},
+  {name:'D-Dur', sig:'2 Kreuze (fis, cis)', notes:[['d',2,1],['e',4,2],['fis',6,3],['g',7,4],['a',9,5],['h',11,6],['cis',1,7]]},
+  {name:'A-Dur', sig:'3 Kreuze (fis, cis, gis)', notes:[['a',9,1],['h',11,2],['cis',1,3],['d',2,4],['e',4,5],['fis',6,6],['gis',8,7]]},
+  {name:'F-Dur', sig:'1 Be (b)', notes:[['f',5,1],['g',7,2],['a',9,3],['b',10,4],['c',0,5],['d',2,6],['e',4,7]]},
+  {name:'B-Dur', sig:'2 Bes (b, es)', notes:[['b',10,1],['c',0,2],['d',2,3],['es',3,4],['f',5,5],['g',7,6],['a',9,7]]},
+];
+
+const grid = document.getElementById('majorScales');
+majorScales.forEach((s,i)=>{
+  const card = document.createElement('div'); card.className='scale-card';
+  card.innerHTML = `<h4>${s.name}</h4><div class="sig">${s.sig}</div>`;
+  const row = document.createElement('div'); row.className='notes-row';
+  s.notes.forEach(n=>{
+    const chip = document.createElement('span'); chip.className='note-chip';
+    chip.textContent = n[0];
+    row.appendChild(chip);
+  });
+  card.appendChild(row);
+  const kbDiv = document.createElement('div'); kbDiv.className='keyboard-wrap'; kbDiv.id='kb-major-'+i;
+  card.appendChild(kbDiv);
+  grid.appendChild(card);
+  const highlights = scaleToHighlights(s.notes.map(n=>({name:n[0],pc:n[1],degree:n[2]})));
+  renderKeyboard('kb-major-'+i, highlights);
+});
+
+// Moll-Beispiele
+renderKeyboard('kbAminNat', scaleToHighlights([
+  ['a',9,1],['h',11,2],['c',0,3],['d',2,4],['e',4,5],['f',5,6],['g',7,7]
+].map(n=>({name:n[0],pc:n[1],degree:n[2]}))), {caption:'a-Moll natürlich'});
+
+renderKeyboard('kbAminHarm', scaleToHighlights([
+  ['a',9,1],['h',11,2],['c',0,3],['d',2,4],['e',4,5],['f',5,6],['gis',8,7]
+].map(n=>({name:n[0],pc:n[1],degree:n[2]}))), {caption:'a-Moll harmonisch'});
+
+renderKeyboard('kbAminMelUp', scaleToHighlights([
+  ['a',9,1],['h',11,2],['c',0,3],['d',2,4],['e',4,5],['fis',6,6],['gis',8,7]
+].map(n=>({name:n[0],pc:n[1],degree:n[2]}))), {caption:'aufsteigend'});
+
+renderKeyboard('kbAminMelDown', scaleToHighlights([
+  ['a',9,1],['g',7,7],['f',5,6],['e',4,5],['d',2,4],['c',0,3],['h',11,2]
+].map(n=>({name:n[0],pc:n[1],degree:n[2]}))), {caption:'absteigend'});
+
+renderKeyboard('kbCminNat', scaleToHighlights([
+  ['c',0,1],['d',2,2],['es',3,3],['f',5,4],['g',7,5],['as',8,6],['b',10,7]
+].map(n=>({name:n[0],pc:n[1],degree:n[2]}))), {caption:'c-Moll natürlich'});
+
+// Reihenfolgen
+const sharpOrderEl = document.getElementById('sharpOrder');
+['fis','cis','gis','dis','ais','eis','his'].forEach(n=>{
+  const c = document.createElement('span'); c.className='note-chip sharp'; c.textContent=n; sharpOrderEl.appendChild(c);
+});
+const flatOrderEl = document.getElementById('flatOrder');
+['b','es','as','des','ges','ces','fes'].forEach(n=>{
+  const c = document.createElement('span'); c.className='note-chip flat'; c.textContent=n; flatOrderEl.appendChild(c);
+});
+
+// Quintenzirkel
+const cof = document.getElementById('cof');
+const majors = ['C','G','D','A','E','H','Fis/Ges','Des/Cis','As','Es','B','F'];
+const minors = ['a','e','h','fis','cis','gis/as','dis/es','b','f','c','g','d'];
+function placeCOF(){
+  const rect = cof.getBoundingClientRect();
+  const R = rect.width/2;
+  const rOuter = R*0.78, rInner = R*0.48;
+  for(let i=0;i<12;i++){
+    const angle = (i*30 - 90) * Math.PI/180;
+    const xO = R + rOuter*Math.cos(angle);
+    const yO = R + rOuter*Math.sin(angle);
+    const xI = R + rInner*Math.cos(angle);
+    const yI = R + rInner*Math.sin(angle);
+    const lo = document.createElement('div'); lo.className='cof-label major';
+    lo.style.left = xO+'px'; lo.style.top=yO+'px'; lo.textContent = majors[i];
+    cof.appendChild(lo);
+    const li = document.createElement('div'); li.className='cof-label minor';
+    li.style.left = xI+'px'; li.style.top=yI+'px'; li.textContent = minors[i];
+    cof.appendChild(li);
+  }
+}
+window.addEventListener('load', placeCOF);
+window.addEventListener('resize', ()=>{
+  document.querySelectorAll('.cof-label').forEach(e=>e.remove());
+  placeCOF();
+});
+
+document.querySelectorAll('.ex-tab').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.ex-tab').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.ex-panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-'+btn.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
