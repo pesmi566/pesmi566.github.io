@@ -1,0 +1,1927 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Trainer de maths 3GCM</title><style>:root{--bg:#f5f6fb;--card:#fff;--ink:#1e2235;--mut:#667085;--line:#e3e6f0;--pri:#4f46e5;--pri2:#eef0ff;--ok:#059669;--ok2:#e7f8f0;--ko:#e11d48;--ko2:#fdecef;--warn:#d97706;--warn2:#fff4e0;--sh:0 4px 18px rgba(30,34,80,.08);--r:16px;--mf:"Cambria Math","STIX Two Math","Latin Modern Math","Times New Roman",serif}
+@media(prefers-color-scheme:dark){:root{--bg:#12141f;--card:#1b1e2e;--ink:#e8eaf6;--mut:#9aa3b8;--line:#2d3248;--pri:#8b83ff;--pri2:#262a4a;--ok:#34d399;--ok2:#12342a;--ko:#fb7185;--ko2:#3b1a24;--warn:#fbbf24;--warn2:#3a2f14;--sh:0 4px 18px rgba(0,0,0,.35)}}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header.top{position:sticky;top:0;z-index:20;background:var(--card);border-bottom:1px solid var(--line);box-shadow:var(--sh)}
+.topin{max-width:1100px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.brand{font-weight:800;font-size:1.1rem;letter-spacing:-.01em;display:flex;align-items:center;gap:8px;cursor:pointer}
+.brand span.lg{background:linear-gradient(135deg,var(--pri),#c026d3);color:#fff;border-radius:10px;padding:2px 9px;font-family:var(--mf);font-style:italic}
+nav.tabs{display:flex;gap:6px;overflow-x:auto;flex:1;scrollbar-width:none}
+nav.tabs button{border:0;background:transparent;color:var(--mut);font:inherit;font-weight:600;padding:7px 13px;border-radius:999px;cursor:pointer;white-space:nowrap}
+nav.tabs button:hover{background:var(--pri2)}nav.tabs button.on{background:var(--pri);color:#fff}
+main{max-width:1100px;margin:0 auto;padding:18px 16px 120px}
+h1{font-size:1.7rem;margin:.2em 0 .3em;letter-spacing:-.02em}h2{font-size:1.25rem;margin:1.2em 0 .5em}h3{font-size:1.05rem;margin:1em 0 .4em}
+.muted{color:var(--mut)}.small{font-size:.88rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);padding:18px;margin:14px 0}
+.grid{display:grid;gap:14px}.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}.g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.btn{border:0;background:var(--pri);color:#fff;font:inherit;font-weight:650;padding:10px 18px;border-radius:12px;cursor:pointer;transition:.15s;box-shadow:0 2px 6px rgba(79,70,229,.25)}
+.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.btn.ghost{background:transparent;color:var(--pri);box-shadow:inset 0 0 0 1.5px var(--pri)}.btn.ok{background:var(--ok)}.btn.warn{background:var(--warn)}.btn.sm{padding:6px 12px;font-size:.9rem}
+.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:14px}
+.hero{background:linear-gradient(135deg,var(--pri),#c026d3);color:#fff;border-radius:22px;padding:26px;box-shadow:var(--sh)}
+.hero h1{margin:0 0 6px}.hero p{margin:.3em 0;opacity:.95}.hero .btn{background:#fff;color:var(--pri);box-shadow:none}.hero .btn.ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 1.5px #fff}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-top:16px}
+.stat{background:rgba(255,255,255,.16);border-radius:14px;padding:10px 14px}.stat b{display:block;font-size:1.6rem;line-height:1.1}.stat span{font-size:.82rem;opacity:.9}
+.tcard{cursor:pointer;transition:.15s;position:relative}.tcard:hover{transform:translateY(-2px);border-color:var(--pri)}
+.tcard h3{margin:.1em 0 .2em}.tcard .tag{font-size:.75rem;font-weight:700;color:var(--pri);text-transform:uppercase;letter-spacing:.05em}
+.pbar{height:9px;border-radius:99px;background:var(--line);overflow:hidden;margin:8px 0 4px}.pbar i{display:block;height:100%;background:linear-gradient(90deg,var(--pri),#c026d3);border-radius:99px;transition:width .4s}
+.stars{letter-spacing:2px;color:var(--warn)}.stars .off{color:var(--line)}
+.badge2{display:inline-block;font-size:.72rem;font-weight:700;padding:2px 9px;border-radius:99px;background:var(--ko2);color:var(--ko);margin-left:6px}
+.badge2.good{background:var(--ok2);color:var(--ok)}
+.lvl{display:inline-block;font-size:.75rem;font-weight:800;padding:2px 10px;border-radius:99px;background:var(--pri2);color:var(--pri)}.lvl.l2{background:var(--warn2);color:var(--warn)}.lvl.l3{background:var(--ko2);color:var(--ko)}
+.lvlrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.lvlbtn{text-align:left;border:1.5px solid var(--line);background:var(--card);color:inherit;font:inherit;border-radius:14px;padding:14px;cursor:pointer}.lvlbtn:hover{border-color:var(--pri)}.lvlbtn b{display:block}
+.rule{border-left:5px solid var(--pri);background:var(--pri2);border-radius:10px;padding:10px 14px;margin:10px 0}
+.rule.warn{border-color:var(--warn);background:var(--warn2)}.rule.ex{border-color:var(--ok);background:var(--ok2)}
+.rule b.t{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+.steps{counter-reset:s;list-style:none;padding:0;margin:.4em 0}.steps li{counter-increment:s;position:relative;padding:4px 0 4px 36px;margin:4px 0}
+.steps li:before{content:counter(s);position:absolute;left:0;top:3px;width:26px;height:26px;border-radius:50%;background:var(--pri);color:#fff;font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center}
+/* maths */
+.m{font-family:var(--mf);font-size:1.08em;white-space:nowrap}.m i{font-style:italic}.m .up{font-style:normal;font-family:inherit}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 .12em;font-size:.92em}
+.frac>.num{padding:0 .2em;border-bottom:1.4px solid currentColor;line-height:1.2}.frac>.den{padding:0 .2em;line-height:1.2}
+.sqrt{display:inline-flex;align-items:stretch}.sqrt .rad{border-top:1.4px solid currentColor;padding:0 .12em;margin-top:.1em}
+.mblock{text-align:center;margin:.5em 0;overflow-x:auto}.mblock .m{font-size:1.2em}
+sup,sub{line-height:0}
+/* exercices */
+.exhead{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.dots{display:flex;gap:6px;flex-wrap:wrap}.dot{width:14px;height:14px;border-radius:50%;background:var(--line);cursor:pointer;border:2px solid transparent}.dot.cur{border-color:var(--pri)}.dot.ok{background:var(--ok)}.dot.ko{background:var(--ko)}
+.intro{margin:.5em 0 .8em}
+.part{border:1.5px solid var(--line);border-radius:14px;padding:12px 14px;margin:10px 0;background:var(--card)}
+.part.ok{border-color:var(--ok);background:var(--ok2)}.part.ko{border-color:var(--ko);background:var(--ko2)}.part.partial{border-color:var(--warn)}
+.pq{font-weight:600;margin-bottom:6px}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.inp{font:inherit;font-family:var(--mf);font-size:1.05rem;padding:8px 11px;border:1.5px solid var(--line);border-radius:10px;background:var(--card);color:inherit;min-width:9ch;max-width:100%}
+.inp.wide{min-width:min(30ch,100%)}.inp.inl{padding:3px 6px;margin:2px 3px;text-align:center;min-width:0}.inp.cell{width:7ch;min-width:0;padding:5px;text-align:center}
+.inp:focus,.sel:focus{outline:none;border-color:var(--pri);box-shadow:0 0 0 3px var(--pri2)}
+.inp.ok,.sel.ok{border-color:var(--ok);background:var(--ok2)}.inp.ko,.sel.ko{border-color:var(--ko);background:var(--ko2)}
+.sel{font:inherit;padding:6px 8px;border:1.5px solid var(--line);border-radius:10px;background:var(--card);color:inherit;margin:2px 3px}
+.fl{margin:6px 0;line-height:2.1}.fillbox{margin:4px 0}
+.opts{display:grid;gap:8px}.opt{display:flex;gap:10px;align-items:flex-start;border:1.5px solid var(--line);border-radius:12px;padding:9px 12px;cursor:pointer}.opt:hover{border-color:var(--pri)}.opt input{margin-top:5px}
+.tfb{font:inherit;font-weight:700;padding:8px 22px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);color:inherit;cursor:pointer}.tfb.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.pfb{margin-top:6px;font-size:.95rem}.fbok{color:var(--ok);font-weight:600}.fbko{color:var(--ko)}.fbans,.fbsol{margin-top:6px;padding:8px 10px;border-radius:10px;background:var(--pri2)}
+table.vt{border-collapse:collapse;margin:6px 0;font-family:var(--mf)}.vt th,.vt td{border:1px solid var(--line);padding:5px 10px;text-align:center;min-width:44px}.vt th{background:var(--pri2);font-weight:600}
+.vtin td.pc{background:var(--card)}.vtin td.ic{background:transparent;border-color:transparent;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.vtin td.arr{font-size:1.4rem}
+.vt .mk{color:var(--mut)}.resrow th,.resrow td.pc{font-weight:700}.tscroll{overflow-x:auto;max-width:100%}
+.arrsel,.sgn{font-size:1.15rem}
+.vtsvg{width:100%;max-width:560px;color:var(--ink)}.vtsvg .vl{stroke:currentColor;stroke-width:1.5}.vtsvg .vtxt{fill:currentColor;font:600 15px var(--mf)}.vtsvg .it{font-style:italic}.varr{stroke:currentColor;stroke-width:1.8}
+.vtwrap{overflow-x:auto}
+.plot{width:100%;max-width:560px;height:auto;display:block;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:12px}.plot.mini{max-width:200px}.plot.clickable{cursor:crosshair}
+.plot .grid line{stroke:var(--line);stroke-width:1}.plot .axes line{stroke:var(--ink);stroke-width:1.4}.plot .ticks text{fill:var(--mut);font-size:11px;font-family:var(--mf)}.plot .axl{fill:var(--ink);font:italic 13px var(--mf)}.plot .plbl{font:600 12px var(--mf)}
+.pfig{margin:6px 0}.mini .plot{max-width:200px}
+.choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin-bottom:10px}.choice{display:flex;gap:8px;border:1.5px dashed var(--line);border-radius:12px;padding:8px}.badge{width:26px;height:26px;border-radius:50%;background:var(--pri);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;flex:none}
+.mitems{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}.mitem{border:1.5px solid var(--line);border-radius:12px;padding:8px}.mrow{display:flex;align-items:center;gap:6px}
+.fb{border-radius:14px;padding:12px 14px;margin-top:12px}.fb.ok{background:var(--ok2);color:var(--ok);font-weight:600}.fb.ko{background:var(--ko2);color:var(--ko)}.fb.hint{background:var(--warn2);color:var(--ink);border-left:5px solid var(--warn)}
+.solbox{margin-top:12px;border:1.5px solid var(--pri);border-radius:14px;padding:12px 16px;background:var(--pri2)}.solbox h3{margin-top:0}
+.sym{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--card);border-top:1px solid var(--line);padding:6px 10px;display:flex;gap:6px;flex-wrap:wrap;justify-content:center;box-shadow:0 -4px 14px rgba(0,0,0,.08)}
+.sym button{font:600 1.05rem var(--mf);min-width:40px;padding:6px 8px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:inherit;cursor:pointer}.sym .lab{align-self:center;font-size:.8rem;color:var(--mut)}
+.sliderrow{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:8px 0}.sliderrow input[type=range]{flex:1;min-width:160px;accent-color:var(--pri)}
+.seg{display:inline-flex;border:1.5px solid var(--pri);border-radius:12px;overflow:hidden}.seg button{border:0;background:transparent;color:var(--pri);font:inherit;font-weight:650;padding:7px 14px;cursor:pointer}.seg button.on{background:var(--pri);color:#fff}
+.examres{font-size:2.4rem;font-weight:800;line-height:1}
+.back{background:none;border:0;color:var(--pri);font:inherit;font-weight:650;cursor:pointer;padding:0;margin-bottom:6px}
+.pill{display:inline-block;padding:2px 10px;border-radius:99px;background:var(--pri2);color:var(--pri);font-size:.8rem;font-weight:700;margin-right:6px}
+.diff li{margin:4px 0}
+@media(max-width:600px){h1{font-size:1.4rem}.card{padding:14px}.topin{gap:8px}.brand{font-size:1rem}}
+@media print{header.top,.sym,.bar{display:none}}
+</style></head><body>
+<header class="top"><div class="topin"><div class="brand"><span class="lg">ƒ</span> Trainer de maths</div><nav class="tabs" id="tabs"></nav></div></header><main id="main"></main><div class="sym" id="sym" style="display:none"></div>
+<script>'use strict';
+/* =========================================================
+   CORE : DOM, formules (mini-TeX), parseur d'expressions,
+   ensembles/intervalles, courbes, graphiques SVG
+   ========================================================= */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+function h(tag, attrs, ...kids) {
+  const e = document.createElement(tag);
+  if (attrs) for (const k in attrs) {
+    const v = attrs[k];
+    if (v == null || v === false) continue;
+    if (k === 'class') e.className = v;
+    else if (k === 'html') e.innerHTML = v;
+    else if (k.startsWith('on')) e.addEventListener(k.slice(2), v);
+    else e.setAttribute(k, v === true ? '' : v);
+  }
+  for (const c of kids.flat(9)) { if (c == null || c === false) continue; e.append(c.nodeType ? c : document.createTextNode(c)); }
+  return e;
+}
+const SVGNS = 'http://www.w3.org/2000/svg';
+function sv(tag, attrs, ...kids) {
+  const e = document.createElementNS(SVGNS, tag);
+  if (attrs) for (const k in attrs) { if (attrs[k] != null) e.setAttribute(k, attrs[k]); }
+  for (const c of kids.flat(9)) { if (c == null) continue; e.append(c.nodeType ? c : document.createTextNode(c)); }
+  return e;
+}
+const rnd = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+function shuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+
+/* ---------- Mini-TeX -> HTML ---------- */
+const SYM = { R: 'ℝ', infty: '∞', cup: '∪', cap: '∩', in: '∈', notin: '∉', neq: '≠', ne: '≠', le: '≤', leq: '≤', ge: '≥', geq: '≥',
+  iff: '⇔', Leftrightarrow: '⇔', Rightarrow: '⇒', implies: '⇒', to: '→', rightarrow: '→', mapsto: '↦', times: '×', cdot: '·', pm: '±',
+  emptyset: '∅', ldots: '…', dots: '…', quad: '\u2003', qquad: '\u2003\u2003', ',': '\u2009', ';': '\u2005', ' ': ' ', approx: '≈',
+  nearrow: '↗', searrow: '↘', setminus: '∖', degree: '°', lt: '&lt;', gt: '&gt;', '{': '{', '}': '}', '%': '%', '$': '$', '&': '&amp;', '|': '|', '!': '' };
+function texHtml(src) {
+  let i = 0;
+  const esc = c => c === '<' ? '&lt;' : c === '>' ? '&gt;' : c === '&' ? '&amp;' : c;
+  function group() { let o = ''; while (i < src.length && src[i] !== '}') o += atom(); i++; return o; }
+  function arg() { if (src[i] === '{') { i++; return group(); } return atom(); }
+  function atom() {
+    const c = src[i++];
+    if (c === '{') return group();
+    if (c === '\\') {
+      const m = /^[a-zA-Z]+/.exec(src.slice(i)); let name;
+      if (m) { name = m[0]; i += name.length; } else name = src[i++];
+      switch (name) {
+        case 'frac': { const a = arg(), b = arg(); return `<span class="frac"><span class="num">${a}</span><span class="den">${b}</span></span>`; }
+        case 'sqrt': { const a = arg(); return `<span class="sqrt"><span class="rt">√</span><span class="rad">${a}</span></span>`; }
+        case 'text': { let t = ''; if (src[i] === '{') { i++; while (i < src.length && src[i] !== '}') t += esc(src[i++]); i++; } return `<span class="up">${t}</span>`; }
+        case 'left': case 'right': return '';
+        case '\\': return '<br>';
+        default: return name in SYM ? SYM[name] : name;
+      }
+    }
+    if (c === '^') return `<sup>${arg()}</sup>`;
+    if (c === '_') return `<sub>${arg()}</sub>`;
+    if (c === '-') return '−';
+    if (/[A-Za-z]/.test(c)) return `<i>${c}</i>`;
+    return esc(c);
+  }
+  let out = ''; while (i < src.length) out += atom();
+  return `<span class="m">${out}</span>`;
+}
+/* T : texte avec $...$ (formule en ligne) et $$...$$ (formule en bloc) */
+function T(s) {
+  if (s == null) return '';
+  return String(s).replace(/\$\$([^$]+)\$\$|\$([^$]+)\$/g, (m, a, b) => a != null ? `<div class="mblock">${texHtml(a)}</div>` : texHtml(b));
+}
+const M = s => texHtml(s);
+
+/* ---------- Nombres ---------- */
+function toFrac(x, maxDen = 24) { for (let q = 1; q <= maxDen; q++) { const p = Math.round(x * q); if (Math.abs(p / q - x) < 1e-9) return [p, q]; } return null; }
+function nTex(x) {
+  if (!isFinite(x)) return '?';
+  const f = toFrac(x);
+  if (f) { const [p, q] = f; return q === 1 ? String(p) : (p < 0 ? '-' : '') + `\\frac{${Math.abs(p)}}{${q}}`; }
+  return String(+x.toFixed(4)).replace('.', ',');
+}
+function nStr(x) {
+  if (x == null || !isFinite(x)) return '';
+  const f = toFrac(x);
+  const r = f ? (f[1] === 1 ? String(f[0]) : f[0] + '/' + f[1]) : String(+x.toFixed(4)).replace('.', ',');
+  return r.replace('-', '−');
+}
+function nIn(x) { const f = toFrac(x); return f ? (f[1] === 1 ? String(f[0]) : f[0] + '/' + f[1]) : String(+x.toFixed(6)); }
+
+/* ---------- Parseur d'expressions (avec multiplication implicite) ---------- */
+function compileExpr(src) {
+  let s = String(src).trim().replace(/\s+/g, '').replace(/[−–—]/g, '-').replace(/[×·]/g, '*').replace(/÷/g, '/').replace(/,/g, '.').replace(/²/g, '^2').replace(/³/g, '^3').replace(/\^\{([^}]*)\}/g, '^($1)').replace(/π/g, 'pi');
+  if (!s) return null;
+  const tk = []; let i = 0;
+  while (i < s.length) {
+    const c = s[i]; let m;
+    if ((m = /^(\d+\.?\d*|\.\d+)/.exec(s.slice(i)))) { tk.push({ t: 'n', v: parseFloat(m[0]) }); i += m[0].length; }
+    else if (s.startsWith('sqrt', i)) { tk.push({ t: 'fn' }); i += 4; }
+    else if (s.startsWith('racine', i)) { tk.push({ t: 'fn' }); i += 6; }
+    else if (c === '√') { tk.push({ t: 'fn' }); i++; }
+    else if (s.startsWith('pi', i)) { tk.push({ t: 'n', v: Math.PI }); i += 2; }
+    else if (/[A-Za-z]/.test(c)) { tk.push({ t: 'id', v: c }); i++; }
+    else if ('+-*/^'.includes(c)) { tk.push({ t: 'op', v: c }); i++; }
+    else if (c === '(') { tk.push({ t: '(' }); i++; }
+    else if (c === ')') { tk.push({ t: ')' }); i++; }
+    else return null;
+  }
+  let p = 0; const used = new Set();
+  const peek = () => tk[p];
+  const isAtom = t => t && (t.t === 'n' || t.t === 'id' || t.t === '(' || t.t === 'fn');
+  function expr() { let l = term(); while (peek() && peek().t === 'op' && (peek().v === '+' || peek().v === '-')) { const o = tk[p++].v, r = term(), L = l; l = o === '+' ? v => L(v) + r(v) : v => L(v) - r(v); } return l; }
+  function term() {
+    let l = unary();
+    for (;;) {
+      const t = peek();
+      if (t && t.t === 'op' && (t.v === '*' || t.v === '/')) { p++; const r = unary(), L = l; l = t.v === '*' ? v => L(v) * r(v) : v => L(v) / r(v); }
+      else if (isAtom(t)) { const r = power(), L = l; l = v => L(v) * r(v); }
+      else break;
+    }
+    return l;
+  }
+  function unary() { const t = peek(); if (t && t.t === 'op' && t.v === '-') { p++; const u = unary(); return v => -u(v); } if (t && t.t === 'op' && t.v === '+') { p++; return unary(); } return power(); }
+  function power() { const b = atom(); const t = peek(); if (t && t.t === 'op' && t.v === '^') { p++; const e = expo(); return v => Math.pow(b(v), e(v)); } return b; }
+  function expo() { const t = peek(); if (t && t.t === 'op' && t.v === '-') { p++; const e = expo(); return v => -e(v); } if (t && t.t === 'op' && t.v === '+') { p++; return expo(); } return power(); }
+  function atom() {
+    const t = tk[p++]; if (!t) throw 0;
+    if (t.t === 'n') return () => t.v;
+    if (t.t === 'id') { used.add(t.v); return v => (v && t.v in v) ? v[t.v] : NaN; }
+    if (t.t === '(') { const e = expr(); if (!tk[p] || tk[p].t !== ')') throw 0; p++; return e; }
+    if (t.t === 'fn') { const a = atom(); return v => Math.sqrt(a(v)); }
+    throw 0;
+  }
+  try { const f = expr(); if (p !== tk.length) return null; f.vars = used; return f; } catch (e) { return null; }
+}
+function parseNum(str) {
+  let s = String(str).trim().replace(/^[A-Za-z]\w*(\([^)]*\))?\s*=\s*/, '');
+  const f = compileExpr(s); if (!f || f.vars.size) return NaN;
+  const v = f({}); return isFinite(v) ? v : NaN;
+}
+function parseNumList(str) {
+  let s = String(str).trim();
+  if (/^(∅|\{\}|vide|aucun[e]?|rien|pas d.?ant[ée]c[ée]dent|pas de solution|aucune solution|impossible|\/).*$/i.test(s) && !/\d/.test(s)) return [];
+  s = s.replace(/^\{|\}$/g, '');
+  let parts;
+  if (s.includes(';')) parts = s.split(';');
+  else if (/\b(ou|et)\b/i.test(s)) parts = s.split(/\b(?:ou|et)\b/i);
+  else if (/^[^,]*$/.test(s)) parts = [s];
+  else if (/^\s*-?\d+(,\d+)?\s*$/.test(s)) parts = [s];
+  else parts = s.split(',');
+  const out = [];
+  for (const p of parts) { if (!p.trim()) continue; const v = parseNum(p); if (isNaN(v)) return null; out.push(v); }
+  return out;
+}
+
+/* ---------- Ensembles (intervalles) ---------- */
+function mkIv(lo, hi, lc, hc) { return { lo, hi, lc: isFinite(lo) ? lc : false, hc: isFinite(hi) ? hc : false }; }
+function normSet(list) {
+  const a = list.filter(Boolean).slice().sort((x, y) => x.lo - y.lo || (y.lc - x.lc));
+  const out = [];
+  for (const iv of a) {
+    const last = out[out.length - 1];
+    if (last && (iv.lo < last.hi - 1e-9 || (Math.abs(iv.lo - last.hi) < 1e-9 && (iv.lc || last.hc)))) {
+      if (iv.hi > last.hi + 1e-9) { last.hi = iv.hi; last.hc = iv.hc; } else if (Math.abs(iv.hi - last.hi) < 1e-9) last.hc = last.hc || iv.hc;
+    } else out.push({ ...iv });
+  }
+  return out;
+}
+function setEq(a, b) {
+  if (!a || !b || a.length !== b.length) return false;
+  for (let i = 0; i < a.length; i++) {
+    const x = a[i], y = b[i];
+    const eq = (p, q) => (p === q) || Math.abs(p - q) < 1e-6;
+    if (!eq(x.lo, y.lo) || !eq(x.hi, y.hi) || x.lc !== y.lc || x.hc !== y.hc) return false;
+  }
+  return true;
+}
+function parseSet(str) {
+  let s = String(str).trim().replace(/∞/g, 'inf').replace(/[−–—]/g, '-').replace(/\s+/g, '').replace(/ℝ/g, 'R');
+  if (!s) return null;
+  if (/^(∅|\{\}|vide|aucun[e]?|aucunesolution|pasdesolution|\\emptyset)$/i.test(s)) return [];
+  let m = /^R(\*|(?:\\|∖|\/|-)\{([^}]*)\})?$/.exec(s);
+  if (m) {
+    let pts = m[1] === '*' ? [0] : (m[2] ? m[2].split(/[;,]/).map(parseNum) : []);
+    if (pts.some(isNaN)) return null;
+    pts = [...new Set(pts)].sort((x, y) => x - y);
+    const out = []; let prev = -Infinity;
+    for (const q of pts) { out.push(mkIv(prev, q, false, false)); prev = q; }
+    out.push(mkIv(prev, Infinity, false, false));
+    return normSet(out);
+  }
+  const pieces = s.split(/[∪Uu]/); const out = [];
+  for (const pc of pieces) {
+    if (!pc) return null;
+    if (pc[0] === '{') {
+      const mm = /^\{([^}]*)\}$/.exec(pc); if (!mm) return null;
+      for (const q of mm[1].split(/[;,]/)) { const v = parseNum(q); if (isNaN(v)) return null; out.push(mkIv(v, v, true, true)); }
+      continue;
+    }
+    const mm = /^([\[\]\(])(.+)([\[\]\)])$/.exec(pc); if (!mm) return null;
+    let inner = mm[2], bs;
+    if (inner.includes(';')) bs = inner.split(';'); else if ((inner.match(/,/g) || []).length === 1) bs = inner.split(','); else return null;
+    if (bs.length !== 2) return null;
+    const bnd = t => { t = t.replace(/^\+/, ''); if (t === 'inf') return Infinity; if (t === '-inf') return -Infinity; return parseNum(t); };
+    const lo = bnd(bs[0]), hi = bnd(bs[1]);
+    if (isNaN(lo) || isNaN(hi) || lo > hi || (lo === hi && !(mm[1] === '[' && mm[3] === ']'))) return null;
+    out.push(mkIv(lo, hi, mm[1] === '[', mm[3] === ']'));
+  }
+  return normSet(out);
+}
+function prettySet(s) {
+  return String(s).replace(/inf/g, '\\infty').replace(/U/g, '\\cup ').replace(/R\\/g, '\\R\\setminus ').replace(/R\*/g, '\\R^*').replace(/\bR\b/g, '\\R')
+    .replace(/\{/g, '\\{').replace(/\}/g, '\\}').replace(/(-?)(\d+)\/(\d+)/g, (m, sg, p, q) => `${sg}\\frac{${p}}{${q}}`).replace(/;/g, ' ; ');
+}
+
+/* ---------- Courbes definies par points-cles (interpolation monotone) ---------- */
+function smooth(keys) {
+  const n = keys.length, xs = keys.map(k => k[0]), ys = keys.map(k => k[1]), d = [], m = [];
+  for (let i = 0; i < n - 1; i++) d[i] = (ys[i + 1] - ys[i]) / (xs[i + 1] - xs[i]);
+  m[0] = d[0]; m[n - 1] = d[n - 2];
+  for (let i = 1; i < n - 1; i++) m[i] = d[i - 1] * d[i] <= 0 ? 0 : 2 * d[i - 1] * d[i] / (d[i - 1] + d[i]);
+  const f = x => {
+    if (x < xs[0] - 1e-9 || x > xs[n - 1] + 1e-9) return NaN;
+    let i = 0; while (i < n - 2 && x > xs[i + 1]) i++;
+    const hh = xs[i + 1] - xs[i], t = (x - xs[i]) / hh, t2 = t * t, t3 = t2 * t;
+    return (2 * t3 - 3 * t2 + 1) * ys[i] + (t3 - 2 * t2 + t) * hh * m[i] + (-2 * t3 + 3 * t2) * ys[i + 1] + (t3 - t2) * hh * m[i + 1];
+  };
+  f.x0 = xs[0]; f.x1 = xs[n - 1]; f.keys = keys;
+  return f;
+}
+/* resolution numerique : ensemble {x : rel(f(x)-k)} sous forme d'intervalles */
+function solveCurve(f, k, rel, N = 4000) {
+  const x0 = f.x0, x1 = f.x1, eps = 1e-6;
+  const dv = j => f(x0 + (x1 - x0) * j / N) - k;
+  if (rel === '=') {
+    const vals = Array.from({ length: N + 1 }, (_, j) => dv(j));
+    const flat = vals.map(v => Math.abs(v) < eps);
+    const ivs = []; let j = 0;
+    while (j <= N) {
+      if (flat[j]) {
+        let e = j; while (e + 1 <= N && flat[e + 1]) e++;
+        const xa = x0 + (x1 - x0) * j / N, xb = x0 + (x1 - x0) * e / N;
+        ivs.push(mkIv(+xa.toFixed(4), +xb.toFixed(4), true, true));
+        j = e + 1; continue;
+      }
+      if (j < N && vals[j] * vals[j + 1] < 0) {
+        let a = x0 + (x1 - x0) * j / N, b = x0 + (x1 - x0) * (j + 1) / N, sa = vals[j] < 0;
+        for (let it = 0; it < 60; it++) { const mid = (a + b) / 2; if ((f(mid) - k < 0) === sa) a = mid; else b = mid; }
+        const r = (a + b) / 2; ivs.push(mkIv(+r.toFixed(4), +r.toFixed(4), true, true));
+      }
+      j++;
+    }
+    return normSet(ivs);
+  }
+  const test = v => { switch (rel) { case '<': return v < -eps; case '<=': return v < eps; case '>': return v > eps; case '>=': return v > -eps; } };
+  const ok = Array.from({ length: N + 1 }, (_, j) => test(dv(j)));
+  const ivs = []; let j = 0;
+  const refine = (a, b) => { for (let it = 0; it < 50; it++) { const mid = (a + b) / 2; if (test(f(mid) - k) === test(f(b) - k)) b = mid; else a = mid; } return (a + b) / 2; };
+  while (j <= N) {
+    if (!ok[j]) { j++; continue; }
+    let e = j; while (e + 1 <= N && ok[e + 1]) e++;
+    const xa = x0 + (x1 - x0) * j / N, xb = x0 + (x1 - x0) * e / N;
+    const lo = j === 0 ? x0 : refine(xa - (x1 - x0) / N, xa), hi = e === N ? x1 : refine(xb + (x1 - x0) / N, xb);
+    const incl = rel === '<=' || rel === '>=';
+    ivs.push(mkIv(+lo.toFixed(4), +hi.toFixed(4), j === 0 ? test(dv(0)) : incl, e === N ? test(dv(N)) : incl));
+    j = e + 1;
+  }
+  return normSet(ivs);
+}
+function ivToStr(list) { if (!list.length) return '∅'; return list.map(iv => { if (iv.lo === iv.hi) return '{' + nStr(iv.lo) + '}'; return (iv.lc ? '[' : ']') + (iv.lo === -Infinity ? '−∞' : nStr(iv.lo)) + ' ; ' + (iv.hi === Infinity ? '+∞' : nStr(iv.hi)) + (iv.hc ? ']' : '['); }).join(' ∪ '); }
+
+/* ---------- Graphique SVG ---------- */
+const COL = { f: '#4f46e5', g: '#e11d48', ok: '#059669', warn: '#d97706', grey: '#94a3b8', c3: '#0891b2', c4: '#c026d3' };
+function plot(host, c) {
+  const W = c.w || 520, Hh = c.h || 340, pad = c.mini ? 8 : 30;
+  const xr = c.xmax - c.xmin, yr = c.ymax - c.ymin;
+  const sx = (W - 2 * pad) / xr, sy = (Hh - 2 * pad) / yr;
+  const X = x => pad + (x - c.xmin) * sx, Y = y => Hh - pad - (y - c.ymin) * sy;
+  const svg = sv('svg', { viewBox: `0 0 ${W} ${Hh}`, class: 'plot' + (c.mini ? ' mini' : '') + (c.onclick ? ' clickable' : ''), role: 'img', 'aria-label': c.label || 'graphique' });
+  const clipId = 'cp' + Math.random().toString(36).slice(2, 8);
+  svg.append(sv('defs', null, sv('clipPath', { id: clipId }, sv('rect', { x: pad, y: pad, width: W - 2 * pad, height: Hh - 2 * pad }))));
+  const gs = c.xstep || 1, gy = c.ystep || 1;
+  const g0 = sv('g', { class: 'grid' }), g1 = sv('g', { class: 'axes' });
+  if (c.grid !== false) {
+    for (let x = Math.ceil(c.xmin / gs) * gs; x <= c.xmax + 1e-9; x += gs) g0.append(sv('line', { x1: X(x), y1: pad, x2: X(x), y2: Hh - pad }));
+    for (let y = Math.ceil(c.ymin / gy) * gy; y <= c.ymax + 1e-9; y += gy) g0.append(sv('line', { x1: pad, y1: Y(y), x2: W - pad, y2: Y(y) }));
+  }
+  svg.append(g0);
+  const ax = (c.xmin <= 0 && c.xmax >= 0) ? Y(0) : Hh - pad, ay = (c.ymin <= 0 && c.ymax >= 0) ? X(0) : pad;
+  g1.append(sv('line', { x1: pad - 4, y1: Y(c.ymin <= 0 && c.ymax >= 0 ? 0 : c.ymin), x2: W - pad + 6, y2: Y(c.ymin <= 0 && c.ymax >= 0 ? 0 : c.ymin) }));
+  g1.append(sv('line', { x1: X(c.xmin <= 0 && c.xmax >= 0 ? 0 : c.xmin), y1: Hh - pad + 4, x2: X(c.xmin <= 0 && c.xmax >= 0 ? 0 : c.xmin), y2: pad - 6 }));
+  if (!c.mini) {
+    const lblx = c.lblx || Math.max(1, Math.ceil(xr / 14)), lbly = c.lbly || Math.max(1, Math.ceil(yr / 12));
+    const tx = sv('g', { class: 'ticks' });
+    for (let x = Math.ceil(c.xmin / lblx) * lblx; x <= c.xmax + 1e-9; x += lblx) { if (Math.abs(x) < 1e-9) continue; tx.append(sv('text', { x: X(x), y: ax + 14, 'text-anchor': 'middle' }, nStr(x))); }
+    for (let y = Math.ceil(c.ymin / lbly) * lbly; y <= c.ymax + 1e-9; y += lbly) { if (Math.abs(y) < 1e-9) continue; tx.append(sv('text', { x: ay - 5, y: Y(y) + 4, 'text-anchor': 'end' }, nStr(y))); }
+    tx.append(sv('text', { x: ay - 6, y: ax + 14, 'text-anchor': 'end' }, 'O'));
+    tx.append(sv('text', { x: W - pad + 2, y: ax - 6, 'text-anchor': 'end', class: 'axl' }, 'x'));
+    tx.append(sv('text', { x: ay + 8, y: pad - 8, class: 'axl' }, 'y'));
+    g1.append(tx);
+  }
+  svg.append(g1);
+  const gc = sv('g', { 'clip-path': `url(#${clipId})` });
+  const mkPath = (pts, o) => {
+    let d = '', pen = false, prev = null;
+    for (const [x, y] of pts) {
+      if (!isFinite(y) || Math.abs(y) > 1e5) { pen = false; prev = null; continue; }
+      if (prev && Math.abs(y - prev) > yr * 1.5) pen = false;
+      d += (pen ? 'L' : 'M') + X(x).toFixed(1) + ' ' + Y(y).toFixed(1) + ' '; pen = true; prev = y;
+    }
+    return sv('path', { d, fill: 'none', stroke: o.color || COL.f, 'stroke-width': o.w || 2.4, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'stroke-dasharray': o.dash || null, opacity: o.opacity || 1 });
+  };
+  for (const cv of (c.curves || [])) {
+    let pts;
+    if (cv.pts) pts = cv.pts;
+    else {
+      const a = cv.x0 != null ? cv.x0 : (cv.fn.x0 != null ? cv.fn.x0 : c.xmin), b = cv.x1 != null ? cv.x1 : (cv.fn.x1 != null ? cv.fn.x1 : c.xmax), N = 360;
+      pts = []; for (let j = 0; j <= N; j++) { const x = a + (b - a) * j / N; pts.push([x, cv.fn(x)]); }
+    }
+    gc.append(mkPath(pts, cv));
+  }
+  for (const l of (c.hlines || [])) { gc.append(sv('line', { x1: pad, x2: W - pad, y1: Y(l.y), y2: Y(l.y), stroke: l.color || COL.ok, 'stroke-width': 1.8, 'stroke-dasharray': l.dash || '6 4' })); }
+  for (const l of (c.vlines || [])) { gc.append(sv('line', { y1: pad, y2: Hh - pad, x1: X(l.x), x2: X(l.x), stroke: l.color || COL.warn, 'stroke-width': 1.5, 'stroke-dasharray': l.dash || '5 4' })); }
+  for (const s of (c.dashes || [])) { gc.append(sv('line', { x1: X(s[0]), y1: Y(s[1]), x2: X(s[2]), y2: Y(s[3]), stroke: s[4] || COL.warn, 'stroke-width': 1.4, 'stroke-dasharray': '4 4' })); }
+  for (const s of (c.segs || [])) { gc.append(sv('line', { x1: X(s.x1), x2: X(s.x2), y1: Y(s.y || 0), y2: Y(s.y || 0), stroke: s.color || COL.ok, 'stroke-width': 6, 'stroke-linecap': 'butt', opacity: .55 })); }
+  svg.append(gc);
+  for (const p of (c.points || [])) {
+    svg.append(sv('circle', { cx: X(p.x), cy: Y(p.y), r: p.r || (c.mini ? 2.8 : 4.4), fill: p.open ? '#fff' : (p.color || COL.f), stroke: p.color || COL.f, 'stroke-width': 2 }));
+    if (p.label) svg.append(sv('text', { x: X(p.x) + (p.dx != null ? p.dx : 7), y: Y(p.y) + (p.dy != null ? p.dy : -7), class: 'plbl', fill: p.color || COL.f }, p.label));
+  }
+  for (const l of (c.labels || [])) svg.append(sv('text', { x: X(l.x), y: Y(l.y), class: 'plbl', fill: l.color || 'currentColor', 'text-anchor': l.anchor || 'start' }, l.t));
+  if (c.onclick) {
+    svg.addEventListener('click', e => {
+      const r = svg.getBoundingClientRect(), k = W / r.width;
+      const px = (e.clientX - r.left) * k, py = (e.clientY - r.top) * k;
+      let x = c.xmin + (px - pad) / sx, y = c.ymin + (Hh - pad - py) / sy;
+      const st = c.snap || 1; x = Math.round(x / st) * st; y = Math.round(y / st) * st;
+      if (x < c.xmin - 1e-9 || x > c.xmax + 1e-9 || y < c.ymin - 1e-9 || y > c.ymax + 1e-9) return;
+      c.onclick(x, y);
+    });
+  }
+  host.innerHTML = ''; host.append(svg);
+  svg.X = X; svg.Y = Y;
+  return svg;
+}
+/* tableau de variation statique (SVG) */
+function varTableSvg(vt) {
+  const n = vt.xs.length, colW = 92, lab = 56, Wd = lab + colW * n, Hh = 112;
+  const cx = i => lab + colW * (i + .5);
+  const svg = sv('svg', { viewBox: `0 0 ${Wd} ${Hh}`, class: 'vtsvg', role: 'img', 'aria-label': 'tableau de variation' });
+  svg.append(sv('line', { x1: 4, x2: Wd - 4, y1: 34, y2: 34, class: 'vl' }), sv('line', { x1: lab, x2: lab, y1: 4, y2: Hh - 4, class: 'vl' }));
+  svg.append(sv('text', { x: lab / 2, y: 24, 'text-anchor': 'middle', class: 'vtxt it' }, 'x'), sv('text', { x: lab / 2, y: 78, 'text-anchor': 'middle', class: 'vtxt it' }, 'f(x)'));
+  const pos = vt.xs.map((_, i) => {
+    const pa = vt.arrows[i - 1], na = vt.arrows[i];
+    if (i === 0) return na === 'up' ? 'bot' : na === 'down' ? 'top' : 'mid';
+    if (i === n - 1) return pa === 'up' ? 'top' : pa === 'down' ? 'bot' : 'mid';
+    if (pa === 'up' && na === 'down') return 'top'; if (pa === 'down' && na === 'up') return 'bot'; return 'mid';
+  });
+  const yy = { top: 56, mid: 78, bot: 100 };
+  vt.xs.forEach((x, i) => {
+    svg.append(sv('text', { x: cx(i), y: 24, 'text-anchor': 'middle', class: 'vtxt' }, typeof x === 'number' ? nStr(x) : x));
+    const v = vt.vals[i];
+    if (v != null) svg.append(sv('text', { x: cx(i), y: yy[pos[i]] + 4, 'text-anchor': 'middle', class: 'vtxt' }, typeof v === 'number' ? nStr(v) : v));
+  });
+  const defs = sv('defs', null, sv('marker', { id: 'ah', viewBox: '0 0 10 10', refX: 8, refY: 5, markerWidth: 7, markerHeight: 7, orient: 'auto-start-reverse' }, sv('path', { d: 'M0 0L10 5L0 10z', fill: 'currentColor' })));
+  svg.append(defs);
+  for (let i = 0; i < n - 1; i++) {
+    const a = vt.arrows[i], x1 = cx(i) + 22, x2 = cx(i + 1) - 22;
+    let y1 = yy[pos[i]], y2 = yy[pos[i + 1]];
+    if (a === 'up') { y1 = pos[i] === 'mid' ? 88 : y1 - 4; y2 = pos[i + 1] === 'mid' ? 68 : y2 + 4; if (y1 < y2) { [y1, y2] = [y2, y1]; } }
+    else if (a === 'down') { y1 = pos[i] === 'mid' ? 68 : y1 + 4; y2 = pos[i + 1] === 'mid' ? 88 : y2 - 4; if (y1 > y2) { [y1, y2] = [y2, y1]; } }
+    else { y1 = y2 = 78; }
+    svg.append(sv('line', { x1, y1, x2, y2, class: 'varr', 'marker-end': 'url(#ah)' }));
+  }
+  return h('div', { class: 'vtwrap' }, svg);
+}
+
+'use strict';
+/* =========================================================
+   TYPES DE QUESTIONS (parts)
+   Chaque part : {body, grade(), fill(), clear(), lock(b), ansHtml()}
+   ========================================================= */
+let UID = 0;
+const PARTS = {};
+const EMPTY = { score: 0, msg: 'Réponse vide : écris d’abord quelque chose avant de vérifier.', empty: true };
+const mkInput = (p, extra) => h('input', Object.assign({ type: 'text', class: 'inp', autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false', placeholder: (p && p.ph) || '…' }, extra || {}));
+
+/* ---- nombre ---- */
+PARTS.num = p => {
+  const inp = mkInput(p, p.w ? { style: `width:${p.w}ch` } : null);
+  const ans = typeof p.a === 'number' ? p.a : parseNum(p.a);
+  return {
+    body: h('div', { class: 'row' }, p.pre ? h('span', { html: T(p.pre) }) : null, inp, p.unit ? h('span', { html: T(p.unit) }) : null),
+    grade() {
+      const raw = inp.value.trim(); if (!raw) return EMPTY;
+      const v = parseNum(raw);
+      if (isNaN(v)) return { score: 0, msg: 'Écriture non reconnue. Utilise des chiffres, « / » pour une fraction, « √ » ou « sqrt() » pour une racine.' };
+      const tol = p.tol != null ? p.tol : 1e-6 * Math.max(1, Math.abs(ans));
+      if (Math.abs(v - ans) <= tol) return { score: 1 };
+      for (const t of (p.traps || [])) { const tv = typeof t.v === 'number' ? t.v : parseNum(t.v); if (Math.abs(v - tv) < 1e-6) return { score: 0, msg: t.msg }; }
+      return { score: 0, msg: p.why || 'Ce n’est pas la bonne valeur.' };
+    },
+    fill() { inp.value = p.fill != null ? p.fill : nIn(ans); }, clear() { inp.value = ''; }, lock(b) { inp.disabled = b; },
+    ansHtml() { return T(p.show != null ? p.show : '$' + nTex(ans) + '$'); }
+  };
+};
+/* ---- liste de nombres (antécédents, solutions) ---- */
+PARTS.numset = p => {
+  const inp = mkInput(p, { placeholder: p.ph || 'ex. 2 ; −3  (ou « aucun »)' });
+  const exp = p.a.map(v => typeof v === 'number' ? v : parseNum(v));
+  return {
+    body: h('div', { class: 'row' }, p.pre ? h('span', { html: T(p.pre) }) : null, inp),
+    grade() {
+      const raw = inp.value.trim(); if (!raw) return EMPTY;
+      const got = parseNumList(raw);
+      if (!got) return { score: 0, msg: 'Écriture non reconnue. Sépare les valeurs par « ; » (ex. √2 ; −√2). Écris « aucun » s’il n’y a pas de solution.' };
+      const g = [...new Set(got.map(v => +v.toFixed(9)))].sort((a, b) => a - b), e = exp.map(v => +v.toFixed(9)).sort((a, b) => a - b);
+      if (g.length === e.length && g.every((v, i) => Math.abs(v - e[i]) < 1e-6)) return { score: 1 };
+      for (const t of (p.traps || [])) { const tl = t.a.map(v => typeof v === 'number' ? v : parseNum(v)).sort((a, b) => a - b); if (tl.length === g.length && tl.every((v, i) => Math.abs(v - g[i]) < 1e-6)) return { score: 0, msg: t.msg }; }
+      const missing = e.filter(v => !g.some(w => Math.abs(w - v) < 1e-6)), extra = g.filter(v => !e.some(w => Math.abs(w - v) < 1e-6));
+      let msg = p.why || '';
+      if (!e.length && g.length) msg = 'Il n’y a en fait aucune solution : ' + (p.noneWhy || 'l’équation obtenue est impossible.');
+      else if (e.length && !g.length) msg = 'Il y a au moins une solution.' + (p.why ? ' ' + p.why : '');
+      else if (missing.length && !extra.length) msg = `Il te manque ${missing.length} solution${missing.length > 1 ? 's' : ''}. ` + (p.missWhy || 'Pense au « ± » : si x² = k avec k > 0, il y a deux solutions.');
+      else if (extra.length && !missing.length) msg = 'Une valeur proposée n’est pas solution : remplace-la dans l’équation pour vérifier.';
+      else if (!msg) msg = 'Les valeurs ne sont pas correctes : refais la résolution pas à pas.';
+      return { score: 0, msg };
+    },
+    fill() { inp.value = p.fill != null ? p.fill : (exp.length ? exp.map(nIn).join(' ; ') : 'aucun'); }, clear() { inp.value = ''; }, lock(b) { inp.disabled = b; },
+    ansHtml() { return T(p.show != null ? p.show : (exp.length ? '$' + exp.map(nTex).join(' \\quad;\\quad ') + '$' : 'aucune solution (ensemble vide)')); }
+  };
+};
+/* ---- expression littérale (vérifiée par évaluation) ---- */
+PARTS.expr = p => {
+  const inp = mkInput(p, { placeholder: p.ph || 'ex. 9a^2-6a+4' });
+  const vars = p.vars || ['a'], ref = compileExpr(p.a);
+  const samples = [0.7, 1.9, -2.3, 3.1, -0.4];
+  return {
+    body: h('div', { class: 'row' }, p.pre ? h('span', { html: T(p.pre) }) : null, inp),
+    grade() {
+      const raw = inp.value.trim(); if (!raw) return EMPTY;
+      const f = compileExpr(raw.replace(/^[A-Za-z]\w*(\([^)]*\))?\s*=\s*/, ''));
+      if (!f) return { score: 0, msg: 'Écriture non reconnue. Écris par ex. 9a^2 - 6a + 4  (^ pour la puissance).' };
+      for (const s of samples) { const vv = {}; vars.forEach((k, i) => vv[k] = s + i * 0.37); const A = f(vv), B = ref(vv); if (!(Math.abs(A - B) < 1e-6 * Math.max(1, Math.abs(B)))) return { score: 0, msg: p.why || 'L’expression n’est pas équivalente à la bonne réponse. Vérifie le développement et les signes.' }; }
+      return { score: 1 };
+    },
+    fill() { inp.value = p.fill != null ? p.fill : p.a; }, clear() { inp.value = ''; }, lock(b) { inp.disabled = b; },
+    ansHtml() { return T(p.show != null ? p.show : '$' + p.a + '$'); }
+  };
+};
+/* ---- ensemble / intervalle ---- */
+PARTS.set = p => {
+  const inp = mkInput(p, { placeholder: p.ph || 'ex. ]−∞ ; 2]  ou  ℝ\\{1}', class: 'inp wide' });
+  const exp = parseSet(p.a); if (!exp) console.error('set invalide', p.a);
+  return {
+    body: h('div', { class: 'row' }, p.pre ? h('span', { html: T(p.pre) }) : null, inp),
+    grade() {
+      const raw = inp.value.trim(); if (!raw) return EMPTY;
+      const got = parseSet(raw);
+      if (!got) return { score: 0, msg: 'Écriture non reconnue. Exemples : ]−∞ ; 2]   [1 ; 5[   ℝ\\{1}   ]−∞ ; −2] ∪ [2 ; +∞[   {1 ; 3}. Les boutons « symboles » t’aident.' };
+      if (setEq(got, exp)) return { score: 1 };
+      for (const t of (p.traps || [])) { const ts = parseSet(t.a); if (setEq(got, ts)) return { score: 0, msg: t.msg }; }
+      if (got.length === exp.length && got.every((g, i) => Math.abs(g.lo - exp[i].lo) < 1e-6 && Math.abs(g.hi - exp[i].hi) < 1e-6))
+        return { score: 0, msg: 'Les bornes sont bonnes, mais vérifie les crochets : « ≤ » ou « ≥ » → crochet fermé [ ] ; « < » ou « > » → crochet ouvert ] [ ; en ±∞ le crochet est toujours ouvert.' };
+      return { score: 0, msg: p.why || 'Ce n’est pas l’ensemble attendu. Reprends les conditions une par une, puis écris l’ensemble des x qui les vérifient toutes.' };
+    },
+    fill() { inp.value = p.fill != null ? p.fill : p.a.replace(/inf/g, '∞').replace(/-/g, '−'); }, clear() { inp.value = ''; }, lock(b) { inp.disabled = b; },
+    ansHtml() { return T('$' + prettySet(p.show || p.a) + '$'); }
+  };
+};
+/* ---- choix multiple ---- */
+PARTS.mcq = p => {
+  const multi = Array.isArray(p.c), name = 'q' + (++UID);
+  const order = p.shuffle === false ? p.o.map((_, i) => i) : shuffle(p.o.map((_, i) => i));
+  const inputs = [];
+  const list = h('div', { class: 'opts' });
+  order.forEach(i => {
+    const o = p.o[i], inp = h('input', { type: multi ? 'checkbox' : 'radio', name, value: i });
+    inputs.push(inp); list.append(h('label', { class: 'opt' }, inp, h('span', { html: T(o.t || o) })));
+  });
+  const sel = () => inputs.filter(x => x.checked).map(x => +x.value).sort((a, b) => a - b);
+  return {
+    body: list,
+    grade() {
+      const s = sel(); if (!s.length) return { score: 0, msg: 'Choisis une réponse.', empty: true };
+      if (multi) { const c = p.c.slice().sort((a, b) => a - b); if (s.length === c.length && s.every((v, i) => v === c[i])) return { score: 1 }; return { score: 0, msg: p.why || 'Il y a plusieurs bonnes réponses : relis chaque proposition.' }; }
+      if (s[0] === p.c) return { score: 1 };
+      const o = p.o[s[0]]; return { score: 0, msg: (o && o.why) || p.why || 'Ce n’est pas la bonne réponse.' };
+    },
+    fill() { const c = multi ? p.c : [p.c]; inputs.forEach(x => x.checked = c.includes(+x.value)); },
+    fillWrong() { const c = multi ? p.c : [p.c]; inputs.forEach(x => x.checked = false); const w = inputs.find(x => !c.includes(+x.value)); if (w) w.checked = true; },
+    clear() { inputs.forEach(x => x.checked = false); }, lock(b) { inputs.forEach(x => x.disabled = b); },
+    ansHtml() { const c = multi ? p.c : [p.c]; return c.map(i => T(p.o[i].t || p.o[i])).join(' <b>;</b> '); }
+  };
+};
+/* ---- vrai / faux ---- */
+PARTS.tf = p => {
+  let val = null; const bT = h('button', { type: 'button', class: 'tfb' }, 'Vrai'), bF = h('button', { type: 'button', class: 'tfb' }, 'Faux');
+  const set = v => { val = v; bT.classList.toggle('on', v === true); bF.classList.toggle('on', v === false); };
+  bT.onclick = () => set(true); bF.onclick = () => set(false);
+  return {
+    body: h('div', { class: 'row' }, bT, bF),
+    grade() { if (val === null) return { score: 0, msg: 'Choisis Vrai ou Faux.', empty: true }; return val === p.a ? { score: 1 } : { score: 0, msg: p.why || (p.a ? 'En fait c’est vrai.' : 'En fait c’est faux.') }; },
+    fill() { set(p.a); }, fillWrong() { set(!p.a); }, clear() { set(null); }, lock(b) { bT.disabled = bF.disabled = b; },
+    ansHtml() { return p.a ? '<b>Vrai</b>' : '<b>Faux</b>' + (p.why ? ' — ' + T(p.why) : ''); }
+  };
+};
+/* ---- texte à trous ---- */
+PARTS.fill = p => {
+  const ctrls = [];
+  const wrap = h('div', { class: 'fillbox' });
+  const lines = p.lines || [p.text];
+  lines.forEach(line => {
+    const row = h('div', { class: 'fl' });
+    line.split(/(\[\[\d+\]\])/).forEach(seg => {
+      const m = /^\[\[(\d+)\]\]$/.exec(seg);
+      if (!m) { if (seg) row.append(h('span', { html: T(seg) })); return; }
+      const b = p.b[+m[1] - 1]; let el;
+      if (b.k === 's') {
+        el = h('select', { class: 'sel' }, h('option', { value: '' }, '…'), b.o.map(o => h('option', { value: o }, o)));
+      } else el = mkInput(b, { class: 'inp inl', style: `width:${b.w || (b.k === 'set' ? 14 : 6)}ch`, placeholder: b.ph || '?' });
+      ctrls.push({ el, b }); row.append(el);
+    });
+    wrap.append(row);
+  });
+  const chk = c => {
+    const v = (c.el.value || '').trim(), b = c.b; if (!v) return { score: 0, empty: true };
+    if (b.k === 's') return { score: v === b.a ? 1 : 0 };
+    if (b.k === 't') { const al = [].concat(b.a).map(s => s.toLowerCase()); return { score: al.includes(v.toLowerCase()) ? 1 : 0 }; }
+    if (b.k === 'set') return { score: setEq(parseSet(v), parseSet(b.a)) ? 1 : 0 };
+    const x = parseNum(v), a = typeof b.a === 'number' ? b.a : parseNum(b.a);
+    return { score: (!isNaN(x) && Math.abs(x - a) < 1e-6 * Math.max(1, Math.abs(a))) ? 1 : 0 };
+  };
+  return {
+    body: wrap,
+    grade() {
+      const res = ctrls.map(chk);
+      if (res.every(r => r.empty)) return EMPTY;
+      const score = res.reduce((s, r) => s + r.score, 0) / res.length;
+      ctrls.forEach((c, i) => { c.el.classList.toggle('ok', res[i].score === 1); c.el.classList.toggle('ko', res[i].score !== 1); });
+      if (score === 1) return { score: 1 };
+      const bad = ctrls.map((c, i) => [c, res[i]]).filter(([c, r]) => r.score !== 1);
+      const hints = bad.map(([c]) => c.b.why).filter(Boolean);
+      let msg = `${bad.length} case${bad.length > 1 ? 's sont' : ' est'} à corriger (en rouge).`;
+      if (hints.length) msg += ' ' + hints.join(' ');
+      else if (p.why) msg += ' ' + p.why;
+      return { score, msg };
+    },
+    fill() { ctrls.forEach(c => { const b = c.b; if (b.k === 's' || b.k === 't') c.el.value = [].concat(b.a)[0]; else if (b.k === 'set') c.el.value = b.fill || b.a.replace(/inf/g, '∞'); else c.el.value = b.fill != null ? b.fill : (typeof b.a === 'number' ? nIn(b.a) : b.a); }); },
+    clear() { ctrls.forEach(c => { c.el.value = ''; c.el.classList.remove('ok', 'ko'); }); },
+    lock(b) { ctrls.forEach(c => c.el.disabled = b); },
+    ansHtml() { return ctrls.map(c => { const b = c.b; return b.k === 's' || b.k === 't' ? '<b>' + [].concat(b.a)[0] + '</b>' : b.k === 'set' ? T('$' + prettySet(b.a) + '$') : T(b.show != null ? b.show : '$' + nTex(typeof b.a === 'number' ? b.a : parseNum(b.a)) + '$'); }).join(' <span class="muted">;</span> '); }
+  };
+};
+/* ---- tableau de valeurs ---- */
+PARTS.table = p => {
+  const xs = p.xs, ys = xs.map((x, i) => p.ans ? p.ans[i] : p.f(x));
+  const given = new Set(p.given || []);
+  const t1 = h('tr', null, h('th', { html: M('x') })), t2 = h('tr', null, h('th', { html: M(p.fl || 'f(x)') }));
+  const ins = [];
+  xs.forEach((x, i) => {
+    t1.append(h('td', { html: M(nTex(x)) }));
+    if (given.has(i)) { t2.append(h('td', { html: M(nTex(ys[i])) })); ins.push(null); }
+    else { const inp = mkInput(p, { class: 'inp cell', placeholder: '' }); ins.push(inp); t2.append(h('td', null, inp)); }
+  });
+  return {
+    body: h('div', { class: 'tscroll' }, h('table', { class: 'vt' }, t1, t2)),
+    grade() {
+      let n = 0, good = 0, empty = 0; const bad = [];
+      ins.forEach((inp, i) => {
+        if (!inp) return; n++; const v = parseNum(inp.value);
+        const ok = !isNaN(v) && Math.abs(v - ys[i]) < 1e-6 * Math.max(1, Math.abs(ys[i]));
+        if (!inp.value.trim()) empty++;
+        inp.classList.toggle('ok', ok); inp.classList.toggle('ko', !ok); if (ok) good++; else bad.push(xs[i]);
+      });
+      if (empty === n) { ins.forEach(i => i && i.classList.remove('ko')); return EMPTY; }
+      if (good === n) return { score: 1 };
+      return { score: good / n, msg: `Case(s) fausse(s) pour x = ${bad.map(nStr).join(' ; ')}. ` + (p.why || 'Remplace x par la valeur dans la formule, en gardant les parenthèses : (−2)² = 4, pas −4.') };
+    },
+    fill() { ins.forEach((inp, i) => inp && (inp.value = nIn(ys[i]))); }, clear() { ins.forEach(i => i && (i.value = '', i.classList.remove('ok', 'ko'))); },
+    lock(b) { ins.forEach(i => i && (i.disabled = b)); },
+    ansHtml() { return `<div class="tscroll"><table class="vt"><tr><th>${M('x')}</th>${xs.map(x => `<td>${M(nTex(x))}</td>`).join('')}</tr><tr><th>${M('f(x)')}</th>${ys.map(y => `<td>${M(nTex(y))}</td>`).join('')}</tr></table></div>`; }
+  };
+};
+/* ---- tableau de variation (a compléter) ---- */
+const ARROWS = { up: '↗', down: '↘', const: '→' };
+PARTS.vartable = p => {
+  const n = p.xs.length, gv = p.gv || [], hasVals = p.vals;
+  const r1 = h('tr', null, h('th', { html: M('x') })), r2 = h('tr', null, h('th', { html: M('f(x)') }));
+  const vIn = [], aIn = [];
+  p.xs.forEach((x, i) => {
+    r1.append(h('td', { class: 'pc' }, typeof x === 'number' ? nStr(x) : x));
+    if (p.vals[i] == null) { r2.append(h('td', { class: 'pc' }, '')); vIn.push(null); }
+    else if (gv[i]) { r2.append(h('td', { class: 'pc' }, nStr(p.vals[i]))); vIn.push(null); }
+    else { const inp = mkInput(p, { class: 'inp cell', placeholder: '' }); vIn.push(inp); r2.append(h('td', { class: 'pc' }, inp)); }
+    if (i < n - 1) {
+      r1.append(h('td', { class: 'ic' }, ''));
+      if (p.ga) { r2.append(h('td', { class: 'ic arr' }, ARROWS[p.arrows[i]])); aIn.push(null); }
+      else { const s = h('select', { class: 'sel arrsel' }, h('option', { value: '' }, '?'), Object.keys(ARROWS).map(k => h('option', { value: k }, ARROWS[k]))); aIn.push(s); r2.append(h('td', { class: 'ic' }, s)); }
+    }
+  });
+  const fmtMark = (el, ok) => { el.classList.toggle('ok', ok); el.classList.toggle('ko', !ok); };
+  return {
+    body: h('div', { class: 'tscroll' }, h('table', { class: 'vt vtin' }, r1, r2)),
+    grade() {
+      let tot = 0, good = 0, empty = 0;
+      aIn.forEach((s, i) => { if (!s) return; tot++; const ok = s.value === p.arrows[i]; if (!s.value) empty++; fmtMark(s, ok); if (ok) good++; });
+      vIn.forEach((inp, i) => { if (!inp) return; tot++; const v = parseNum(inp.value), ok = !isNaN(v) && Math.abs(v - p.vals[i]) < 1e-6; if (!inp.value.trim()) empty++; fmtMark(inp, ok); if (ok) good++; });
+      if (empty === tot) { [...aIn, ...vIn].forEach(e => e && e.classList.remove('ko')); return EMPTY; }
+      if (good === tot) return { score: 1 };
+      return { score: good / tot, msg: (p.why || 'Regarde le graphique de gauche à droite : ↗ quand la courbe monte, ↘ quand elle descend. Les valeurs sont les ordonnées (hauteurs) des points aux x indiqués — pas les abscisses.') };
+    },
+    fill() { aIn.forEach((s, i) => s && (s.value = p.arrows[i])); vIn.forEach((inp, i) => inp && (inp.value = nIn(p.vals[i]))); },
+    clear() { [...aIn, ...vIn].forEach(e => e && (e.value = '', e.classList.remove('ok', 'ko'))); },
+    lock(b) { [...aIn, ...vIn].forEach(e => e && (e.disabled = b)); },
+    ansHtml() { return varTableSvg({ xs: p.xs, vals: p.vals, arrows: p.arrows }).outerHTML; }
+  };
+};
+/* ---- tableau de signes ---- */
+PARTS.signtable = p => {
+  const n = p.cols.length, given = new Set(p.given || []);
+  const hr = h('tr', null, h('th', { html: M('x') }));
+  p.cols.forEach((c, i) => { hr.append(h('td', { class: 'pc', html: M(c) })); if (i < n - 1) hr.append(h('td', { class: 'ic' })); });
+  const rows = [hr], cells = [];
+  p.rows.forEach((r, ri) => {
+    const tr = h('tr', { class: r.res ? 'resrow' : '' }, h('th', { html: M(r.l) })); const rc = [];
+    for (let i = 0; i < n; i++) {
+      tr.append(h('td', { class: 'pc mk' }, r.m && r.m[i] ? (r.m[i] === '0' ? '0' : '‖') : ''));
+      if (i < n - 1) {
+        if (given.has(ri)) { tr.append(h('td', { class: 'ic arr' }, r.s[i] === '+' ? '+' : '−')); rc.push(null); }
+        else { const s = h('select', { class: 'sel sgn' }, h('option', { value: '' }, '?'), h('option', { value: '+' }, '+'), h('option', { value: '-' }, '−')); rc.push(s); tr.append(h('td', { class: 'ic' }, s)); }
+      }
+    }
+    rows.push(tr); cells.push(rc);
+  });
+  return {
+    body: h('div', { class: 'tscroll' }, h('table', { class: 'vt vtin sgt' }, rows)),
+    grade() {
+      let tot = 0, good = 0, empty = 0; const badRows = new Set();
+      cells.forEach((rc, ri) => rc.forEach((s, i) => { if (!s) return; tot++; const ok = s.value === p.rows[ri].s[i]; if (!s.value) empty++; s.classList.toggle('ok', ok); s.classList.toggle('ko', !ok); if (ok) good++; else badRows.add(ri); }));
+      if (empty === tot) { cells.flat().forEach(s => s && s.classList.remove('ko')); return EMPTY; }
+      if (good === tot) return { score: 1 };
+      const names = [...badRows].map(ri => '« ' + p.rows[ri].l.replace(/\\[a-z]+|[{}]/g, '') + ' »').join(', ');
+      return { score: good / tot, msg: `Signes à revoir dans : ${names}. ` + (p.why || 'Pour une expression ax + b : le signe de a donne le signe à droite de la racine, le signe contraire à gauche. Dans la dernière ligne, applique la règle des signes (+·+ = +, −·− = +, +·− = −).') };
+    },
+    fill() { cells.forEach((rc, ri) => rc.forEach((s, i) => s && (s.value = p.rows[ri].s[i]))); },
+    clear() { cells.flat().forEach(s => s && (s.value = '', s.classList.remove('ok', 'ko'))); },
+    lock(b) { cells.flat().forEach(s => s && (s.disabled = b)); },
+    ansHtml() { return '<div class="tscroll"><table class="vt vtin sgt">' + rows.map((tr, ri) => ri === 0 ? tr.outerHTML : `<tr class="${p.rows[ri - 1].res ? 'resrow' : ''}"><th>${M(p.rows[ri - 1].l)}</th>${p.cols.map((c, i) => `<td class="pc mk">${p.rows[ri - 1].m && p.rows[ri - 1].m[i] ? (p.rows[ri - 1].m[i] === '0' ? '0' : '‖') : ''}</td>` + (i < n - 1 ? `<td class="ic arr">${p.rows[ri - 1].s[i] === '+' ? '+' : '−'}</td>` : '')).join('')}</tr>`).join('') + '</table></div>'; }
+  };
+};
+/* ---- association (graphiques / fonctions / tableaux) ---- */
+PARTS.match = p => {
+  const letters = p.choices.map(c => c.k);
+  const chBox = h('div', { class: 'choices' });
+  p.choices.forEach(c => {
+    const card = h('div', { class: 'choice' }, h('span', { class: 'badge' }, c.k));
+    const cont = h('div', { class: 'cc' }); if (c.t) cont.innerHTML = T(c.t); if (c.fig) { const hh = h('div', { class: 'mini' }); cont.append(hh); c.fig(hh); } if (c.vt) cont.append(varTableSvg(c.vt));
+    card.append(cont); chBox.append(card);
+  });
+  const sels = [], items = h('div', { class: 'mitems' });
+  p.items.forEach(it => {
+    const s = h('select', { class: 'sel' }, h('option', { value: '' }, '?'), letters.map(l => h('option', { value: l }, l))); sels.push(s);
+    const cell = h('div', { class: 'mitem' }); if (it.l) cell.append(h('div', { class: 'ml', html: T(it.l) })); if (it.fig) { const hh = h('div', { class: 'mini' }); cell.append(hh); it.fig(hh); }
+    cell.append(h('div', { class: 'mrow' }, h('span', null, '→ choix :'), s)); items.append(cell);
+  });
+  return {
+    body: h('div', null, p.noChoices ? null : chBox, items),
+    grade() {
+      let good = 0, empty = 0; sels.forEach((s, i) => { const ok = s.value === p.items[i].a; if (!s.value) empty++; s.classList.toggle('ok', ok); s.classList.toggle('ko', !ok); if (ok) good++; });
+      if (empty === sels.length) { sels.forEach(s => s.classList.remove('ko')); return EMPTY; }
+      if (good === sels.length) return { score: 1 };
+      return { score: good / sels.length, msg: p.why || 'Certaines associations sont fausses (en rouge). Teste un point précis de la courbe ou une valeur simple de x pour décider.' };
+    },
+    fill() { sels.forEach((s, i) => s.value = p.items[i].a); }, clear() { sels.forEach(s => { s.value = ''; s.classList.remove('ok', 'ko'); }); }, lock(b) { sels.forEach(s => s.disabled = b); },
+    ansHtml() { return p.items.map((it, i) => `${i + 1} → <b>${it.a}</b>`).join(' &nbsp; '); }
+  };
+};
+/* ---- placer des points sur un repère ---- */
+PARTS.plot = p => {
+  let placed = []; const host = h('div', { class: 'plotbox' }); const st = p.snap || 1;
+  const key = (x, y) => nStr(x) + '|' + nStr(y);
+  let revealed = false;
+  const draw = () => {
+    const cfg = Object.assign({ w: 520, h: 360 }, p.cfg, { onclick: (x, y) => { const k = key(x, y), i = placed.findIndex(q => key(q[0], q[1]) === k); if (i >= 0) placed.splice(i, 1); else placed.push([x, y]); draw(); }, snap: st });
+    cfg.points = placed.map(q => ({ x: q[0], y: q[1], label: p.showCoords ? `(${nStr(q[0])};${nStr(q[1])})` : null }));
+    cfg.curves = revealed && p.fn ? [{ fn: p.fn, x0: p.cfg.xmin, x1: p.cfg.xmax }] : [];
+    plot(host, cfg);
+  };
+  draw();
+  const btn = h('button', { type: 'button', class: 'btn ghost sm', onclick: () => { placed = []; revealed = false; draw(); } }, 'Effacer les points');
+  return {
+    body: h('div', null, h('div', { class: 'muted small' }, 'Clique sur le repère pour placer un point (re-clique pour l’enlever).'), host, btn),
+    grade() {
+      if (!placed.length) return EMPTY;
+      const exp = p.pts.map(q => key(q[0], q[1])), got = placed.map(q => key(q[0], q[1]));
+      const good = exp.filter(k => got.includes(k)).length, extra = got.filter(k => !exp.includes(k)).length;
+      const score = Math.max(0, (good - extra) / exp.length);
+      if (good === exp.length && !extra) { revealed = true; draw(); return { score: 1 }; }
+      return { score, msg: `${good} point(s) bien placé(s) sur ${exp.length}` + (extra ? `, ${extra} point(s) en trop` : '') + '. ' + (p.why || 'Calcule f(x) pour chaque x du tableau : l’abscisse est x, l’ordonnée est f(x).') };
+    },
+    fill() { placed = p.pts.map(q => q.slice()); draw(); }, clear() { placed = []; revealed = false; draw(); }, lock(b) { host.style.pointerEvents = b ? 'none' : ''; btn.disabled = b; },
+    ansHtml() { const hh = h('div'); plot(hh, Object.assign({ w: 520, h: 360 }, p.cfg, { points: p.pts.map(q => ({ x: q[0], y: q[1] })), curves: p.fn ? [{ fn: p.fn, x0: p.cfg.xmin, x1: p.cfg.xmax }] : [] })); return hh.innerHTML; }
+  };
+};
+
+/* ---- assemblage d'une part (enveloppe commune) ---- */
+function buildPart(spec) {
+  const impl = PARTS[spec.t](spec);
+  const fb = h('div', { class: 'pfb' });
+  let figHost = null;
+  if (spec.fig) { figHost = h('div', { class: 'pfig' }); spec.fig(figHost); }
+  const el = h('div', { class: 'part' }, spec.q ? h('div', { class: 'pq', html: T(spec.q) }) : null, figHost, impl.body, fb);
+  const part = Object.assign({ spec, el, fb }, impl);
+  part.mark = (res, withAns) => {
+    el.classList.toggle('ok', res.score === 1); el.classList.toggle('ko', res.score < 1 && !res.empty); el.classList.toggle('partial', res.score > 0 && res.score < 1);
+    fb.innerHTML = '';
+    if (res.score === 1) fb.append(h('div', { class: 'fbok' }, '✓ Correct.', spec.ok ? h('span', { html: ' ' + T(spec.ok) }) : null));
+    else if (res.msg) fb.append(h('div', { class: 'fbko', html: '✗ ' + T(res.msg) }));
+    if (withAns) { fb.append(h('div', { class: 'fbans' }, h('b', null, 'Réponse attendue : '), h('span', { html: part.ansHtml() }))); }
+    if (withAns && spec.sol) fb.append(h('div', { class: 'fbsol', html: T(spec.sol) }));
+  };
+  part.reset = () => { part.clear(); el.classList.remove('ok', 'ko', 'partial'); fb.innerHTML = ''; };
+  return part;
+}
+
+'use strict';
+/* =========================================================
+   CONTENU — Chapitre 1 : Variations des fonctions
+   ========================================================= */
+const TOPICS = [];
+const EX = {};            // id -> exercice
+function topic(o) { o.ex = []; o.gens = o.gens || []; TOPICS.push(o); return o; }
+function X(tp, id, level, title, intro, parts, o) {
+  const ex = Object.assign({ id, topic: tp.id, level, title, intro, parts, hints: [], sol: [] }, o || {});
+  tp.ex.push(ex); EX[id] = ex; return ex;
+}
+/* ---- courbes ---- */
+const lin = (a, b, x0, x1) => { const f = x => a * x + b; f.x0 = x0; f.x1 = x1; return f; };
+const CV = {
+  R1: smooth([[-4, 3], [-3, 0], [-2, 3], [-0.5, 5], [1, 3], [2, 2]]),
+  R2: smooth([[-5, 0], [-4, -1], [-2, 1], [0.5, 4], [3, 1], [4, -2]]),
+  R3: smooth([[-5, -1], [-2, 2], [2, 2], [3, 3], [5, 5]]),
+  Q1: smooth([[-3, 1], [-1, -1], [1, 2], [3, -4], [5, 3]]),
+  Cm: smooth([[-5, 2], [-3, 4], [2, -3], [6, 3]]),
+  S1: smooth([[-4, -3], [-3, 0], [-1, 3], [1, 0], [2, -3]]),
+  S2: smooth([[-1, 1.5], [2, 0], [3, -1.5], [4, 0], [6, 3]]),
+  S3: smooth([[-5, -2], [-3, 0], [-1.5, 1.5], [0, 0], [2, -2], [4, 0], [5, 1.5]]),
+  TP: smooth([[0, 11], [4, 5], [14, 28], [24, 12.5]]),
+  CE: smooth([[-4, -1], [-3, 0], [-2, 3], [0, 0], [1, -2], [3, 0], [5, 2]]),
+  CF: smooth([[-5, 1], [-3, -2], [-1, 1], [1, 3], [2, 1], [4, -1]]),
+  KB: smooth([[-3, 0], [-1, 3], [1, -1], [3, 2], [5, -1]]),
+  KC: smooth([[-3, 3], [-1, -2], [1, 1], [3, -1], [5, 2]]),
+  GA: smooth([[-3, 1], [0, -1], [2, 2], [4, 5]]),
+  GC: smooth([[-2, 3], [1, 0], [3, 2], [5, 4]])
+};
+function yRange(f) { let lo = 1e9, hi = -1e9; for (let i = 0; i <= 300; i++) { const y = f(f.x0 + (f.x1 - f.x0) * i / 300); lo = Math.min(lo, y); hi = Math.max(hi, y); } return [lo, hi]; }
+function G(f, o) {
+  return host => {
+    const [lo, hi] = yRange(f);
+    const cfg = Object.assign({ xmin: Math.floor(f.x0) - 1, xmax: Math.ceil(f.x1) + 1, ymin: Math.floor(lo) - 1, ymax: Math.ceil(hi) + 1, curves: [{ fn: f }], points: [{ x: f.x0, y: f(f.x0) }, { x: f.x1, y: f(f.x1) }], w: 520, h: 340 }, o || {});
+    plot(host, cfg);
+  };
+}
+const MINI = (curves, r, extra) => host => plot(host, Object.assign({ mini: true, w: 200, h: 200, xmin: r[0], xmax: r[1], ymin: r[2], ymax: r[3], curves }, extra || {}));
+const para = (fx, fy, t0, t1, n = 200) => { const a = []; for (let i = 0; i <= n; i++) { const t = t0 + (t1 - t0) * i / n; a.push([fx(t), fy(t)]); } return a; };
+const SELS = ['strictement croissante', 'strictement décroissante', 'constante'];
+const hasD = (f, a, b) => { for (let x = a; x <= b + 1e-9; x += 0.25) { } };
+const nl = (...a) => a;
+
+/* =================== 1. fonction =================== */
+const tFonction = topic({
+  id: 'fonction', ch: 1, n: '1.1', title: 'Fonction, image, antécédent', icon: 'ƒ',
+  lesson: `<div class="rule"><b class="t">À retenir</b>Une <b>fonction</b> $f$ associe à chaque réel $x$ <b>au plus un</b> réel $y=f(x)$.<br>
+  • $y$ est l’<b>image</b> de $x$ par $f$. • $x$ est un <b>antécédent</b> de $y$.<br>
+  Un réel $x$ a <b>au plus une</b> image, mais un réel $y$ peut avoir <b>plusieurs</b> antécédents.</div>
+  <div class="rule ex"><b class="t">Exemple résolu — $f(x)=x^2+3$</b><ol class="steps">
+  <li>Image de 1 : on <b>calcule</b> $f(1)=1^2+3=4$.</li>
+  <li>Image de $\\sqrt2$ : $f(\\sqrt2)=(\\sqrt2)^2+3=2+3=5$.</li>
+  <li>Antécédents de 4 : on <b>résout</b> $f(x)=4 \\iff x^2+3=4 \\iff x^2=1 \\iff x=1$ ou $x=-1$.</li>
+  <li>Antécédents de 5 : $x^2=2 \\iff x=\\sqrt2$ ou $x=-\\sqrt2$.</li></ol></div>
+  <div class="rule warn"><b class="t">Attention</b><b>Image</b> → je calcule $f(x)$. <b>Antécédent</b> → je résous l’équation $f(x)=y$. Et $(-2)^2=+4$ (jamais $-4$) ; un carré n’est jamais négatif : $x^2=-1$ est impossible.</div>`,
+  explorer: 'machine'
+});
+X(tFonction, 'fn1', 1, 'Vrai ou faux ?', 'Réponds sans calculatrice : il s’agit de comprendre le vocabulaire.', [
+  { t: 'tf', q: 'Un réel $x$ a <b>au plus une</b> image par une fonction.', a: true, why: 'C’est la définition d’une fonction : une valeur d’entrée donne au plus un résultat.' },
+  { t: 'tf', q: 'Un réel $y$ a <b>au plus un</b> antécédent par une fonction.', a: false, why: 'Faux : pour $f(x)=x^2$, le nombre 4 a deux antécédents, 2 et −2.' },
+  { t: 'tf', q: 'Si $f(x)=x^2+3$, l’image de 2 est 7.', a: true, why: '$f(2)=2^2+3=4+3=7$.' },
+  { t: 'tf', q: 'Si $f(2)=5$, alors 2 est un antécédent de 5.', a: true, why: '$f(2)=5$ se lit « 5 est l’image de 2 », donc « 2 est un antécédent de 5 ».' }
+], { hints: ['Pense à la machine : on entre $x$, il sort UN résultat.'], sol: ['Une fonction donne <b>une seule sortie</b> pour chaque entrée (image unique).', 'Mais plusieurs entrées peuvent donner la même sortie : ex. $2^2=(-2)^2=4$ → plusieurs antécédents.'] });
+X(tFonction, 'fn2', 1, 'Calculer des images', 'Soit $f(x)=x^2+3$. Calcule l’image de chaque nombre.', [
+  { t: 'num', q: 'Image de $-2$ : $f(-2)=$', a: 7, traps: [{ v: -1, msg: 'Attention : $(-2)^2=+4$, pas $-4$. Donc $f(-2)=4+3=7$.' }] },
+  { t: 'num', q: 'Image de $0$ : $f(0)=$', a: 3 },
+  { t: 'num', q: 'Image de $\\frac{1}{2}$ : $f(\\frac12)=$ (fraction ou décimal)', a: 3.25, show: '$\\frac{13}{4}=3,25$', traps: [{ v: 3.5, msg: '$(\\frac12)^2=\\frac14$ (et non $\\frac12$).' }] }
+], { hints: ['Remplace $x$ par la valeur, <b>avec des parenthèses</b>, puis calcule : d’abord le carré, ensuite $+3$.'], sol: ['$f(-2)=(-2)^2+3=4+3=7$', '$f(0)=0^2+3=3$', '$f(\\frac12)=(\\frac12)^2+3=\\frac14+3=\\frac{13}{4}=3,25$'] });
+X(tFonction, 'fn3', 1, 'Image ou antécédent ?', 'Soit $f(x)=x^2-1$. On cherche un antécédent de 3.', [
+  { t: 'mcq', q: 'Que faut-il faire ?', o: [{ t: 'Résoudre l’équation $f(x)=3$' }, { t: 'Calculer $f(3)$', why: 'Calculer $f(3)$ donne l’<b>image</b> de 3, pas un antécédent.' }, { t: 'Résoudre $f(3)=x$', why: 'Ici 3 est la valeur de sortie ($y$), pas l’entrée.' }, { t: 'Calculer $3^2-1$', why: 'C’est le calcul de $f(3)$ : l’image de 3.' }], c: 0 }
+], { hints: ['3 est ici la <b>sortie</b> ($y=3$). On cherche l’entrée $x$ qui la produit.'], sol: ['Un antécédent de 3 est un $x$ tel que $f(x)=3$ : on <b>résout</b> $x^2-1=3$.', 'On trouve $x^2=4$, donc $x=2$ ou $x=-2$.'] });
+X(tFonction, 'fn4', 2, 'Images avec une parenthèse', 'Soit $f(x)=(3x-2)^2$. Calcule les images (exercice type du cours).', [
+  { t: 'num', q: '$f(3)=$', a: 49, traps: [{ v: 7, msg: 'Tu as oublié de mettre au carré : $f(3)=(3\\cdot3-2)^2=7^2=49$.' }] },
+  { t: 'num', q: '$f(-2)=$', a: 64, traps: [{ v: -8, msg: 'Tu t’es arrêté trop tôt : $3\\cdot(-2)-2=-8$, puis $(-8)^2=64$.' }] },
+  { t: 'num', q: '$f(1)=$', a: 1 },
+  { t: 'num', q: '$f(\\frac{2}{3})=$', a: 0, show: '$0$' }
+], { hints: ['Calcule <b>d’abord</b> l’intérieur de la parenthèse ($3x-2$), <b>ensuite</b> le carré.', 'Pour $\\frac23$ : $3\\cdot\\frac23=2$.'], sol: ['$f(3)=(9-2)^2=7^2=49$', '$f(-2)=(-6-2)^2=(-8)^2=64$', '$f(1)=(3-2)^2=1$', '$f(\\frac23)=(2-2)^2=0$'] });
+X(tFonction, 'fn5', 2, 'Antécédents de $f(x)=x^2-3$', 'Détermine les antécédents (écris « aucun » s’il n’y en a pas). Sépare par « ; ».', [
+  { t: 'numset', q: 'Antécédents de 6', a: [3, -3], chkf: { f: x => x * x - 3, k: 6 } },
+  { t: 'numset', q: 'Antécédents de 4', a: ['sqrt(7)', '-sqrt(7)'], show: '$\\sqrt7 \\quad;\\quad -\\sqrt7$', fill: '√7 ; −√7', chkf: { f: x => x * x - 3, k: 4 } },
+  { t: 'numset', q: 'Antécédents de −3', a: [0], chkf: { f: x => x * x - 3, k: -3 } },
+  { t: 'numset', q: 'Antécédents de −4', a: [], noneWhy: '$x^2-3=-4 \\iff x^2=-1$ est impossible (un carré est toujours positif ou nul).' }
+], { hints: ['Résous $f(x)=k$ : $x^2-3=k \\iff x^2=k+3$.', 'Si $x^2=$ un nombre négatif → impossible. Si $x^2=0$ → une seule solution.'], sol: ['$x^2-3=6 \\iff x^2=9 \\iff x=3$ ou $x=-3$', '$x^2-3=4 \\iff x^2=7 \\iff x=\\sqrt7$ ou $x=-\\sqrt7$', '$x^2-3=-3 \\iff x^2=0 \\iff x=0$ (une seule solution)', '$x^2-3=-4 \\iff x^2=-1$ : impossible → <b>aucun antécédent</b>.'] });
+X(tFonction, 'fn6', 2, 'Compléter les étapes', 'Soit $f(x)=\\frac{9}{x^2+1}$. Détermine les antécédents de 3 en complétant les étapes.', [
+  { t: 'fill', lines: ['$f(x)=3 \\iff \\frac{9}{x^2+1}=3$', '$\\iff 9=3(x^2+1)$   (on multiplie par $x^2+1$)', '$\\iff$ [[1]] $=x^2+1$   (on divise par 3)', '$\\iff$ [[2]] $=x^2$', '$\\iff x=$ [[3]] ou $x=$ [[4]]'],
+    b: [{ k: 'n', a: 3 }, { k: 'n', a: 2 }, { k: 'n', a: 'sqrt(2)', fill: '√2', show: '$\\sqrt2$', w: 8 }, { k: 'n', a: '-sqrt(2)', fill: '−√2', show: '$-\\sqrt2$', w: 8 }], why: '$9\\div3=3$, puis $3-1=2$.' }
+], { hints: ['Divise les deux membres de $9=3(x^2+1)$ par 3.'], sol: ['$\\frac{9}{x^2+1}=3 \\iff 9=3(x^2+1)$', '$\\iff 3=x^2+1 \\iff 2=x^2$', '$\\iff x=\\sqrt2$ ou $x=-\\sqrt2$ (les deux antécédents de 3).'] });
+X(tFonction, 'fn7', 3, 'Racine et fraction', 'Deux fonctions : $f(x)=\\sqrt{1-2x}$ et $g(x)=\\frac{6}{2x^2-3}$.', [
+  { t: 'num', q: 'a) Image de $-4$ par $f$ : $f(-4)=$', a: 3 },
+  { t: 'numset', q: 'b) Antécédent(s) de 3 par $f$ :', a: [-4], chkf: { f: x => Math.sqrt(1 - 2 * x), k: 3 } },
+  { t: 'num', q: 'c) Image de $-3$ par $g$ : $g(-3)=$', a: 0.4, show: '$\\frac{2}{5}$', fill: '2/5' },
+  { t: 'numset', q: 'd) Antécédent(s) de 6 par $g$ :', a: ['sqrt(2)', '-sqrt(2)'], show: '$\\sqrt2 \\quad;\\quad -\\sqrt2$', fill: '√2 ; −√2', chkf: { f: x => 6 / (2 * x * x - 3), k: 6 } }
+], { hints: ['a) $1-2\\cdot(-4)=1+8$.', 'b) Pour éliminer la racine, élève les deux membres au carré : $\\sqrt{1-2x}=3 \\iff 1-2x=9$.', 'd) $\\frac{6}{2x^2-3}=6 \\iff 6=6(2x^2-3)$.'], sol: ['a) $f(-4)=\\sqrt{1+8}=\\sqrt9=3$', 'b) $\\sqrt{1-2x}=3 \\iff 1-2x=9 \\iff -2x=8 \\iff x=-4$', 'c) $g(-3)=\\frac{6}{2\\cdot9-3}=\\frac{6}{15}=\\frac25$', 'd) $\\frac{6}{2x^2-3}=6 \\iff 6=6(2x^2-3) \\iff 1=2x^2-3 \\iff 4=2x^2 \\iff x^2=2 \\iff x=\\pm\\sqrt2$'] });
+X(tFonction, 'fn8', 3, 'Antécédents d’une racine', 'Soit $f$ définie sur $[2;+\\infty[$ par $f(x)=\\sqrt{x-2}$. Détermine les antécédents de chaque nombre.', [
+  { t: 'numset', q: 'Antécédent(s) de 2', a: [6], chkf: { f: x => Math.sqrt(x - 2), k: 2 } },
+  { t: 'numset', q: 'Antécédent(s) de $\\sqrt2$', a: [4], chkf: { f: x => Math.sqrt(x - 2), k: Math.SQRT2 } },
+  { t: 'numset', q: 'Antécédent(s) de 1', a: [3], chkf: { f: x => Math.sqrt(x - 2), k: 1 } },
+  { t: 'numset', q: 'Antécédent(s) de 0', a: [2], chkf: { f: x => Math.sqrt(x - 2), k: 0 } },
+  { t: 'numset', q: 'Antécédent(s) de −1', a: [], noneWhy: 'Une racine carrée est toujours ≥ 0 : $\\sqrt{x-2}=-1$ est impossible.' }
+], { hints: ['Élève au carré : $\\sqrt{x-2}=k \\iff x-2=k^2$ (si $k\\ge0$).'], sol: ['$\\sqrt{x-2}=2 \\iff x-2=4 \\iff x=6$', '$\\sqrt{x-2}=\\sqrt2 \\iff x-2=2 \\iff x=4$', '$\\sqrt{x-2}=1 \\iff x-2=1 \\iff x=3$', '$\\sqrt{x-2}=0 \\iff x=2$', '$\\sqrt{x-2}=-1$ : impossible (une racine est positive ou nulle) → aucun antécédent.'] });
+/* générateurs */
+tFonction.gens.push(() => {
+  const k = pick(['lin', 'sq', 'par']), a = rnd(2, 5), b = rnd(-6, 6) || 3, x = rnd(-4, 4) || 2;
+  let tx, f, st;
+  if (k === 'lin') { tx = `${a}x${b < 0 ? '-' : '+'}${Math.abs(b)}`; f = v => a * v + b; st = [`$f(${x})=${a}\\cdot(${x})${b < 0 ? '-' : '+'}${Math.abs(b)}=${f(x)}$`]; }
+  else if (k === 'sq') { tx = `x^2${b < 0 ? '-' : '+'}${Math.abs(b)}`; f = v => v * v + b; st = [`$f(${x})=(${x})^2${b < 0 ? '-' : '+'}${Math.abs(b)}=${x * x}${b < 0 ? '-' : '+'}${Math.abs(b)}=${f(x)}$`]; }
+  else { tx = `(${a}x${b < 0 ? '-' : '+'}${Math.abs(b)})^2`; f = v => (a * v + b) ** 2; st = [`$f(${x})=(${a}\\cdot(${x})${b < 0 ? '-' : '+'}${Math.abs(b)})^2=(${a * x + b})^2=${f(x)}$`]; }
+  return { id: 'gen_fn_' + Math.random(), topic: 'fonction', level: 1, title: 'Image (variante)', intro: `Soit $f(x)=${tx}$.`, parts: [{ t: 'num', q: `$f(${x})=$`, a: f(x) }], hints: ['Remplace $x$ par la valeur entre parenthèses.'], sol: st };
+});
+tFonction.gens.push(() => {
+  const c = rnd(-5, 5), k = pick([0, 1, 4, 9, 16, 2, 3, 5, -1, -2]), tx = `x^2${c < 0 ? '-' : '+'}${Math.abs(c)}`, rhs = k + c;
+  const ans = rhs < 0 ? [] : rhs === 0 ? [0] : (Number.isInteger(Math.sqrt(rhs)) ? [Math.sqrt(rhs), -Math.sqrt(rhs)] : [`sqrt(${rhs})`, `-sqrt(${rhs})`]);
+  const sh = rhs < 0 ? '' : rhs === 0 ? '$0$' : (Number.isInteger(Math.sqrt(rhs)) ? `$${Math.sqrt(rhs)} \\quad;\\quad -${Math.sqrt(rhs)}$` : `$\\sqrt{${rhs}} \\quad;\\quad -\\sqrt{${rhs}}$`);
+  const fl = ans.length && typeof ans[0] === 'string' ? `√${rhs} ; −√${rhs}` : undefined;
+  const p = { t: 'numset', q: `Antécédent(s) de ${k}`, a: ans, noneWhy: `$x^2=${rhs}$ est impossible (un carré n’est jamais négatif).` };
+  if (sh) p.show = sh; if (fl) p.fill = fl;
+  return { id: 'gen_fa_' + Math.random(), topic: 'fonction', level: 2, title: 'Antécédents (variante)', intro: `Soit $f(x)=${tx}$. Écris « aucun » s’il n’y a pas d’antécédent.`, parts: [p], hints: [`Résous $f(x)=${k}$ : $${tx}=${k} \\iff x^2=${rhs}$.`], sol: [`$${tx}=${k} \\iff x^2=${k}${c < 0 ? '+' : '-'}${Math.abs(c)}=${rhs}$`, rhs < 0 ? 'Impossible : aucun antécédent.' : rhs === 0 ? '$x=0$.' : `$x=\\sqrt{${rhs}}$ ou $x=-\\sqrt{${rhs}}$.`] };
+});
+
+/* =================== 2. domaine =================== */
+const tDomaine = topic({
+  id: 'domaine', ch: 1, n: '1.2', title: 'Domaine de définition', icon: 'D',
+  lesson: `<div class="rule"><b class="t">À retenir</b>Le <b>domaine de définition</b> $D_f$ est l’ensemble des réels $x$ pour lesquels on peut calculer $f(x)$.<br>On cherche les <b>conditions d’existence</b> (C.E.) :<br>
+  • fraction $\\frac{a}{b}$ : C.E. $b\\neq0$ &nbsp;&nbsp; • racine $\\sqrt{a}$ : C.E. $a\\geq0$ &nbsp;&nbsp; • $\\frac{1}{\\sqrt{a}}$ : C.E. $a>0$ (strict !)</div>
+  <div class="rule ex"><b class="t">Exemples du cours</b><ol class="steps">
+  <li>$f(x)=\\frac{x^2}{x-1}$ : C.E. $x-1\\neq0 \\iff x\\neq1$, donc $D_f=\\R\\setminus\\{1\\}$.</li>
+  <li>$f(x)=\\sqrt{2-x}$ : C.E. $2-x\\geq0 \\iff x\\leq2$, donc $D_f=]-\\infty;2]$.</li>
+  <li>$f(x)=\\frac{1}{\\sqrt{3-x}}$ : C.E. $3-x>0 \\iff x<3$, donc $D_f=]-\\infty;3[$.</li></ol></div>
+  <div class="rule"><b class="t">Produit ou quotient sous la racine</b>On fait un <b>tableau de signes</b> : 1) valeurs critiques (là où chaque facteur vaut 0) ; 2) signe de chaque facteur ; 3) signe du produit/quotient (règle des signes) ; 4) on garde les $x$ où il est $\\geq0$. Pour un quotient, la valeur qui annule le <b>dénominateur</b> est toujours <b>exclue</b> (barre ‖).</div>
+  <div class="rule warn"><b class="t">Attention</b>Un trait de division <b>divisé par $x^2+1$</b> n’est jamais un problème : $x^2+1\\geq1>0$. Et en $\\pm\\infty$ le crochet est toujours <b>ouvert</b>.</div>`
+});
+X(tDomaine, 'dm1', 1, 'La bonne condition', 'Soit $f(x)=\\frac{1}{x-3}$.', [
+  { t: 'mcq', q: 'Quelle est la condition d’existence de $f$ ?', o: [{ t: '$x\\neq3$' }, { t: '$x\\neq-3$', why: 'On annule le dénominateur : $x-3=0 \\iff x=3$ (et non −3).' }, { t: '$x\\geq3$', why: 'Les inégalités servent pour les <b>racines</b>. Pour une fraction, on exclut seulement la valeur qui annule le dénominateur.' }, { t: '$x>3$', why: 'Pour une fraction on exclut seulement 3 ; les nombres plus petits sont autorisés.' }], c: 0 }
+], { hints: ['Le dénominateur ne doit pas être égal à 0.'], sol: ['Fraction → dénominateur ≠ 0 : $x-3\\neq0 \\iff x\\neq3$.', 'Donc $D_f=\\R\\setminus\\{3\\}$.'] });
+X(tDomaine, 'dm2', 1, 'Vrai ou faux ?', '', [
+  { t: 'tf', q: '$f(x)=5x+3$ est définie sur $\\R$.', a: true, why: 'Aucune fraction, aucune racine : on peut calculer $f(x)$ pour tout réel.' },
+  { t: 'tf', q: '$f(x)=\\sqrt{x}$ est définie sur $\\R$.', a: false, why: 'Il faut $x\\geq0$ : la racine d’un nombre négatif n’existe pas.' },
+  { t: 'tf', q: '$f(x)=\\frac1x$ est définie en $x=0$.', a: false, why: 'Diviser par 0 est impossible : 0 n’a pas d’image.' },
+  { t: 'tf', q: '$f(x)=\\frac{1}{x^2+1}$ est définie sur $\\R$.', a: true, why: '$x^2+1\\geq1$ ne vaut jamais 0.' }
+], { sol: ['Polynôme → $\\R$.', '$\\sqrt{x}$ → C.E. $x\\geq0$.', '$\\frac1x$ → C.E. $x\\neq0$.', '$x^2+1=0 \\iff x^2=-1$ : impossible → pas de valeur interdite.'] });
+X(tDomaine, 'dm3', 1, 'Les trois exemples du cours', 'Donne le domaine de définition de chaque fonction.', [
+  { t: 'set', q: '$f(x)=\\frac{x^2}{x-1}$', a: 'R\\{1}', dom: x => x * x / (x - 1) },
+  { t: 'set', q: '$f(x)=\\sqrt{2-x}$', a: ']-inf;2]', dom: x => Math.sqrt(2 - x) },
+  { t: 'set', q: '$f(x)=\\frac{1}{\\sqrt{3-x}}$', a: ']-inf;3[', dom: x => 1 / Math.sqrt(3 - x) }
+], { hints: ['1) $x-1\\neq0$.  2) $2-x\\geq0$ (isole $x$ : on change le sens en divisant par −1).  3) $3-x>0$ strict.'], sol: ['1) C.E. $x-1\\neq0 \\iff x\\neq1$ → $D_f=\\R\\setminus\\{1\\}$', '2) C.E. $2-x\\geq0 \\iff -x\\geq-2 \\iff x\\leq2$ → $D_f=]-\\infty;2]$', '3) C.E. $3-x>0 \\iff x<3$ → $D_f=]-\\infty;3[$ (le 3 est exclu car il annulerait le dénominateur)'] });
+X(tDomaine, 'dm4', 2, 'Fractions', 'Détermine le domaine de définition.', [
+  { t: 'set', q: '$f(x)=\\frac{-2}{x^2+1}$', a: 'R', dom: x => -2 / (x * x + 1), why: '$x^2+1=0$ n’a aucune solution : le dénominateur ne s’annule jamais.' },
+  { t: 'set', q: '$f(x)=\\frac{x}{(x-1)^2}$', a: 'R\\{1}', dom: x => x / ((x - 1) ** 2) },
+  { t: 'set', q: '$f(x)=\\frac{x}{x^2-1}$', a: 'R\\{-1;1}', dom: x => x / (x * x - 1), why: '$x^2-1=(x-1)(x+1)$ : deux valeurs interdites.' },
+  { t: 'set', q: '$f(x)=\\frac{1}{x^2+4x}$', a: 'R\\{-4;0}', dom: x => 1 / (x * x + 4 * x), why: 'Factorise : $x^2+4x=x(x+4)$.' }
+], { hints: ['Dénominateur ≠ 0. Factorise : $x^2-1=(x-1)(x+1)$, $x^2+4x=x(x+4)$.', 'Un produit est nul si l’un des facteurs est nul.'], sol: ['a) $x^2+1\\neq0$ toujours vrai ($x^2\\geq0$) → $\\R$', 'b) $(x-1)^2\\neq0 \\iff x\\neq1$ → $\\R\\setminus\\{1\\}$', 'c) $x^2-1\\neq0 \\iff (x-1)(x+1)\\neq0 \\iff x\\neq1$ et $x\\neq-1$', 'd) $x(x+4)\\neq0 \\iff x\\neq0$ et $x\\neq-4$'] });
+X(tDomaine, 'dm5', 2, 'Fraction + racine', 'Plusieurs conditions : elles doivent être vraies <b>en même temps</b>.', [
+  { t: 'set', q: '$f(x)=\\frac1x+\\sqrt{x-1}$', a: '[1;+inf[', dom: x => 1 / x + Math.sqrt(x - 1), why: 'C.E. : $x\\neq0$ <b>et</b> $x-1\\geq0$. Comme $x\\geq1$, la condition $x\\neq0$ est déjà vérifiée.' },
+  { t: 'set', q: '$f(x)=\\frac1x+\\sqrt{x+1}$', a: '[-1;0[U]0;+inf[', dom: x => 1 / x + Math.sqrt(x + 1), why: 'C.E. : $x\\neq0$ et $x\\geq-1$ : on garde $[-1;+\\infty[$ en retirant 0.' },
+  { t: 'set', q: '$f(x)=\\frac{\\sqrt{x+1}}{x-1}$', a: '[-1;1[U]1;+inf[', dom: x => Math.sqrt(x + 1) / (x - 1) }
+], { hints: ['Écris chaque C.E. séparément, puis garde ce qui vérifie les deux.'], sol: ['a) $x\\neq0$ et $x\\geq1$ → $[1;+\\infty[$', 'b) $x\\neq0$ et $x\\geq-1$ → $[-1;0[\\,\\cup\\,]0;+\\infty[$', 'c) $x+1\\geq0$ et $x-1\\neq0$ → $[-1;1[\\,\\cup\\,]1;+\\infty[$'] });
+X(tDomaine, 'dm6', 2, 'Tableau de signes (produit)', 'Soit $f(x)=\\sqrt{(3-x)(2+4x)}$. C.E. : $(3-x)(2+4x)\\geq0$. Valeurs critiques : $3-x=0 \\iff x=3$ ; $2+4x=0 \\iff x=-\\frac12$.', [
+  { t: 'signtable', cols: ['-\\infty', '-\\frac12', '3', '+\\infty'], rows: [{ l: '3-x', s: '++-'.split(''), m: ['', '', '0', ''] }, { l: '2+4x', s: '-++'.split(''), m: ['', '0', '', ''] }, { l: '(3-x)(2+4x)', s: '-+-'.split(''), m: ['', '0', '0', ''], res: true }] },
+  { t: 'set', q: 'On garde les $x$ où le produit est $\\geq0$ : $D_f=$', a: '[-1/2;3]', dom: x => Math.sqrt((3 - x) * (2 + 4 * x)) }
+], { hints: ['$3-x$ est décroissante (coefficient −1) : + puis −. $2+4x$ est croissante : − puis +.', 'Dernière ligne = produit des deux lignes (règle des signes).'], sol: ['$3-x$ : + avant 3, − après.', '$2+4x$ : − avant $-\\frac12$, + après.', 'Produit : avant $-\\frac12$ : (+)(−)=− ; entre $-\\frac12$ et 3 : (+)(+)=+ ; après 3 : (−)(+)=−.', '$\\geq0$ ⇒ on garde l’intervalle central, bornes comprises : $D_f=[-\\frac12;3]$.'] });
+X(tDomaine, 'dm7', 2, 'Tableau de signes (quotient)', 'Soit $f(x)=\\sqrt{\\frac{1-x}{2+x}}$. C.E. : $2+x\\neq0$ <b>et</b> $\\frac{1-x}{2+x}\\geq0$. Valeurs critiques : $x=-2$ (dénominateur) et $x=1$.', [
+  { t: 'signtable', cols: ['-\\infty', '-2', '1', '+\\infty'], rows: [{ l: '1-x', s: '++-'.split(''), m: ['', '', '0', ''] }, { l: '2+x', s: '-++'.split(''), m: ['', '0', '', ''] }, { l: '\\frac{1-x}{2+x}', s: '-+-'.split(''), m: ['', '|', '0', ''], res: true }] },
+  { t: 'set', q: '$D_f=$', a: ']-2;1]', dom: x => Math.sqrt((1 - x) / (2 + x)), why: '−2 est <b>exclu</b> (dénominateur nul, ‖) mais 1 est <b>inclus</b> (le quotient vaut 0, et $0\\geq0$).' }
+], { hints: ['Le signe du quotient suit la même règle que celui du produit. La barre ‖ sous −2 signifie « interdit ».'], sol: ['Quotient : $-$, puis $+$ entre −2 et 1, puis $-$.', 'On garde $]-2;1]$ : −2 exclu (division par 0), 1 inclus (quotient = 0).'] });
+X(tDomaine, 'dm8', 3, 'Racine d’un trinôme remarquable', 'Soit $f(x)=\\sqrt{x^2-4}$. Factorise $x^2-4=(x-2)(x+2)$ puis complète le tableau de signes.', [
+  { t: 'signtable', cols: ['-\\infty', '-2', '2', '+\\infty'], rows: [{ l: 'x-2', s: '--+'.split(''), m: ['', '', '0', ''] }, { l: 'x+2', s: '-++'.split(''), m: ['', '0', '', ''] }, { l: 'x^2-4', s: '+-+'.split(''), m: ['', '0', '0', ''], res: true }] },
+  { t: 'set', q: '$D_f=$', a: ']-inf;-2]U[2;+inf[', dom: x => Math.sqrt(x * x - 4), traps: [{ a: '[-2;2]', msg: 'Tu as pris l’intervalle où le produit est <b>négatif</b>. On veut $\\geq0$ : les deux morceaux extérieurs.' }] }
+], { hints: ['Pense à la parabole $x^2-4$ : elle est positive à l’extérieur de ses racines.'], sol: ['$x^2-4\\geq0 \\iff (x-2)(x+2)\\geq0$', 'Signes : + sur $]-\\infty;-2[$, − sur $]-2;2[$, + sur $]2;+\\infty[$.', '$D_f=]-\\infty;-2]\\cup[2;+\\infty[$.'] });
+X(tDomaine, 'dm9', 3, 'Exercices de type contrôle', 'Détermine le domaine de définition.', [
+  { t: 'set', q: 'a) $f(x)=\\frac{3x+5}{9x^2-4}$', a: 'R\\{-2/3;2/3}', dom: x => (3 * x + 5) / (9 * x * x - 4), why: '$9x^2-4=(3x-2)(3x+2)$.' },
+  { t: 'set', q: 'b) $f(x)=\\sqrt{2x+1}-\\frac{1}{x-2}$', a: '[-1/2;2[U]2;+inf[', dom: x => Math.sqrt(2 * x + 1) - 1 / (x - 2) },
+  { t: 'set', q: 'c) $f(x)=\\frac{\\sqrt{x+1}}{2x-1}$', a: '[-1;1/2[U]1/2;+inf[', dom: x => Math.sqrt(x + 1) / (2 * x - 1) },
+  { t: 'set', q: 'd) $f(x)=\\sqrt{(5-6x)(1+4x)}$', a: '[-1/4;5/6]', dom: x => Math.sqrt((5 - 6 * x) * (1 + 4 * x)), why: 'Tableau de signes avec les racines $\\frac56$ et $-\\frac14$ ; on garde le produit ≥ 0.' }
+], { hints: ['a) factorise avec $a^2-b^2=(a-b)(a+b)$.  b) deux C.E.  c) deux C.E.  d) tableau de signes.'], sol: ['a) $(3x-2)(3x+2)\\neq0 \\iff x\\neq\\frac23$ et $x\\neq-\\frac23$', 'b) $2x+1\\geq0 \\iff x\\geq-\\frac12$ et $x\\neq2$', 'c) $x\\geq-1$ et $2x-1\\neq0 \\iff x\\neq\\frac12$', 'd) $5-6x=0 \\iff x=\\frac56$ ; $1+4x=0 \\iff x=-\\frac14$. Produit ≥ 0 entre les racines : $[-\\frac14;\\frac56]$.'] });
+X(tDomaine, 'dm10', 3, 'Le piège du point isolé', 'Soit $f(x)=\\sqrt{\\dfrac{7x(x^2-2x+1)}{3-8x}}$. Note que $x^2-2x+1=(x-1)^2$. Valeurs critiques : $0$, $\\frac38$ (dénominateur), $1$.', [
+  { t: 'signtable', cols: ['-\\infty', '0', '\\frac38', '1', '+\\infty'], rows: [{ l: '7x', s: '-+++'.split(''), m: ['', '0', '', '', ''] }, { l: '(x-1)^2', s: '++++'.split(''), m: ['', '', '', '0', ''] }, { l: '3-8x', s: '++--'.split(''), m: ['', '', '0', '', ''] }, { l: '\\text{quotient}', s: '-+--'.split(''), m: ['', '0', '|', '0', ''], res: true }] },
+  { t: 'set', q: 'On garde les $x$ où le quotient est $\\geq0$ (n’oublie pas les zéros !) : $D_f=$', a: '[0;3/8[U{1}', dom: x => Math.sqrt(7 * x * (x * x - 2 * x + 1) / (3 - 8 * x)), why: 'Le quotient est positif sur $]0;\\frac38[$, nul en 0 et en 1 : 0 est inclus (borne fermée) et 1 est un point isolé à ajouter : $\\{1\\}$. Mais $\\frac38$ est exclu.' }
+], { hints: ['$(x-1)^2$ est toujours ≥ 0 et vaut 0 en $x=1$.', 'Quand le quotient vaut 0 (numérateur nul), la racine existe : $\\sqrt0=0$.'], sol: ['Le facteur $(x-1)^2$ ne change jamais de signe : + partout, 0 en 1.', 'Quotient : − sur $]-\\infty;0[$, + sur $]0;\\frac38[$, − sur $]\\frac38;1[$, − sur $]1;+\\infty[$.', 'Il vaut 0 en $x=0$ et en $x=1$ (on garde ces points). $x=\\frac38$ est interdit.', '$D_f=[0;\\frac38[\\,\\cup\\,\\{1\\}$.'] });
+tDomaine.gens.push(() => {
+  const k = rnd(0, 2), a = rnd(1, 6), b = rnd(1, 6); let tx, ans, dom;
+  if (k === 0) { tx = `\\frac{1}{x-${a}}`; ans = `R\\{${a}}`; dom = x => 1 / (x - a); }
+  else if (k === 1) { tx = `\\sqrt{x-${a}}`; ans = `[${a};+inf[`; dom = x => Math.sqrt(x - a); }
+  else { tx = `\\frac{x}{(x-${a})(x+${b})}`; ans = `R\\{${-b};${a}}`; dom = x => x / ((x - a) * (x + b)); }
+  return { id: 'gen_dm_' + Math.random(), topic: 'domaine', level: 1, title: 'Domaine (variante)', intro: `Soit $f(x)=${tx}$.`, parts: [{ t: 'set', q: 'Domaine de définition :', a: ans, dom }], hints: ['Fraction : dénominateur ≠ 0. Racine : radicande ≥ 0.'], sol: [k === 1 ? `C.E. $x-${a}\\geq0 \\iff x\\geq${a}$.` : k === 0 ? `C.E. $x-${a}\\neq0 \\iff x\\neq${a}$.` : `C.E. $(x-${a})(x+${b})\\neq0 \\iff x\\neq${a}$ et $x\\neq${-b}$.`] };
+});
+
+/* =================== 3. graphique =================== */
+const tGraph = topic({
+  id: 'graphique', ch: 1, n: '1.3', title: 'Représentation graphique', icon: '⌗',
+  lesson: `<div class="rule"><b class="t">À retenir</b>La <b>courbe représentative</b> $\\mathcal C_f$ est l’ensemble des points $M(x\\,;f(x))$.<br>• <b>Tableau de valeurs</b> : on calcule $f(x)$ pour plusieurs $x$, on place les points $(x\\,;f(x))$ puis on les relie.<br>• Un point $A(a\\,;b)$ appartient à $\\mathcal C_f$ $\\iff$ $f(a)=b$.<br>• Une courbe représente une fonction si <b>toute droite verticale la coupe au plus une fois</b>.</div>
+  <div class="rule ex"><b class="t">Exemple — $f(x)=x^2-4$</b><ol class="steps"><li>$f(-3)=(-3)^2-4=9-4=5$, $f(-2)=0$, $f(-1)=-3$, $f(0)=-4$, $f(1)=-3$, $f(2)=0$, $f(3)=5$.</li><li>On place $(-3;5)$, $(-2;0)$, $(-1;-3)$, $(0;-4)$, … puis on trace la parabole.</li></ol></div>
+  <div class="rule"><b class="t">Traduire</b>« $\\mathcal C_f$ passe par $(-1;3)$ » $\\iff f(-1)=3$. « $\\mathcal C_f$ coupe l’axe des ordonnées en $-2$ » $\\iff f(0)=-2$. « $\\mathcal C_f$ coupe l’axe des abscisses en $-1$ et $4$ » $\\iff f(-1)=0$ et $f(4)=0$.</div>`
+});
+X(tGraph, 'gr1', 1, 'Compléter un tableau de valeurs', 'Soit $f(x)=x^2-4$ (exemple du cours). Complète le tableau.', [
+  { t: 'table', xs: [-3, -2, -1, 0, 1, 2, 3], f: x => x * x - 4 }
+], { hints: ['Pour $x=-3$ : $(-3)^2-4=9-4$. Le carré d’un nombre négatif est positif.'], sol: ['$f(-3)=9-4=5$ ; $f(-2)=4-4=0$ ; $f(-1)=1-4=-3$ ; $f(0)=-4$ ; $f(1)=-3$ ; $f(2)=0$ ; $f(3)=5$.', 'Remarque : $f(-x)=f(x)$ — la courbe est symétrique par rapport à l’axe des ordonnées.'] });
+X(tGraph, 'gr2', 1, 'Placer les points', 'Calcule $f(x)=x^2-4$ pour $x=-2;-1;0;1;2$ puis <b>place les 5 points</b> $(x\\,;f(x))$ dans le repère.', [
+  { t: 'plot', cfg: { xmin: -4, xmax: 4, ymin: -5, ymax: 5, w: 520, h: 360 }, pts: [[-2, 0], [-1, -3], [0, -4], [1, -3], [2, 0]], fn: x => x * x - 4, showCoords: true }
+], { hints: ['Chaque point a pour abscisse $x$ et pour ordonnée $f(x)$ : $(-2\\,;0)$, $(-1\\,;-3)$, …'], sol: ['Points : $(-2;0)$, $(-1;-3)$, $(0;-4)$, $(1;-3)$, $(2;0)$.', 'Reliés par une courbe lisse, ils forment une parabole de sommet $(0;-4)$.'] });
+(() => {
+  const circ = para(t => 2 * Math.cos(t), t => 2 * Math.sin(t), 0, 2 * Math.PI), side = para(t => t * t / 2 - 3, t => t, -3.4, 3.4), cub = x => x * x * x / 4, par = x => x * x - 2;
+  const r = [-4, 4, -4, 4];
+  X(tGraph, 'gr3', 1, 'Est-ce la courbe d’une fonction ?', 'Test de la droite verticale : si une droite verticale peut couper la courbe en <b>2 points ou plus</b>, ce n’est pas une fonction.', [
+    { t: 'tf', q: 'Courbe 1 (cercle) : c’est la courbe d’une fonction.', a: false, why: 'Une verticale coupe le cercle en 2 points : un même $x$ aurait deux images.', fig: MINI([{ pts: circ }], r) },
+    { t: 'tf', q: 'Courbe 2 (parabole « couchée ») : c’est la courbe d’une fonction.', a: false, why: 'Une verticale (par ex. $x=0$) la coupe 2 fois.', fig: MINI([{ pts: side }], r) },
+    { t: 'tf', q: 'Courbe 3 (parabole « debout ») : c’est la courbe d’une fonction.', a: true, why: 'Chaque verticale coupe la courbe en un seul point.', fig: MINI([{ fn: par, x0: -4, x1: 4 }], r) },
+    { t: 'tf', q: 'Courbe 4 (type $x^3$) : c’est la courbe d’une fonction.', a: true, why: 'Chaque verticale la coupe une seule fois.', fig: MINI([{ fn: cub, x0: -4, x1: 4 }], r) }
+  ], { hints: ['Imagine une règle verticale que tu fais glisser de gauche à droite.'], sol: ['Fonction ⇔ un $x$ n’a <b>jamais deux images</b> ⇔ toute verticale coupe la courbe au plus une fois.', 'Cercle et parabole couchée : non. Parabole debout et type $x^3$ : oui.'] });
+})();
+X(tGraph, 'gr4', 2, 'Une parabole retournée', 'Soit $f(x)=-\\frac12x^2+6$ (exercice 7 du cours). Complète le tableau (fractions ou décimaux).', [
+  { t: 'table', xs: [-4, -2, -1, 0, 1, 2, 4], f: x => -0.5 * x * x + 6, why: '$-\\frac12x^2$ : d’abord $x^2$, puis multiplier par $-\\frac12$, puis ajouter 6.' }
+], { hints: ['Pour $x=-4$ : $(-4)^2=16$, puis $-\\frac12\\cdot16=-8$, puis $-8+6=-2$.'], sol: ['$f(-4)=-\\frac12\\cdot16+6=-8+6=-2$', '$f(-2)=-\\frac12\\cdot4+6=-2+6=4$', '$f(-1)=-\\frac12+6=5,5$', '$f(0)=6$ ; puis symétrique : $f(1)=5,5$ ; $f(2)=4$ ; $f(4)=-2$.'] });
+X(tGraph, 'gr5', 2, 'Un point appartient-il à la courbe ?', 'Soit $f(x)=x^2+1$ et $\\mathcal C_f$ sa courbe (exercice 12 du cours). Un point $(a\\,;b)$ est sur $\\mathcal C_f$ $\\iff$ $f(a)=b$.', [
+  { t: 'tf', q: '$A(-2\\,;5)\\in\\mathcal C_f$', a: true, why: '$f(-2)=(-2)^2+1=5$ ✓.' },
+  { t: 'tf', q: '$B(3\\,;11)\\in\\mathcal C_f$', a: false, why: '$f(3)=9+1=10\\neq11$.' },
+  { t: 'tf', q: '$C(\\sqrt2\\,;3)\\in\\mathcal C_f$', a: true, why: '$f(\\sqrt2)=(\\sqrt2)^2+1=2+1=3$ ✓.' },
+  { t: 'num', q: 'Pour $g(x)=x^2-2x+3$ : quelle est l’ordonnée du point de $\\mathcal C_g$ d’abscisse $-1$ ?', a: 6, traps: [{ v: 2, msg: 'Attention au signe : $-2\\cdot(-1)=+2$ et $(-1)^2=1$, donc $1+2+3=6$.' }] }
+], { hints: ['Calcule $f(a)$ et compare-le à l’ordonnée du point.'], sol: ['$f(-2)=5$ → oui. $f(3)=10$, pas 11 → non. $f(\\sqrt2)=3$ → oui.', '$g(-1)=(-1)^2-2\\cdot(-1)+3=1+2+3=6$.'] });
+X(tGraph, 'gr6', 2, 'Traduire une phrase en égalité', 'Complète. (Rappel : $M(x;y)\\in\\mathcal C_f \\iff y=f(x)$.)', [
+  { t: 'fill', lines: ['« $\\mathcal C_f$ passe par $(-1\\,;3)$ » donne $f(-1)=$ [[1]]', '« $\\mathcal C_f$ coupe l’axe des ordonnées au point d’ordonnée $-2$ » donne $f($ [[2]] $)=$ [[3]]', '« $\\mathcal C_f$ coupe l’axe des abscisses en $-1$ et en $4$ » donne $f(-1)=$ [[4]] et $f(4)=$ [[5]]'],
+    b: [{ k: 'n', a: 3 }, { k: 'n', a: 0, why: 'Sur l’axe des ordonnées, l’abscisse vaut 0.' }, { k: 'n', a: -2 }, { k: 'n', a: 0 }, { k: 'n', a: 0, why: 'Sur l’axe des abscisses, l’ordonnée vaut 0.' }] }
+], { hints: ['Sur l’axe des ordonnées : $x=0$. Sur l’axe des abscisses : $y=0$.'], sol: ['$(-1;3)$ → $f(-1)=3$.', 'Axe des ordonnées : $x=0$ → $f(0)=-2$.', 'Axe des abscisses : $y=0$ → $f(-1)=0$ et $f(4)=0$.'] });
+X(tGraph, 'gr7', 3, 'Points et antécédents', 'Soit $f(x)=x^2+2x+7$.', [
+  { t: 'tf', q: 'a) $A(2\\,;14)$ appartient à $\\mathcal C_f$.', a: false, why: '$f(2)=4+4+7=15\\neq14$.' },
+  { t: 'tf', q: 'b) $B(-3\\,;10)$ appartient à $\\mathcal C_f$.', a: true, why: '$f(-3)=9-6+7=10$ ✓.' },
+  { t: 'numset', q: 'c) Le point $C(x\\,;6)$ appartient à $\\mathcal C_f$ : détermine $x$.', a: [-1], chkf: { f: x => x * x + 2 * x + 7, k: 6 }, why: 'Résous $f(x)=6$ : $x^2+2x+7=6 \\iff x^2+2x+1=0 \\iff (x+1)^2=0$.' },
+  { t: 'num', q: 'd) Ordonnée du point $D$ de $\\mathcal C_f$ d’abscisse $-2$ :', a: 7 }
+], { hints: ['c) Amène tout d’un côté : $x^2+2x+1=0$, c’est une identité remarquable.'], sol: ['a) $f(2)=15$ → non ; b) $f(-3)=10$ → oui.', 'c) $x^2+2x+7=6 \\iff x^2+2x+1=0 \\iff (x+1)^2=0 \\iff x=-1$ (un seul point).', 'd) $f(-2)=4-4+7=7$.'] });
+X(tGraph, 'gr8', 3, 'Lire un domaine sur un graphique', 'Analyse chaque courbe.', [
+  { t: 'set', q: 'Courbe A (traits pleins aux deux extrémités). Domaine de définition ?', a: '[-3;4]', fig: G(CV.GA, { w: 460, h: 300 }), why: 'Le domaine = les abscisses où la courbe existe. Points pleins → crochets fermés.' },
+  { t: 'tf', q: 'Courbe B (parabole couchée) : c’est la courbe d’une fonction.', a: false, why: 'Deux points sur une même verticale.', fig: MINI([{ pts: para(t => t * t / 2 - 3, t => t, -3.4, 3.4) }], [-4, 4, -4, 4]) },
+  { t: 'set', q: 'Courbe C (point plein à gauche en $x=-2$, point <b>vide</b> à droite en $x=5$). Domaine ?', a: '[-2;5[', fig: G(CV.GC, { w: 460, h: 300, points: [{ x: -2, y: 3 }, { x: 5, y: 4, open: true }] }), why: 'Un point vide signifie que la valeur n’est pas atteinte : crochet ouvert en 5.' }
+], { hints: ['Regarde l’étendue horizontale de la courbe, de gauche à droite.'], sol: ['A : de $x=-3$ à $x=4$ → $[-3;4]$.', 'B : non, ce n’est pas une fonction.', 'C : de $-2$ (inclus) à $5$ (exclu) → $[-2;5[$.'] });
+tGraph.gens.push(() => {
+  const a = pick([1, 2, 3, -1, -2]), c = rnd(-5, 5), xs = [-2, -1, 0, 1, 2], f = x => a * x * x + c;
+  return { id: 'gen_gr_' + Math.random(), topic: 'graphique', level: 1, title: 'Tableau de valeurs (variante)', intro: `Soit $f(x)=${a === 1 ? '' : a === -1 ? '-' : a}x^2${c < 0 ? '-' : '+'}${Math.abs(c)}$. Complète.`, parts: [{ t: 'table', xs, f }], hints: ['Calcule d’abord $x^2$ puis multiplie par le coefficient.'], sol: xs.map(x => `$f(${x})=${a}\\cdot(${x})^2${c < 0 ? '-' : '+'}${Math.abs(c)}=${f(x)}$`) };
+});
+tGraph.gens.push(() => {
+  const p = rnd(-3, 3) || 1, q = rnd(-4, 4), a = rnd(-3, 3), f = x => x * x + p * x + q, b = f(a) + pick([0, 0, 1, -1, 2]);
+  const yes = f(a) === b;
+  return { id: 'gen_gp_' + Math.random(), topic: 'graphique', level: 2, title: 'Appartenance (variante)', intro: `Soit $f(x)=x^2${p < 0 ? '-' : '+'}${Math.abs(p)}x${q < 0 ? '-' : '+'}${Math.abs(q)}$.`, parts: [{ t: 'tf', q: `Le point $A(${a}\\,;${b})$ appartient à $\\mathcal C_f$.`, a: yes, why: `$f(${a})=${f(a)}$ ${yes ? '= ' + b + ' ✓' : '≠ ' + b}.` }], hints: ['Calcule $f(a)$ et compare.'], sol: [`$f(${a})=(${a})^2${p < 0 ? '-' : '+'}${Math.abs(p)}\\cdot(${a})${q < 0 ? '-' : '+'}${Math.abs(q)}=${f(a)}$.`, yes ? 'C’est l’ordonnée du point : il appartient à la courbe.' : `Ce n’est pas ${b} : le point n’appartient pas à la courbe.`] };
+});
+
+'use strict';
+/* =================== 4. résolutions graphiques =================== */
+const tRes = topic({
+  id: 'resolution', ch: 1, n: '1.4', title: 'Résolutions graphiques', icon: '≶',
+  lesson: `<div class="rule"><b class="t">À retenir</b>• <b>Équation</b> $f(x)=k$ : on trace la droite horizontale $y=k$ ; les solutions sont les <b>abscisses</b> des points d’intersection avec $\\mathcal C_f$.<br>
+  • <b>Inéquation</b> $f(x)<k$ : on cherche les abscisses où la courbe est <b>en dessous</b> de la droite $y=k$ ; $f(x)>k$ : <b>au-dessus</b>.<br>
+  • La réponse est une <b>ensemble</b> $S$ (liste de nombres pour une équation, intervalles pour une inéquation).</div>
+  <div class="rule"><b class="t">Crochets</b>$<$ ou $>$ → crochet <b>ouvert</b> ] [. $\\leq$ ou $\\geq$ → crochet <b>fermé</b> [ ]. Les bornes du domaine sont fermées si le point est plein.</div>
+  <div class="rule warn"><b class="t">Attention</b>On lit les solutions sur l’axe des <b>abscisses</b> (les $x$), jamais sur celui des ordonnées. Une partie « plate » de la courbe à la hauteur $k$ donne tout un intervalle de solutions pour $f(x)=k$.</div>`,
+  explorer: 'resolution'
+});
+X(tRes, 'rs1', 1, 'Lire des images et des antécédents', 'Voici la courbe d’une fonction $f$ définie sur $[-5;4]$. La droite verte est $y=1$.', [
+  { t: 'num', q: 'Image de $-2$ : $f(-2)=$', a: 1 },
+  { t: 'num', q: '$f(4)=$', a: -2 },
+  { t: 'numset', q: 'Antécédents de 1 (= solutions de $f(x)=1$)', a: [-2, 3], cv: { f: CV.R2, k: 1, rel: '=' } }
+], { fig: G(CV.R2, { hlines: [{ y: 1 }], ymin: -3, ymax: 5, w: 520, h: 330 }), hints: ['Antécédents de 1 : où la courbe coupe-t-elle la droite verte ? Lis les abscisses.'], sol: ['On lit : le point d’abscisse $-2$ est à la hauteur 1 → $f(-2)=1$.', 'À droite, la courbe s’arrête à $(4;-2)$ → $f(4)=-2$.', 'La droite $y=1$ coupe la courbe en $x=-2$ et $x=3$ : $S=\\{-2;3\\}$.'] });
+X(tRes, 'rs2', 1, 'Quelle méthode ?', '', [
+  { t: 'mcq', q: 'Pour résoudre graphiquement $f(x)<k$, que cherche-t-on ?', o: [{ t: 'Les abscisses des points de $\\mathcal C_f$ situés <b>en dessous</b> de la droite $y=k$' }, { t: 'Les ordonnées des points de $\\mathcal C_f$ situés en dessous de $y=k$', why: 'La solution est un ensemble de $x$ (abscisses), pas d’ordonnées.' }, { t: 'Les abscisses des points au <b>dessus</b> de la droite $y=k$', why: '« Au-dessus » correspond à $f(x)>k$.' }, { t: 'Seulement les points d’intersection avec $y=k$', why: 'Les intersections donnent $f(x)=k$ ; pour « $<$ » il faut toute la zone en dessous.' }], c: 0 },
+  { t: 'mcq', q: 'La solution de $f(x)\\geq k$ contient-elle les points d’intersection ?', o: [{ t: 'Oui : crochets fermés' }, { t: 'Non : crochets ouverts', why: 'Avec ≥ (ou ≤), l’égalité est permise : les bornes sont incluses, donc crochets fermés.' }], c: 0 }
+], { sol: ['« $<$ » = en dessous de la droite, « $>$ » = au-dessus ; on lit des abscisses.', 'Avec ≤ / ≥, les points d’intersection comptent : crochets fermés.'] });
+X(tRes, 'rs3', 2, 'Équation et inéquation (1)', 'Courbe de $f$ sur $[-4;2]$ ; droite $y=3$.', [
+  { t: 'numset', q: 'a) Résous $f(x)=3$.', a: [-4, -2, 1], cv: { f: CV.R1, k: 3, rel: '=' } },
+  { t: 'set', q: 'b) Résous $f(x)<3$.', a: ']-4;-2[U]1;2]', cv: { f: CV.R1, k: 3, rel: '<' }, why: 'Regarde où la courbe est sous la droite. Les solutions de a) sont exclues (inégalité stricte) ; mais $x=2$ est le bord du domaine et $f(2)=2<3$ : il est inclus.' }
+], { fig: G(CV.R1, { hlines: [{ y: 3 }], ymin: -1, ymax: 6, w: 520, h: 330 }), hints: ['La droite coupe la courbe en trois points. Pour $<3$, repère les arcs sous la droite.'], sol: ['a) $S=\\{-4;-2;1\\}$.', 'b) Sous la droite : de $-4$ à $-2$ (bornes exclues) et de 1 à 2. À droite, 2 est la fin du domaine, point plein : inclus.', '$S=]-4;-2[\\,\\cup\\,]1;2]$.'] });
+X(tRes, 'rs4', 2, 'Équation et inéquation (2)', 'Courbe de $f$ sur $[-5;4]$ ; droite $y=1$.', [
+  { t: 'numset', q: 'a) Résous $f(x)=1$.', a: [-2, 3], cv: { f: CV.R2, k: 1, rel: '=' } },
+  { t: 'set', q: 'b) Résous $f(x)\\leq1$.', a: '[-5;-2]U[3;4]', cv: { f: CV.R2, k: 1, rel: '<=' }, why: 'Avec ≤ les abscisses −2 et 3 sont incluses : crochets fermés.' }
+], { fig: G(CV.R2, { hlines: [{ y: 1 }], ymin: -3, ymax: 5, w: 520, h: 330 }), hints: ['Sous la droite verte (ou dessus) : à gauche des deux premiers points et à droite du dernier.'], sol: ['a) $S=\\{-2;3\\}$.', 'b) La courbe est sous la droite (ou dessus) sur $[-5;-2]$ et sur $[3;4]$.', '$S=[-5;-2]\\cup[3;4]$.'] });
+X(tRes, 'rs5', 3, 'Une partie horizontale', 'Courbe de $f$ sur $[-5;5]$ avec une partie « plate » de $x=-2$ à $x=2$ à la hauteur 2.', [
+  { t: 'set', q: 'a) $f(x)=2$ : $S=$', a: '[-2;2]', cv: { f: CV.R3, k: 2, rel: '=' }, why: 'Toute la partie plate est à la hauteur 2 : ce sont donc tous les $x$ de $-2$ à 2, pas seulement deux points.' },
+  { t: 'set', q: 'b) $f(x)\\leq3$ : $S=$', a: '[-5;3]', cv: { f: CV.R3, k: 3, rel: '<=' } },
+  { t: 'set', q: 'c) $f(x)>2$ : $S=$', a: ']2;5]', cv: { f: CV.R3, k: 2, rel: '>' }, why: 'La partie plate vaut exactement 2 : elle n’est pas strictement au-dessus. La courbe dépasse 2 seulement après $x=2$.' },
+  { t: 'numset', q: 'd) $f(x)=-1$ : $S=$', a: [-5], cv: { f: CV.R3, k: -1, rel: '=' } }
+], { fig: G(CV.R3, { hlines: [{ y: 2 }, { y: 3, color: '#d97706' }], ymin: -2, ymax: 6, w: 520, h: 330 }), hints: ['Une courbe horizontale sur un intervalle donne une infinité de solutions.', 'c) strict : on exclut la hauteur 2 elle-même.'], sol: ['a) $S=[-2;2]$.', 'b) La courbe atteint 3 en $x=3$ puis monte : $S=[-5;3]$.', 'c) Au-dessus de 2 : après $x=2$ jusqu’au bout : $S=]2;5]$.', 'd) La courbe est à −1 seulement au départ : $S=\\{-5\\}$.'] });
+X(tRes, 'rs6', 3, 'Cas limites', 'Reprends la courbe de $f$ sur $[-4;2]$ (maximum 5 atteint en $x=-0,5$).', [
+  { t: 'set', q: 'a) $f(x)\\geq3$ : $S=$ (attention à l’extrémité gauche !)', a: '{-4}U[-2;1]', cv: { f: CV.R1, k: 3, rel: '>=' }, why: 'En $x=-4$, $f(-4)=3$ : le point isolé $\\{-4\\}$ est solution (≥). Puis la courbe redescend sous 3 et remonte au-dessus entre $-2$ et 1.' },
+  { t: 'set', q: 'b) $f(x)>5$ : $S=$', a: '∅', why: 'Le maximum de $f$ est 5 : aucun point strictement au-dessus de 5. Écris ∅ ou « aucun ».' },
+  { t: 'set', q: 'c) $f(x)\\geq5$ : $S=$', a: '{-1/2}', why: 'Seul le sommet touche la droite $y=5$.' }
+], { fig: G(CV.R1, { hlines: [{ y: 3 }, { y: 5, color: '#d97706' }], ymin: -1, ymax: 6.5, w: 520, h: 330 }), hints: ['Quand la droite est tangente au sommet, la solution de ≥ est un seul point ; pour > elle est vide.'], sol: ['a) $\\{-4\\}\\cup[-2;1]$', 'b) $S=\\varnothing$', 'c) $S=\\{-\\frac12\\}$'] });
+
+/* =================== 5. signe =================== */
+const tSigne = topic({
+  id: 'signe', ch: 1, n: '1.4', title: 'Signe d’une fonction', icon: '±',
+  lesson: `<div class="rule"><b class="t">À retenir</b>Étudier le <b>signe</b> de $f$ = dire où $f(x)$ est positif, négatif, nul.<br>• $f(x)>0$ : la courbe est <b>au-dessus</b> de l’axe des abscisses.<br>• $f(x)<0$ : la courbe est <b>en dessous</b>.<br>• $f(x)=0$ : la courbe <b>coupe</b> l’axe des abscisses (ce sont les zéros).</div>
+  <div class="rule ex"><b class="t">Tableau de signes</b>On écrit les bornes du domaine et les zéros dans la ligne de $x$ ; dans la ligne $f(x)$ on met $+$ ou $-$ pour chaque intervalle et $0$ aux zéros.<br>Exemple du cours : $f$ sur $[-4;6]$ : $x$ : $-4\\;\\ 3\\;\\ 5\\;\\ 6$ ; $f(x)$ : $+\\ 0\\ -\\ 0\\ +$.</div>`
+});
+X(tSigne, 'sg1', 1, 'Compléter un tableau de signes', 'Courbe de $f$ sur $[-4;2]$. Elle coupe l’axe des abscisses en $x=-3$ et $x=1$. Complète le tableau.', [
+  { t: 'signtable', cols: ['-4', '-3', '1', '2'], rows: [{ l: 'f(x)', s: '-+-'.split(''), m: ['', '0', '0', ''], res: true }] }
+], { fig: G(CV.S1, { w: 520, h: 330 }), hints: ['Courbe sous l’axe → $-$ ; au-dessus → $+$.'], sol: ['Sur $[-4;-3[$ la courbe est sous l’axe : $-$.', 'Sur $]-3;1[$ elle est au-dessus : $+$.', 'Sur $]1;2]$ elle est de nouveau sous l’axe : $-$. Zéros : $-3$ et $1$.'] });
+X(tSigne, 'sg2', 1, 'Comprendre le tableau', 'Dans un tableau de signes de $f$, on lit « $+$ » sur $]-3;1[$ et « $0$ » en $x=-3$ et en $x=1$.', [
+  { t: 'mcq', q: 'Que cela signifie-t-il ?', o: [{ t: 'Sur $]-3;1[$, la courbe est au-dessus de l’axe des abscisses ; elle le coupe en $-3$ et en $1$.' }, { t: 'Sur $]-3;1[$, $f$ est croissante.', why: 'Le signe ne dit rien sur le sens de variation.' }, { t: 'Sur $]-3;1[$, la courbe est en dessous de l’axe.', why: '$+$ signifie $f(x)>0$ : au-dessus.' }, { t: '$f(-3)=1$ et $f(1)=-3$.', why: '$-3$ et $1$ sont des abscisses où $f(x)=0$.' }], c: 0 }
+], { sol: ['$+$ : $f(x)>0$ : courbe au-dessus de l’axe ; $0$ : zéro de la fonction (intersection avec l’axe).'] });
+X(tSigne, 'sg3', 2, 'Signe et inéquations', 'Courbe de $f$ sur $[-1;6]$ ; $f(2)=0$ et $f(4)=0$.', [
+  { t: 'signtable', cols: ['-1', '2', '4', '6'], rows: [{ l: 'f(x)', s: '+-+'.split(''), m: ['', '0', '0', ''], res: true }] },
+  { t: 'set', q: 'Résous $f(x)\\geq0$ : $S=$', a: '[-1;2]U[4;6]', cv: { f: CV.S2, k: 0, rel: '>=' } },
+  { t: 'set', q: 'Résous $f(x)<0$ : $S=$', a: ']2;4[', cv: { f: CV.S2, k: 0, rel: '<' } }
+], { fig: G(CV.S2, { w: 520, h: 320 }), hints: ['$f(x)\\geq0$ : au-dessus de l’axe ou sur l’axe.'], sol: ['Tableau : $+$ sur $[-1;2[$, $-$ sur $]2;4[$, $+$ sur $]4;6]$.', '$f(x)\\geq0$ : $[-1;2]\\cup[4;6]$ (les zéros sont inclus).', '$f(x)<0$ : $]2;4[$.'] });
+X(tSigne, 'sg4', 3, 'Trois zéros', 'Courbe de $f$ sur $[-5;5]$. Elle coupe l’axe des abscisses en $x=-3$, $x=0$ et $x=4$.', [
+  { t: 'signtable', cols: ['-5', '-3', '0', '4', '5'], rows: [{ l: 'f(x)', s: '-+-+'.split(''), m: ['', '0', '0', '0', ''], res: true }] },
+  { t: 'set', q: '$f(x)\\geq0$ : $S=$', a: '[-3;0]U[4;5]', cv: { f: CV.S3, k: 0, rel: '>=' } },
+  { t: 'set', q: '$f(x)<0$ : $S=$', a: '[-5;-3[U]0;4[', cv: { f: CV.S3, k: 0, rel: '<' }, why: 'En $x=-5$ la courbe est en dessous de l’axe ($f(-5)=-2$) : −5 est inclus (point plein).' }
+], { fig: G(CV.S3, { w: 540, h: 330 }), hints: ['Alterne : sous l’axe, au-dessus, sous, au-dessus.'], sol: ['Signes : $-$ sur $[-5;-3[$, $+$ sur $]-3;0[$, $-$ sur $]0;4[$, $+$ sur $]4;5]$.', '$f(x)\\geq0$ : $[-3;0]\\cup[4;5]$.', '$f(x)<0$ : $[-5;-3[\\,\\cup\\,]0;4[$.'] });
+
+/* =================== 6. sens de variation =================== */
+const tSens = topic({
+  id: 'sens', ch: 1, n: '1.5', title: 'Croissante, décroissante, constante', icon: '↗',
+  lesson: `<div class="rule"><b class="t">À retenir</b>Sur un intervalle $I$ :<br>• $f$ est <b>strictement croissante</b> si sa courbe « <b>monte</b> » de gauche à droite ($u<v \\Rightarrow f(u)<f(v)$).<br>• $f$ est <b>strictement décroissante</b> si sa courbe « <b>descend</b> ».<br>• $f$ est <b>constante</b> si sa courbe est « <b>horizontale</b> ».</div>
+  <div class="rule ex"><b class="t">Exemple du cours</b>$f$ sur $[-5;5]$ : croissante sur $[-5;5]$ ; strictement croissante sur $[-5;-2]$ ; constante sur $[-2;2]$ ; strictement croissante sur $[2;5]$.</div>
+  <div class="rule warn"><b class="t">Attention</b>On lit toujours de <b>gauche à droite</b>, et on donne des <b>intervalles</b> (des $x$). Une fonction peut être croissante (au sens large) tout en ayant une partie constante.</div>`
+});
+X(tSens, 'se1', 1, 'Définitions', '', [
+  { t: 'mcq', q: '$f$ est strictement décroissante sur $I$ si…', o: [{ t: 'sa courbe « descend » de gauche à droite' }, { t: 'sa courbe « monte » de gauche à droite', why: 'C’est la définition de strictement <b>croissante</b>.' }, { t: 'sa courbe est horizontale', why: 'C’est une fonction <b>constante</b>.' }, { t: 'elle est négative', why: 'Le signe n’a rien à voir avec le sens de variation.' }], c: 0 }
+], { sol: ['Décroissante : la courbe descend quand on avance vers la droite ($u<v \\Rightarrow f(u)>f(v)$).'] });
+X(tSens, 'se2', 1, 'Associer', 'Associe chaque courbe à sa description.', [
+  { t: 'match', noChoices: false, choices: [{ k: 'A', t: 'strictement croissante' }, { k: 'B', t: 'strictement décroissante' }, { k: 'C', t: 'constante' }], items: [
+    { fig: MINI([{ fn: lin(-1, 0, -3, 3) }], [-3, 3, -3, 3], { xmin: -3.5, xmax: 3.5 }), a: 'B' },
+    { fig: MINI([{ fn: lin(0, 1, -3, 3) }], [-3, 3, -3, 3], { xmin: -3.5, xmax: 3.5 }), a: 'C' },
+    { fig: MINI([{ fn: lin(1, 0, -3, 3) }], [-3, 3, -3, 3], { xmin: -3.5, xmax: 3.5 }), a: 'A' }] }
+], { sol: ['Courbe qui monte → A ; qui descend → B ; horizontale → C.'] });
+X(tSens, 'se3', 1, 'Lire un graphique', 'Voici la courbe de $f$ sur $[-5;5]$ (la partie du milieu est horizontale).', [
+  { t: 'fill', lines: ['$f$ est [[1]] sur $[-5;-2]$', '$f$ est [[2]] sur $[-2;2]$', '$f$ est [[3]] sur $[2;5]$'], b: [{ k: 's', o: SELS, a: SELS[0] }, { k: 's', o: SELS, a: SELS[2] }, { k: 's', o: SELS, a: SELS[0] }] }
+], { fig: G(CV.R3, { w: 520, h: 320 }), hints: ['Avance de gauche à droite : la courbe monte, reste à plat, puis remonte.'], sol: ['Sur $[-5;-2]$ la courbe monte → strictement croissante.', 'Sur $[-2;2]$ elle est horizontale → constante.', 'Sur $[2;5]$ elle monte → strictement croissante.', 'Sur tout $[-5;5]$ elle ne descend jamais : $f$ est croissante.'] });
+X(tSens, 'se4', 2, 'Des intervalles à trouver', 'Courbe de $f$ sur $[-3;5]$ (points $A(-3;1)$, $B(-1;-1)$, $C(1;2)$, $D(3;-4)$, $E(5;3)$).', [
+  { t: 'fill', lines: ['sur $[-3;-1]$ : $f$ est [[1]]', 'sur $[-1;1]$ : $f$ est [[2]]', 'sur $[1;3]$ : $f$ est [[3]]', 'sur $[3;5]$ : $f$ est [[4]]'], b: [{ k: 's', o: SELS, a: SELS[1] }, { k: 's', o: SELS, a: SELS[0] }, { k: 's', o: SELS, a: SELS[1] }, { k: 's', o: SELS, a: SELS[0] }] }
+], { fig: G(CV.Q1, { w: 540, h: 330, points: [[-3, 1, 'A'], [-1, -1, 'B'], [1, 2, 'C'], [3, -4, 'D'], [5, 3, 'E']].map(p => ({ x: p[0], y: p[1], label: p[2] })) }), hints: ['Les changements de sens se produisent aux sommets et aux creux (B, C, D).'], sol: ['De A à B la courbe descend, de B à C elle monte, de C à D elle descend, de D à E elle monte.'] });
+X(tSens, 'se5', 3, 'Vrai ou faux (raisonner)', '', [
+  { t: 'tf', q: 'Si $f(1)<f(2)$, alors $f$ est croissante sur $[1;2]$.', a: false, why: 'Comparer deux valeurs ne prouve rien : la courbe peut monter puis descendre entre les deux.' },
+  { t: 'tf', q: 'Une fonction peut être croissante sur $[-5;5]$ et constante sur $[-2;2]$.', a: true, why: 'Oui (cas de l’exemple du cours) : sur la partie plate elle ne descend pas.' },
+  { t: 'tf', q: 'La fonction carré $f(x)=x^2$ est strictement croissante sur $\\R$.', a: false, why: 'Elle décroît sur $]-\\infty;0]$ et croît sur $[0;+\\infty[$.' },
+  { t: 'tf', q: 'Une fonction constante est à la fois croissante et décroissante (au sens large).', a: true, why: 'Elle ne monte ni ne descend : les deux inégalités larges sont vérifiées.' }
+], { sol: ['Le sens de variation se juge sur tout un intervalle, pas sur deux points.'] });
+
+/* =================== 7. extrema =================== */
+const tExt = topic({
+  id: 'extrema', ch: 1, n: '1.5', title: 'Maximum et minimum', icon: '▲',
+  lesson: `<div class="rule"><b class="t">À retenir</b>Sur un intervalle $I$ :<br>• le <b>minimum</b> de $f$ est l’<b>ordonnée</b> du point le plus <b>bas</b> de la courbe ;<br>• le <b>maximum</b> est l’<b>ordonnée</b> du point le plus <b>haut</b>.</div>
+  <div class="rule warn"><b class="t">Ne pas confondre</b>La <b>valeur</b> du maximum (une ordonnée, ex. 4) et l’<b>abscisse</b> où il est atteint (ex. $x=-3$).<br>Exemple du cours : « Le maximum est 4. Il est atteint en $x=-3$. Le minimum est $-3$. Il est atteint en $x=2$. »</div>`
+});
+X(tExt, 'ex1', 1, 'Maximum, minimum et où ?', 'Courbe de $f$ sur $[-5;6]$ : point le plus haut $B(-3;4)$, point le plus bas $A(2;-3)$.', [
+  { t: 'num', q: 'Le maximum de $f$ est :', a: 4, traps: [{ v: -3, msg: '−3 est l’abscisse où il est atteint. Le maximum est une <b>ordonnée</b> (hauteur) : lis l’axe vertical.' }] },
+  { t: 'num', q: 'Il est atteint en $x=$', a: -3 },
+  { t: 'num', q: 'Le minimum de $f$ est :', a: -3, traps: [{ v: 2, msg: '2 est l’abscisse du point le plus bas. Le minimum est son ordonnée : −3.' }] },
+  { t: 'num', q: 'Il est atteint en $x=$', a: 2 }
+], { fig: G(CV.Cm, { w: 540, h: 330, points: [{ x: -3, y: 4, label: 'B' }, { x: 2, y: -3, label: 'A' }, { x: -5, y: 2 }, { x: 6, y: 3 }] }), hints: ['Maximum = hauteur du point le plus haut ; « atteint en » = son abscisse.'], sol: ['Point le plus haut $B(-3;4)$ : maximum $=4$, atteint en $x=-3$.', 'Point le plus bas $A(2;-3)$ : minimum $=-3$, atteint en $x=2$.'] });
+X(tExt, 'ex2', 1, 'La température', 'Température (°C) en fonction du temps (heures) sur une journée.', [
+  { t: 'num', q: 'Température maximale :', a: 28, unit: '°C' },
+  { t: 'num', q: 'À quelle heure ?', a: 14, unit: 'h' },
+  { t: 'num', q: 'Température minimale :', a: 5, unit: '°C' },
+  { t: 'num', q: 'À quelle heure ?', a: 4, unit: 'h' }
+], { fig: G(CV.TP, { xmin: 0, xmax: 24, ymin: 0, ymax: 32, xstep: 1, ystep: 2, lblx: 2, lbly: 4, w: 560, h: 330, points: [] }), hints: ['Axe horizontal : heures. Axe vertical : degrés.'], sol: ['Sommet de la courbe : $(14\\,\\text{h};28\\,°\\text{C})$ → maximum 28 °C à 14 h.', 'Creux : $(4\\,\\text{h};5\\,°\\text{C})$ → minimum 5 °C à 4 h.'] });
+X(tExt, 'ex3', 2, 'Sur un intervalle donné', 'Même courbe que plus haut : $f$ sur $[-3;5]$ ; $f(-3)=1$, $f(-1)=-1$, $f(1)=2$, $f(3)=-4$, $f(5)=3$.', [
+  { t: 'num', q: 'Minimum de $f$ sur $[-3;5]$ :', a: -4 },
+  { t: 'num', q: 'Il est atteint en $x=$', a: 3 },
+  { t: 'num', q: 'Maximum de $f$ sur $[-3;3]$ :', a: 2, traps: [{ v: 3, msg: '$f(5)=3$ est hors de l’intervalle $[-3;3]$ : on ne regarde que la partie de la courbe entre $x=-3$ et $x=3$.' }] },
+  { t: 'num', q: 'Il est atteint en $x=$', a: 1 }
+], { fig: G(CV.Q1, { w: 540, h: 330 }), hints: ['Limite-toi à l’intervalle demandé : cache mentalement le reste de la courbe.'], sol: ['Sur $[-3;5]$ le point le plus bas est $D(3;-4)$ : minimum $-4$ en $x=3$.', 'Sur $[-3;3]$ les points hauts possibles sont $A(-3;1)$ et $C(1;2)$ : maximum $2$ en $x=1$.'] });
+X(tExt, 'ex4', 3, 'Extrémité d’un intervalle', 'Même fonction $f$ (points $A(-3;1)$, $B(-1;-1)$, $C(1;2)$, $D(3;-4)$, $E(5;3)$).', [
+  { t: 'num', q: 'Maximum de $f$ sur $[-3;5]$ :', a: 3, why: 'Le point le plus haut est l’extrémité $E(5;3)$, plus haut que $C$ (hauteur 2).' },
+  { t: 'num', q: 'Il est atteint en $x=$', a: 5 },
+  { t: 'num', q: 'Minimum de $f$ sur $[-1;1]$ :', a: -1 },
+  { t: 'num', q: 'Maximum de $f$ sur $[-1;1]$ :', a: 2 }
+], { fig: G(CV.Q1, { w: 540, h: 330 }), hints: ['Un maximum peut être atteint à l’extrémité de l’intervalle.', 'Sur $[-1;1]$ la courbe est strictement croissante.'], sol: ['Sur $[-3;5]$ : le plus haut est $E(5;3)$ → maximum 3 atteint en $x=5$.', 'Sur $[-1;1]$ la fonction monte de $B(-1;-1)$ à $C(1;2)$ : minimum $-1$ (en $-1$), maximum $2$ (en 1).'] });
+
+/* =================== 8. tableau de variation =================== */
+const tTab = topic({
+  id: 'tableau', ch: 1, n: '1.6', title: 'Tableaux de variation', icon: '▦',
+  lesson: `<div class="rule"><b class="t">À retenir</b>Étudier le <b>sens de variation</b> de $f$, c’est chercher les <b>plus grands intervalles</b> où $f$ est strictement croissante, strictement décroissante ou constante. On résume dans un <b>tableau de variation</b>.</div>
+  <div class="rule ex"><b class="t">Méthode — courbe → tableau</b><ol class="steps"><li>Ligne de $x$ : les bornes du domaine et les $x$ où la courbe change de sens.</li><li>Ligne de $f(x)$ : une flèche ↗ (la courbe monte) ou ↘ (elle descend) entre deux $x$ consécutifs.</li><li>À chaque extrémité de flèche : l’<b>ordonnée</b> du point.</li></ol>Exemple : $x$ : $-5\\;\\ -3\\;\\ 2\\;\\ 6$ et $f$ : $2\\nearrow4\\searrow-3\\nearrow3$.</div>
+  <div class="rule warn"><b class="t">Attention</b>On écrit les <b>ordonnées</b> $f(x)$ sous les flèches (pas les abscisses). Les extrema du tableau sont le maximum (haut) et le minimum (bas) locaux.</div>`
+});
+X(tTab, 'tb1', 1, 'Compléter les valeurs', 'Courbe de $f$ sur $[-5;6]$. Les flèches sont données : complète les valeurs manquantes (ordonnées des points $(-5;2)$, $(-3;4)$, $(2;-3)$, $(6;3)$).', [
+  { t: 'vartable', xs: [-5, -3, 2, 6], vals: [2, 4, -3, 3], arrows: ['up', 'down', 'up'], ga: true, gv: [true, false, false, false] }
+], { fig: G(CV.Cm, { w: 540, h: 320 }), hints: ['Les valeurs sont les hauteurs des points : maximum en haut, minimum en bas.'], sol: ['$f(-3)=4$ (maximum), $f(2)=-3$ (minimum), $f(6)=3$.'] });
+X(tTab, 'tb2', 2, 'Dresser le tableau', 'Courbe de $f$ sur $[-3;5]$ (ex. 19 du cours). Remplis les flèches et les valeurs.', [
+  { t: 'vartable', xs: [-3, -1, 1, 3, 5], vals: [1, -1, 2, -4, 3], arrows: ['down', 'up', 'down', 'up'] }
+], { fig: G(CV.Q1, { w: 540, h: 330 }), hints: ['Repère les sommets et les creux : $x=-1$, $1$, $3$.'], sol: ['De $x=-3$ à $-1$ la courbe descend de 1 à −1 ; de $-1$ à 1 elle monte jusqu’à 2 ; de 1 à 3 elle descend jusqu’à −4 ; de 3 à 5 elle monte jusqu’à 3.'] });
+X(tTab, 'tb3', 2, 'Une autre courbe', 'Courbe de $f$ sur $[-4;5]$. Dresse son tableau de variation.', [
+  { t: 'vartable', xs: [-4, -2, 1, 5], vals: [-1, 3, -2, 2], arrows: ['up', 'down', 'up'] }
+], { fig: G(CV.CE, { w: 540, h: 330 }), hints: ['Il y a un maximum local en $x=-2$ et un minimum local en $x=1$.'], sol: ['La courbe monte de $(-4;-1)$ à $(-2;3)$, descend jusqu’à $(1;-2)$, puis remonte jusqu’à $(5;2)$.'] });
+X(tTab, 'tb4', 3, 'Courbes ↔ tableaux', 'Associe chaque courbe (domaine $[-3;5]$) à son tableau de variation.', [
+  { t: 'match', choices: [
+    { k: 'A', vt: { xs: [-3, -1, 1, 3, 5], vals: [0, 3, -1, 2, -1], arrows: ['up', 'down', 'up', 'down'] } },
+    { k: 'B', vt: { xs: [-3, -1, 1, 3, 5], vals: [3, -2, 1, -1, 2], arrows: ['down', 'up', 'down', 'up'] } },
+    { k: 'C', vt: { xs: [-3, -1, 1, 3, 5], vals: [1, -1, 2, -4, 3], arrows: ['down', 'up', 'down', 'up'] } }],
+    items: [{ l: 'Courbe 1', fig: MINI([{ fn: CV.Q1 }], [-4, 6, -5, 4]), a: 'C' }, { l: 'Courbe 2', fig: MINI([{ fn: CV.KB }], [-4, 6, -5, 4]), a: 'A' }, { l: 'Courbe 3', fig: MINI([{ fn: CV.KC }], [-4, 6, -5, 4]), a: 'B' }] }
+], { hints: ['Regarde d’abord la direction de la première flèche, puis les valeurs extrêmes.'], sol: ['Courbe 1 : part de 1, descend à −1, monte à 2, descend à −4, monte à 3 → C.', 'Courbe 2 : part de 0, monte à 3, descend à −1, monte à 2, descend à −1 → A.', 'Courbe 3 : part de 3, descend à −2, monte à 1, descend à −1, monte à 2 → B.'] });
+X(tTab, 'tb5', 3, 'Lire un tableau', 'Voici le tableau de variation de $f$ sur $[-3;5]$ : $f(-3)=3$, $f(-1)=-1$, $f(1)=2$, $f(3)=-2$, $f(5)=1$.', [
+  { t: 'num', q: 'Minimum de $f$ sur $[-3;5]$ :', a: -2 },
+  { t: 'num', q: 'Il est atteint en $x=$', a: 3 },
+  { t: 'tf', q: '$f$ est strictement décroissante sur $[1;3]$.', a: true, why: 'La flèche entre 1 et 3 est ↘.' },
+  { t: 'tf', q: '$f(0)>f(-1)$.', a: true, why: 'Sur $[-1;1]$, $f$ est strictement croissante : $0>-1$ donc $f(0)>f(-1)$.' },
+  { t: 'mcq', q: 'Combien l’équation $f(x)=0$ a-t-elle de solutions ?', o: ['2', '3', { t: '4' }, '5'], c: 2, why: 'Chaque flèche traverse la hauteur 0 une fois : de 3 à −1 (↘), de −1 à 2 (↗), de 2 à −2 (↘), de −2 à 1 (↗) : 4 solutions.', shuffle: false }
+], { fig: host => host.append(varTableSvg({ xs: [-3, -1, 1, 3, 5], vals: [3, -1, 2, -2, 1], arrows: ['down', 'up', 'down', 'up'] })), hints: ['Un tableau de variation te donne les extrema et le sens de variation.', 'Pour compter les solutions de $f(x)=0$ : combien de flèches traversent la hauteur 0 ?'], sol: ['Le plus bas est $-2$, atteint en 3.', 'Flèche ↘ entre 1 et 3 : vrai.', 'Entre $-1$ et 1, $f$ monte : $f(0)>f(-1)$.', 'Passages par 0 : $3\\to-1$, $-1\\to2$, $2\\to-2$, $-2\\to1$ : 4 solutions.'] });
+
+/* =================== 9. fonctions de référence =================== */
+const tRef = topic({
+  id: 'reference', ch: 1, n: '1.7', title: 'Fonctions de référence', icon: '5',
+  lesson: `<div class="rule"><b class="t">Les cinq fonctions de référence</b><ul style="margin:.3em 0">
+  <li>$f(x)=x$ : une <b>droite</b> passant par l’origine ; croissante.</li>
+  <li>$f(x)=x^2$ : une <b>parabole</b> ; décroissante sur $]-\\infty;0]$, croissante sur $[0;+\\infty[$ ; minimum 0.</li>
+  <li>$f(x)=x^3$ : croissante sur $\\R$ ; passe par $(-1;-1)$, $(0;0)$, $(1;1)$, $(2;8)$.</li>
+  <li>$f(x)=\\sqrt x$ : définie sur $[0;+\\infty[$ ; croissante ; passe par $(0;0)$, $(1;1)$, $(4;2)$, $(9;3)$.</li>
+  <li>$f(x)=\\frac1x$ : définie sur $\\R\\setminus\\{0\\}$ ; décroissante sur $]-\\infty;0[$ et sur $]0;+\\infty[$ ; pas de valeur en 0.</li></ul></div>`,
+  explorer: 'refs'
+});
+(() => {
+  const sq = x => x * x, cb = x => x * x * x, sr = x => Math.sqrt(x), inv = x => 1 / x;
+  const R = [-4, 4, -4, 4];
+  X(tRef, 'rf1', 1, 'Reconnaître les cinq fonctions', 'Associe chaque courbe à sa fonction.', [
+    { t: 'match', choices: [{ k: 'A', t: '$f(x)=x$' }, { k: 'B', t: '$f(x)=x^2$' }, { k: 'C', t: '$f(x)=x^3$' }, { k: 'D', t: '$f(x)=\\sqrt x$' }, { k: 'E', t: '$f(x)=\\frac1x$' }], items: [
+      { l: 'Courbe 1', fig: MINI([{ fn: sr, x0: 0, x1: 4 }], [-1, 6, -1, 4]), a: 'D' },
+      { l: 'Courbe 2', fig: MINI([{ fn: x => cb(x) / 2, x0: -4, x1: 4 }], R), a: 'C' },
+      { l: 'Courbe 3', fig: MINI([{ fn: inv, x0: -4, x1: -0.1 }, { fn: inv, x0: 0.1, x1: 4 }], R), a: 'E' },
+      { l: 'Courbe 4', fig: MINI([{ fn: x => x, x0: -4, x1: 4 }], R), a: 'A' },
+      { l: 'Courbe 5', fig: MINI([{ fn: x => sq(x) / 2, x0: -4, x1: 4 }], R), a: 'B' }] }
+  ], { hints: ['Une courbe en deux morceaux → $\\frac1x$ ; une courbe qui ne commence qu’à droite de 0 → $\\sqrt x$.'], sol: ['Droite → $x$ ; parabole en U → $x^2$ ; courbe en S qui monte → $x^3$ ; demi-parabole couchée → $\\sqrt x$ ; deux branches → $\\frac1x$.'] });
+  X(tRef, 'rf2', 1, 'Tableau pour $\\frac1x$', 'Complète le tableau de valeurs de $f(x)=\\frac1x$ (fractions ou décimaux).', [
+    { t: 'table', xs: [-2, -1, -0.5, 0.5, 1, 2], f: inv, why: '$\\frac{1}{1/2}=1\\cdot2=2$ : diviser par une fraction = multiplier par son inverse.' }
+  ], { hints: ['$f(-\\frac12)=\\frac{1}{-1/2}=-2$.'], sol: ['$f(-2)=-\\frac12$, $f(-1)=-1$, $f(-\\frac12)=-2$, $f(\\frac12)=2$, $f(1)=1$, $f(2)=\\frac12$.', 'On ne peut pas calculer $f(0)$ : la courbe a deux branches.'] });
+  X(tRef, 'rf3', 2, 'Domaines et valeurs', '', [
+    { t: 'set', q: 'Domaine de $f(x)=\\sqrt{x}$ :', a: '[0;+inf[' },
+    { t: 'set', q: 'Domaine de $f(x)=\\frac1x$ :', a: 'R\\{0}' },
+    { t: 'num', q: '$f(-2)$ pour $f(x)=x^3$ :', a: -8, traps: [{ v: 8, msg: 'Un cube garde le signe : $(-2)^3=(-2)(-2)(-2)=-8$.' }] },
+    { t: 'mcq', q: 'Quelle fonction n’est pas définie en 0 ?', o: [{ t: '$x^3$', why: '$0^3=0$ existe.' }, { t: '$\\sqrt x$', why: '$\\sqrt0=0$ existe.' }, { t: '$\\frac1x$' }, { t: '$x^2$', why: '$0^2=0$.' }], c: 2 }
+  ], { sol: ['$\\sqrt x$ existe si $x\\geq0$ ; $\\frac1x$ si $x\\neq0$.', '$(-2)^3=-8$.', 'Seule $\\frac1x$ n’a pas d’image en 0.'] });
+  X(tRef, 'rf4', 3, 'Calculs avec les cinq fonctions', 'Calcule l’image de 4 par chaque fonction de référence.', [
+    { t: 'num', q: '$x\\mapsto x$ :', a: 4 }, { t: 'num', q: '$x\\mapsto x^2$ :', a: 16 }, { t: 'num', q: '$x\\mapsto x^3$ :', a: 64 }, { t: 'num', q: '$x\\mapsto\\sqrt x$ :', a: 2 }, { t: 'num', q: '$x\\mapsto\\frac1x$ :', a: 0.25, show: '$\\frac14$', fill: '1/4' }
+  ], { sol: ['$4$ ; $4^2=16$ ; $4^3=64$ ; $\\sqrt4=2$ ; $\\frac14=0,25$.'] });
+  X(tRef, 'rf5', 3, 'Sens de variation', 'Complète avec « strictement croissante » ou « strictement décroissante ».', [
+    { t: 'fill', lines: ['$x^2$ est [[1]] sur $]-\\infty;0]$ et [[2]] sur $[0;+\\infty[$', '$\\frac1x$ est [[3]] sur $]0;+\\infty[$', '$x^3$ est [[4]] sur $\\R$', '$\\sqrt x$ est [[5]] sur $[0;+\\infty[$'], b: [{ k: 's', o: SELS.slice(0, 2), a: SELS[1] }, { k: 's', o: SELS.slice(0, 2), a: SELS[0] }, { k: 's', o: SELS.slice(0, 2), a: SELS[1] }, { k: 's', o: SELS.slice(0, 2), a: SELS[0] }, { k: 's', o: SELS.slice(0, 2), a: SELS[0] }] }
+  ], { hints: ['Visualise chaque courbe de gauche à droite.'], sol: ['$x^2$ : ↘ puis ↗ ; $\\frac1x$ : ↘ sur chaque branche ; $x^3$ : ↗ ; $\\sqrt x$ : ↗.'] });
+})();
+
+'use strict';
+/* =========================================================
+   CONTENU — Chapitre 2 : Le second degré
+   ========================================================= */
+const HB = ['haut', 'bas'];
+function poly(a, b, c) {
+  let s = '';
+  const term = (k, v) => { if (!k) return; const sg = k < 0 ? '-' : (s ? '+' : ''); const ab = Math.abs(k); s += sg + (v && ab === 1 ? '' : ab) + v; };
+  term(a, 'x^2'); term(b, 'x'); term(c, ''); return s || '0';
+}
+const sq = x => x * x;
+
+/* =================== 10. fonction carré =================== */
+const tCarre = topic({
+  id: 'carre', ch: 2, n: '2.1', title: 'La fonction carré et la parabole', icon: 'x²',
+  lesson: `<div class="rule"><b class="t">À retenir</b>La <b>fonction carré</b> est $f(x)=x^2$ (définie sur $\\R$). Sa courbe est une <b>parabole</b>.<br>
+  • Le <b>sommet</b> est l’origine $O(0;0)$ (le point le plus bas).<br>
+  • L’<b>axe des ordonnées</b> est un <b>axe de symétrie</b> : $f(-x)=f(x)$.<br>
+  • Tableau de variation : $f$ est strictement <b>décroissante</b> sur $]-\\infty;0]$ et strictement <b>croissante</b> sur $[0;+\\infty[$ ; son minimum est $0$, atteint en $x=0$.</div>
+  <div class="rule ex"><b class="t">Tableau de valeurs</b>$x$ : $-3\\ -2\\ -1\\ 0\\ 1\\ 2\\ 3$ → $f(x)$ : $9\\ 4\\ 1\\ 0\\ 1\\ 4\\ 9$ (symétrique !).</div>
+  <div class="rule warn"><b class="t">Attention</b>$x^2$ n’est jamais négatif : $x^2\\geq0$. Et $(-3)^2=9$ mais $-3^2$ n’est pas ce qu’on calcule ici.</div>`,
+  explorer: 'parabole'
+});
+X(tCarre, 'ca1', 1, 'Tableau de valeurs de $x^2$', 'Complète. Observe la symétrie.', [{ t: 'table', xs: [-3, -2, -1, 0, 1, 2, 3], f: sq }], { hints: ['$(-2)^2=(-2)\\cdot(-2)=4$.'], sol: ['$f(-3)=f(3)=9$ ; $f(-2)=f(2)=4$ ; $f(-1)=f(1)=1$ ; $f(0)=0$.'] });
+X(tCarre, 'ca2', 1, 'Tableau de variation de $x^2$', 'Complète les flèches et la valeur du minimum.', [
+  { t: 'vartable', xs: ['−∞', 0, '+∞'], vals: [null, 0, null], arrows: ['down', 'up'] }
+], { hints: ['La parabole descend jusqu’au sommet puis remonte.'], sol: ['$f$ décroît jusqu’en 0 (↘), puis croît (↗). Le minimum est $f(0)=0$.'] });
+X(tCarre, 'ca3', 1, 'Vrai ou faux ?', '', [
+  { t: 'tf', q: 'La parabole de $x^2$ est symétrique par rapport à l’axe des ordonnées.', a: true, why: '$f(-x)=(-x)^2=x^2=f(x)$.' },
+  { t: 'tf', q: 'Le sommet de la parabole de $x^2$ est le point $(0;1)$.', a: false, why: 'Le sommet est l’origine $(0;0)$ : $f(0)=0$.' },
+  { t: 'tf', q: '$f(x)=x^2$ admet un maximum en $x=0$.', a: false, why: 'C’est un <b>minimum</b> : la parabole monte des deux côtés.' },
+  { t: 'tf', q: '$f(-3)=f(3)$.', a: true, why: '$(-3)^2=9=3^2$.' }
+], { sol: ['Sommet $O$ = minimum 0 ; symétrie : $f(-x)=f(x)$.'] });
+X(tCarre, 'ca4', 2, 'La parabole $y=\\frac12x^2$', 'Complète le tableau de valeurs (exercice 1 du cours).', [
+  { t: 'table', xs: [-4, -3, -2, -1, 0, 1, 2, 3, 4], f: x => 0.5 * x * x }
+], { hints: ['$\\frac12x^2$ : calcule $x^2$ puis prends la moitié.'], sol: ['$f(\\pm4)=8$ ; $f(\\pm3)=4,5$ ; $f(\\pm2)=2$ ; $f(\\pm1)=0,5$ ; $f(0)=0$.'] });
+X(tCarre, 'ca5', 2, 'Tracer la parabole', 'Place les points de $y=\\frac12x^2$ pour $x=-4;-2;0;2;4$.', [
+  { t: 'plot', cfg: { xmin: -5, xmax: 5, ymin: -1, ymax: 9, w: 520, h: 380 }, pts: [[-4, 8], [-2, 2], [0, 0], [2, 2], [4, 8]], fn: x => x * x / 2, showCoords: true }
+], { hints: ['$f(-4)=\\frac12\\cdot16=8$ ; $f(-2)=\\frac12\\cdot4=2$.'], sol: ['Points : $(-4;8)$, $(-2;2)$, $(0;0)$, $(2;2)$, $(4;8)$. Ils sont symétriques par rapport à l’axe des ordonnées.'] });
+X(tCarre, 'ca6', 3, 'Comparer sans calculatrice', 'Utilise le sens de variation de $x^2$ : décroissante pour $x\\leq0$, croissante pour $x\\geq0$. Complète avec $>$, $<$ ou $=$.', [
+  { t: 'fill', lines: ['$(-5)^2$ [[1]] $(-4)^2$', '$3^2$ [[2]] $2^2$', '$(-1)^2$ [[3]] $1^2$', '$(-0,5)^2$ [[4]] $(-2)^2$'], b: [{ k: 's', o: ['>', '<', '='], a: '>', why: '' }, { k: 's', o: ['>', '<', '='], a: '>' }, { k: 's', o: ['>', '<', '='], a: '=' }, { k: 's', o: ['>', '<', '='], a: '<', why: 'Sur $]-\\infty;0]$ la fonction est décroissante : le nombre le plus éloigné de 0 a le plus grand carré.' }] }
+], { hints: ['Sur $]-\\infty;0]$ : si $a<b$ alors $a^2>b^2$.'], sol: ['$-5<-4\\leq0$ et $f$ décroissante : $(-5)^2>(-4)^2$ ($25>16$).', '$2<3$, $f$ croissante sur $[0;+\\infty[$ : $3^2>2^2$.', '$(-1)^2=1=1^2$ (symétrie).', '$-2<-0,5\\leq0$ : $(-2)^2>(-0,5)^2$, donc $(-0,5)^2<(-2)^2$ ($0,25<4$).'] });
+tCarre.gens.push(() => {
+  const a = pick([1, 2, 3, -1, -2, 0.5]), xs = [-3, -2, -1, 0, 1, 2, 3], f = x => a * x * x;
+  return { id: 'gen_ca_' + Math.random(), topic: 'carre', level: 1, title: 'Tableau (variante)', intro: `Soit $f(x)=${a === 1 ? '' : a === -1 ? '-' : (a + '').replace('.', ',')}x^2$. Complète.`, parts: [{ t: 'table', xs, f }], hints: ['Calcule $x^2$ puis multiplie.'], sol: xs.map(x => `$f(${x})=${(a + '').replace('.', ',')}\\cdot${x * x}=${(f(x) + '').replace('.', ',')}$`) };
+});
+
+/* =================== 11. facteur a =================== */
+const tFacteur = topic({
+  id: 'facteur', ch: 2, n: '2.1', title: 'Le facteur a dans $ax^2$', icon: 'a',
+  lesson: `<div class="rule"><b class="t">À retenir</b>Pour $f(x)=ax^2$ ($a\\neq0$) :<br>• si $a>0$ : la parabole est tournée <b>vers le haut</b> ; le sommet est un <b>minimum</b> ; $f$ : ↘ puis ↗.<br>• si $a<0$ : la parabole est tournée <b>vers le bas</b> ; le sommet est un <b>maximum</b> ; $f$ : ↗ puis ↘.<br>Plus $|a|$ est grand, plus la parabole est « serrée » (étroite).</div>
+  <div class="rule ex"><b class="t">Méthode — lire le signe de $a$</b>Développe d’abord pour trouver le coefficient de $x^2$ : $f(x)=1-x^2$ : $a=-1$ → vers le bas. $f(x)=2x^2+3x$ : $a=2$ → vers le haut. $f(x)=x(4-x)=4x-x^2$ : $a=-1$ → vers le bas.</div>`,
+  explorer: 'parabole'
+});
+X(tFacteur, 'fa1', 1, 'Haut ou bas ?', 'Complète (exercice 2 du cours).', [
+  { t: 'fill', lines: ['$a=-3$ : la parabole de $-3x^2$ est tournée vers le [[1]]', '$a=0,5$ : la parabole de $0,5x^2$ est tournée vers le [[2]]', '$a=7$ : tournée vers le [[3]]', '$a=-2$ : tournée vers le [[4]]', '$a=1,8$ : tournée vers le [[5]]'], b: HB.length && [{ k: 's', o: HB, a: 'bas' }, { k: 's', o: HB, a: 'haut' }, { k: 's', o: HB, a: 'haut' }, { k: 's', o: HB, a: 'bas' }, { k: 's', o: HB, a: 'haut' }].map(x => x) }
+], { hints: ['$a>0$ : « sourire » (vers le haut). $a<0$ : « tristesse » (vers le bas).'], sol: ['Le signe de $a$ décide : $a>0$ → haut, $a<0$ → bas.'] });
+X(tFacteur, 'fa2', 1, 'Sommet : minimum ou maximum ?', 'Soit $f(x)=-2x^2$.', [
+  { t: 'mcq', q: 'La parabole est tournée vers…', o: [{ t: 'le bas' }, { t: 'le haut', why: '$a=-2<0$ : vers le bas.' }], c: 0 },
+  { t: 'mcq', q: 'Le sommet $O(0;0)$ est…', o: [{ t: 'un maximum' }, { t: 'un minimum', why: 'Une parabole vers le bas a son point le plus <b>haut</b> au sommet : c’est un maximum.' }], c: 0 }
+], { sol: ['$a=-2<0$ : vers le bas ; le sommet est le point le plus haut : maximum $=0$.'] });
+X(tFacteur, 'fa3', 2, 'Trouver $a$ après développement', 'Donne $a$ (coefficient de $x^2$) et le sens de la parabole.', [
+  { t: 'fill', lines: ['a) $f(x)=1-x^2$ : $a=$ [[1]] → vers le [[2]]', 'b) $f(x)=2x^2+3x$ : $a=$ [[3]] → vers le [[4]]', 'c) $f(x)=-2x-x^2+1$ : $a=$ [[5]] → vers le [[6]]', 'd) $f(x)=x(4-x)$ : $a=$ [[7]] → vers le [[8]]', 'e) $f(x)=(x-1)(x+3)$ : $a=$ [[9]] → vers le [[10]]'],
+    b: [{ k: 'n', a: -1 }, { k: 's', o: HB, a: 'bas' }, { k: 'n', a: 2 }, { k: 's', o: HB, a: 'haut' }, { k: 'n', a: -1, why: 'Attention : le terme en $x^2$ est $-x^2$ même s’il n’est pas écrit en premier.' }, { k: 's', o: HB, a: 'bas' }, { k: 'n', a: -1, why: '$x(4-x)=4x-x^2$.' }, { k: 's', o: HB, a: 'bas' }, { k: 'n', a: 1, why: '$(x-1)(x+3)=x^2+3x-x-3=x^2+2x-3$.' }, { k: 's', o: HB, a: 'haut' }] }
+], { hints: ['Développe, puis repère le terme en $x^2$ avec son signe.'], sol: ['a) $a=-1$ (bas) ; b) $a=2$ (haut) ; c) $-x^2$ : $a=-1$ (bas) ; d) $4x-x^2$ : $a=-1$ (bas) ; e) $x^2+2x-3$ : $a=1$ (haut).'] });
+X(tFacteur, 'fa4', 2, 'Tableau de variation de $-2x^2$', 'Complète le tableau de variation de $f(x)=-2x^2$.', [
+  { t: 'vartable', xs: ['−∞', 0, '+∞'], vals: [null, 0, null], arrows: ['up', 'down'] }
+], { hints: ['$a<0$ : la parabole monte jusqu’au sommet puis descend. Le sommet est un maximum.'], sol: ['$f$ croît sur $]-\\infty;0]$ (↗) puis décroît sur $[0;+\\infty[$ (↘). Maximum $f(0)=0$.'] });
+(() => {
+  const f1 = x => -x * x, f2 = x => x * x / 2, f3 = x => 2 * x * x, f4 = x => x * (4 - x), R = [-4, 6, -6, 8];
+  X(tFacteur, 'fa5', 3, 'Courbes ↔ fonctions', 'Associe chaque courbe à sa fonction (exercice 3 du cours). Astuce : teste un point, par ex. $x=1$.', [
+    { t: 'match', choices: [{ k: 'A', t: '$f_1(x)=-x^2$' }, { k: 'B', t: '$f_2(x)=\\frac12x^2$' }, { k: 'C', t: '$f_3(x)=2x^2$' }, { k: 'D', t: '$f_4(x)=x(4-x)$' }], items: [
+      { l: 'Courbe 1', fig: MINI([{ fn: f3, x0: -4, x1: 6 }], R, { points: [{ x: 1, y: 2 }] }), a: 'C' },
+      { l: 'Courbe 2', fig: MINI([{ fn: f4, x0: -4, x1: 6 }], R, { points: [{ x: 1, y: 3 }] }), a: 'D' },
+      { l: 'Courbe 3', fig: MINI([{ fn: f1, x0: -4, x1: 6 }], R, { points: [{ x: 1, y: -1 }] }), a: 'A' },
+      { l: 'Courbe 4', fig: MINI([{ fn: f2, x0: -4, x1: 6 }], R, { points: [{ x: 1, y: 0.5 }] }), a: 'B' }] }
+  ], { hints: ['$f_1(1)=-1$, $f_2(1)=\\frac12$, $f_3(1)=2$, $f_4(1)=3$. Les courbes tournées vers le bas sont $f_1$ et $f_4$.'], sol: ['Vers le bas : $f_1$ (sommet en 0) et $f_4$ (sommet en $(2;4)$).', 'Vers le haut : $f_2$ (large, passe par $(1;0,5)$) et $f_3$ (étroite, passe par $(1;2)$).'] });
+})();
+tFacteur.gens.push(() => {
+  const k = pick([1, 2, 3]), a = rnd(1, 4) * pick([1, -1]), b = rnd(-5, 5), c = rnd(-5, 5);
+  let tx, A;
+  if (k === 1) { tx = poly(a, b, c); A = a; }
+  else if (k === 2) { tx = `${c}${b < 0 ? '-' : '+'}${Math.abs(b) || 1}x${a < 0 ? '-' : '+'}${Math.abs(a)}x^2`; A = a; }
+  else { const p = rnd(1, 4); tx = `x(${p}${a < 0 ? '+' : '-'}${Math.abs(a)}x)`; A = -(a < 0 ? -Math.abs(a) : Math.abs(a)) * 1; A = a < 0 ? Math.abs(a) : -Math.abs(a); }
+  return { id: 'gen_fa_' + Math.random(), topic: 'facteur', level: 2, title: 'Haut ou bas ? (variante)', intro: `Soit $f(x)=${tx}$.`, parts: [{ t: 'fill', lines: ['$a=$ [[1]]  → vers le [[2]]'], b: [{ k: 'n', a: A }, { k: 's', o: HB, a: A > 0 ? 'haut' : 'bas' }] }], hints: ['Développe si nécessaire et repère le coefficient de $x^2$.'], sol: [`Le coefficient de $x^2$ est $a=${A}$.`, A > 0 ? '$a>0$ : vers le haut.' : '$a<0$ : vers le bas.'] };
+});
+
+/* =================== 12. translations =================== */
+const tTrans = topic({
+  id: 'translation', ch: 2, n: '2.1', title: 'Déplacer une parabole', icon: '⇄',
+  lesson: `<div class="rule"><b class="t">À retenir</b>On part de la parabole de $f(x)=x^2$.<br>• $g(x)=x^2+c$ : <b>translation verticale</b> de $c$ unités : vers le <b>haut</b> si $c>0$, vers le <b>bas</b> si $c<0$. Sommet $(0;c)$.<br>• $h(x)=(x-c)^2$ : <b>translation horizontale</b> de $c$ unités : vers la <b>droite</b> si $c>0$, vers la <b>gauche</b> si $c<0$. Sommet $(c;0)$.</div>
+  <div class="rule warn"><b class="t">Attention au signe !</b>$(x+2)^2=(x-(-2))^2$ → $c=-2$ → déplacement de 2 vers la <b>gauche</b> (le contraire de ce qu’on croit). $(x-3)^2$ → 3 vers la <b>droite</b>, sommet $(3;0)$.</div>`,
+  explorer: 'parabole'
+});
+X(tTrans, 'tr1', 1, 'Translation verticale', 'Complète.', [
+  { t: 'fill', lines: ['$g(x)=x^2-1$ : la parabole de $x^2$ est déplacée de [[1]] unité vers le [[2]] ; sommet $(0\\,;$ [[3]] $)$', '$h(x)=x^2+1$ : déplacée de 1 unité vers le [[4]] ; sommet $(0\\,;$ [[5]] $)$'], b: [{ k: 'n', a: 1 }, { k: 's', o: HB, a: 'bas' }, { k: 'n', a: -1 }, { k: 's', o: HB, a: 'haut' }, { k: 'n', a: 1 }] }
+], { hints: ['$x^2+c$ : $c>0$ monte, $c<0$ descend. Le sommet passe de $(0;0)$ à $(0;c)$.'], sol: ['$x^2-1$ : $c=-1$ → 1 unité vers le bas, sommet $(0;-1)$.', '$x^2+1$ : $c=1$ → 1 unité vers le haut, sommet $(0;1)$.'] });
+X(tTrans, 'tr2', 1, 'Vrai ou faux ?', '', [
+  { t: 'tf', q: 'La parabole de $(x-3)^2$ est celle de $x^2$ déplacée de 3 unités vers la droite.', a: true, why: '$(x-c)^2$ avec $c=3>0$ : vers la droite.' },
+  { t: 'tf', q: 'La parabole de $(x+5)^2$ est celle de $x^2$ déplacée de 5 unités vers la droite.', a: false, why: '$(x+5)^2=(x-(-5))^2$ : $c=-5$, déplacement de 5 vers la <b>gauche</b>.' },
+  { t: 'tf', q: 'La parabole de $x^2+2$ est celle de $x^2$ déplacée de 2 unités vers le haut.', a: true, why: '$c=2>0$ : vers le haut.' },
+  { t: 'tf', q: 'La parabole de $(x+1)^2$ a pour sommet $(1;0)$.', a: false, why: '$(x+1)^2=(x-(-1))^2$ : sommet $(-1;0)$.' }
+], { sol: ['Vertical : $x^2+c$, signe de $c$ = sens. Horizontal : $(x-c)^2$, signe <b>opposé</b> à celui qu’on lit.'] });
+X(tTrans, 'tr3', 2, 'Translation horizontale', 'Pour chacune, donne l’abscisse du sommet et le sens du déplacement (exercice 8).', [
+  { t: 'fill', lines: ['$g(x)=(x+2)^2$ : sommet $(\\,$ [[1]] $;0)$ → déplacée vers la [[2]]', '$h(x)=(x-3)^2$ : sommet $(\\,$ [[3]] $;0)$ → déplacée vers la [[4]]', '$i(x)=(x+5)^2$ : sommet $(\\,$ [[5]] $;0)$ → déplacée vers la [[6]]'], b: [{ k: 'n', a: -2 }, { k: 's', o: ['gauche', 'droite'], a: 'gauche' }, { k: 'n', a: 3 }, { k: 's', o: ['gauche', 'droite'], a: 'droite' }, { k: 'n', a: -5 }, { k: 's', o: ['gauche', 'droite'], a: 'gauche' }] }
+], { hints: ['Le sommet est là où la parenthèse s’annule : $x+2=0 \\iff x=-2$.'], sol: ['$(x+2)^2$ : $x+2=0$ en $x=-2$ → gauche.', '$(x-3)^2$ : $x-3=0$ en $x=3$ → droite.', '$(x+5)^2$ : sommet en $-5$ → gauche.'] });
+(() => {
+  const ref = { fn: x => x * x, x0: -5, x1: 5, color: '#94a3b8', dash: '5 4', w: 1.8 }, R = [-5, 5, -3, 6];
+  const C = (f, col) => [ref, { fn: f, x0: -5, x1: 5, color: col || '#e11d48' }];
+  X(tTrans, 'tr4', 2, 'Quelle équation ?', 'La parabole grise (pointillés) est celle de $x^2$. Associe chaque courbe rouge à sa fonction.', [
+    { t: 'match', choices: [{ k: 'A', t: '$x^2+1$' }, { k: 'B', t: '$x^2-2$' }, { k: 'C', t: '$(x-2)^2$' }, { k: 'D', t: '$(x+1)^2$' }], items: [
+      { l: 'Courbe 1', fig: MINI(C(x => (x - 2) ** 2), R), a: 'C' }, { l: 'Courbe 2', fig: MINI(C(x => x * x - 2), R), a: 'B' },
+      { l: 'Courbe 3', fig: MINI(C(x => (x + 1) ** 2), R), a: 'D' }, { l: 'Courbe 4', fig: MINI(C(x => x * x + 1), R), a: 'A' }] }
+  ], { hints: ['Repère le sommet de la courbe rouge : $(0;c)$ pour un déplacement vertical, $(c;0)$ pour un horizontal.'], sol: ['Sommet $(2;0)$ → $(x-2)^2$ ; $(0;-2)$ → $x^2-2$ ; $(-1;0)$ → $(x+1)^2$ ; $(0;1)$ → $x^2+1$.'] });
+})();
+X(tTrans, 'tr5', 3, 'Tracer deux paraboles', 'Place les points demandés.', [
+  { t: 'plot', q: 'a) $g(x)=x^2-2$ pour $x=-2;-1;0;1;2$', cfg: { xmin: -3, xmax: 3, ymin: -3, ymax: 3, w: 440, h: 330 }, pts: [[-2, 2], [-1, -1], [0, -2], [1, -1], [2, 2]], fn: x => x * x - 2, showCoords: true },
+  { t: 'plot', q: 'b) $h(x)=(x-3)^2$ pour $x=1;2;3;4;5$', cfg: { xmin: -1, xmax: 6, ymin: -1, ymax: 5, w: 440, h: 330 }, pts: [[1, 4], [2, 1], [3, 0], [4, 1], [5, 4]], fn: x => (x - 3) ** 2, showCoords: true }
+], { hints: ['a) $g(0)=-2$ : le sommet. b) $h(3)=0$ : le sommet.'], sol: ['$g$ : $(-2;2),(-1;-1),(0;-2),(1;-1),(2;2)$ — parabole de $x^2$ descendue de 2.', '$h$ : $(1;4),(2;1),(3;0),(4;1),(5;4)$ — parabole de $x^2$ déplacée de 3 vers la droite.'] });
+X(tTrans, 'tr6', 3, 'Du déplacement à l’équation', 'Choisis l’équation qui convient.', [
+  { t: 'mcq', q: 'Parabole de $x^2$ déplacée de 3 unités vers la droite :', o: ['$(x-3)^2$', { t: '$(x+3)^2$', why: 'Signe contraire : vers la droite, on écrit $(x-3)^2$.' }, { t: '$x^2-3$', why: 'C’est un déplacement vertical vers le bas.' }, { t: '$x^2+3$', why: 'Déplacement vertical vers le haut.' }], c: 0 },
+  { t: 'mcq', q: 'Parabole de $x^2$ déplacée de 4 unités vers la gauche :', o: ['$(x+4)^2$', { t: '$(x-4)^2$', why: 'C’est 4 vers la droite.' }, { t: '$x^2+4$', why: 'Vers le haut.' }, { t: '$x^2-4$', why: 'Vers le bas.' }], c: 0 },
+  { t: 'mcq', q: 'Parabole de $x^2$ déplacée de 5 unités vers le bas :', o: ['$x^2-5$', { t: '$x^2+5$', why: 'Vers le haut.' }, { t: '$(x-5)^2$', why: 'Vers la droite.' }, { t: '$(x+5)^2$', why: 'Vers la gauche.' }], c: 0 }
+], { sol: ['Vertical : on <b>ajoute</b> $c$ à $x^2$. Horizontal : on remplace $x$ par $x-c$ (signe opposé dans la parenthèse).'] });
+tTrans.gens.push(() => {
+  const c = rnd(1, 6) * pick([1, -1]), hor = Math.random() < .5, tx = hor ? `(x${c < 0 ? '+' : '-'}${Math.abs(c)})^2` : `x^2${c < 0 ? '-' : '+'}${Math.abs(c)}`;
+  const parts = hor ? [{ t: 'fill', lines: ['Sommet : $(\\,$ [[1]] $;0)$ ; déplacement vers la [[2]]'], b: [{ k: 'n', a: c }, { k: 's', o: ['gauche', 'droite'], a: c > 0 ? 'droite' : 'gauche' }] }] : [{ t: 'fill', lines: ['Sommet : $(0\\,;$ [[1]] $)$ ; déplacement vers le [[2]]'], b: [{ k: 'n', a: c }, { k: 's', o: HB, a: c > 0 ? 'haut' : 'bas' }] }];
+  return { id: 'gen_tr_' + Math.random(), topic: 'translation', level: 2, title: 'Sommet (variante)', intro: `Soit $f(x)=${tx}$. Compare avec $x^2$.`, parts, hints: [hor ? 'Là où la parenthèse vaut 0.' : 'Le sommet passe de $(0;0)$ à $(0;c)$.'], sol: [hor ? `$${tx.slice(1, -3)}=0 \\iff x=${c}$ : sommet $(${c};0)$.` : `$c=${c}$ : sommet $(0;${c})$.`] };
+});
+
+/* =================== 13. intersection & position relative =================== */
+const tPos = topic({
+  id: 'position', ch: 2, n: '2.1', title: 'Intersections et position relative', icon: '∩',
+  lesson: `<div class="rule"><b class="t">Points communs</b>Pour trouver les points communs de $\\mathcal C_f$ et $\\mathcal C_g$ : on résout $f(x)=g(x)$, puis on calcule l’ordonnée.</div>
+  <div class="rule ex"><b class="t">Exemple — $P : y=4x^2$ et $d : y=4x-1$</b><ol class="steps"><li>$4x^2=4x-1 \\iff 4x^2-4x+1=0$.</li><li>Identité remarquable : $4x^2-4x+1=(2x-1)^2$ donc $(2x-1)^2=0 \\iff x=\\frac12$.</li><li>$y=4\\cdot(\\frac12)^2=1$ : un seul point commun $A(\\frac12;1)$.</li></ol></div>
+  <div class="rule"><b class="t">Position relative</b>On étudie le <b>signe de $f(x)-g(x)$</b> avec un tableau de signes :<br>• $f(x)-g(x)>0$ → $\\mathcal C_f$ est <b>au-dessus</b> de $\\mathcal C_g$ ; • $<0$ → <b>en dessous</b> ; • $=0$ → les courbes se <b>coupent</b>.</div>
+  <div class="rule ex"><b class="t">Exemple — $f(x)=x^2+x-2$, $g(x)=x+2$</b>$f(x)-g(x)=x^2+x-2-x-2=x^2-4=(x-2)(x+2)$. Tableau de signes : $+$ sur $]-\\infty;-2[$, $-$ sur $]-2;2[$, $+$ sur $]2;+\\infty[$. Donc $\\mathcal C_f$ est au-dessus de $\\mathcal C_g$ sur $]-\\infty;-2[\\cup]2;+\\infty[$, en dessous sur $]-2;2[$.</div>`,
+  explorer: 'intersect'
+});
+X(tPos, 'po1', 1, 'Dessus ou dessous ?', 'Complète avec $>$ ou $<$.', [
+  { t: 'fill', lines: ['$\\mathcal C_f$ est au-dessus de $\\mathcal C_g$ lorsque $f(x)$ [[1]] $g(x)$, c’est-à-dire $f(x)-g(x)$ [[2]] $0$.', '$\\mathcal C_f$ est en dessous de $\\mathcal C_g$ lorsque $f(x)-g(x)$ [[3]] $0$.'], b: [{ k: 's', o: ['>', '<'], a: '>' }, { k: 's', o: ['>', '<'], a: '>' }, { k: 's', o: ['>', '<'], a: '<' }] }
+], { sol: ['Au-dessus : $f(x)>g(x) \\iff f(x)-g(x)>0$. En dessous : $f(x)-g(x)<0$.'] });
+X(tPos, 'po2', 1, 'Intersection parabole – droite', '$P : y=4x^2$ et $d : y=4x-1$. Complète.', [
+  { t: 'fill', lines: ['$4x^2=4x-1 \\iff 4x^2-4x+$ [[1]] $=0$', '$\\iff ($ [[2]] $x-1)^2=0$', '$\\iff x=$ [[3]]', 'Alors $y=4\\cdot(\\frac12)^2=$ [[4]]. Le seul point commun est $A(\\frac12\\,;$ [[4]] $)$.'], b: [{ k: 'n', a: 1 }, { k: 'n', a: 2 }, { k: 'n', a: 0.5, fill: '1/2', show: '$\\frac12$' }, { k: 'n', a: 1 }] }
+], { hints: ['$(2x-1)^2=4x^2-4x+1$.'], sol: ['$4x^2=4x-1 \\iff 4x^2-4x+1=0 \\iff (2x-1)^2=0 \\iff 2x-1=0 \\iff x=\\frac12$.', '$y=4\\cdot\\frac14=1$ : $A(\\frac12;1)$ (la droite est <b>tangente</b> à la parabole).'] });
+X(tPos, 'po3', 2, 'Autre intersection', '$P : y=1-x^2$ et $d : y=4x+5$ (exercice 10).', [
+  { t: 'fill', lines: ['$1-x^2=4x+5 \\iff 0=x^2+4x+$ [[1]]', '$\\iff (x+$ [[2]] $)^2=0 \\iff x=$ [[3]]', '$y=1-(-2)^2=$ [[4]]'], b: [{ k: 'n', a: 4, why: '$1-x^2=4x+5$ : passe tout à droite : $0=x^2+4x+5-1$.' }, { k: 'n', a: 2 }, { k: 'n', a: -2 }, { k: 'n', a: -3 }] },
+  { t: 'mcq', q: 'Combien $P$ et $d$ ont-elles de points communs ?', o: [{ t: '1 seul : $A(-2;-3)$' }, { t: '2', why: 'On a trouvé une seule solution $x=-2$.' }, { t: '0', why: 'Il y a bien un point : $x=-2$.' }], c: 0, shuffle: false }
+], { hints: ['Mets tout dans un membre : $x^2+4x+4=0$ (identité remarquable).'], sol: ['$1-x^2=4x+5 \\iff x^2+4x+4=0 \\iff (x+2)^2=0 \\iff x=-2$.', '$y=1-4=-3$ : $A(-2;-3)$.'] });
+X(tPos, 'po4', 2, 'Position relative (1)', '$f(x)=x^2+x-2$ et $g(x)=x+2$ (exercice 11).', [
+  { t: 'fill', lines: ['$f(x)-g(x)=x^2+x-2-x-2=x^2-$ [[1]] $=(x-2)(x+$ [[2]] $)$'], b: [{ k: 'n', a: 4 }, { k: 'n', a: 2 }] },
+  { t: 'signtable', cols: ['-\\infty', '-2', '2', '+\\infty'], rows: [{ l: 'x-2', s: '--+'.split(''), m: ['', '', '0', ''] }, { l: 'x+2', s: '-++'.split(''), m: ['', '0', '', ''] }, { l: 'f(x)-g(x)', s: '+-+'.split(''), m: ['', '0', '0', ''], res: true }] },
+  { t: 'set', q: '$\\mathcal C_f$ est <b>au-dessus</b> de $\\mathcal C_g$ sur :', a: ']-inf;-2[U]2;+inf[' },
+  { t: 'set', q: '$\\mathcal C_f$ est <b>en dessous</b> de $\\mathcal C_g$ sur :', a: ']-2;2[' },
+  { t: 'numset', q: 'Abscisses des points d’intersection :', a: [-2, 2] }
+], { hints: ['Au-dessus ⇔ $f(x)-g(x)>0$.'], sol: ['$f(x)-g(x)=x^2-4=(x-2)(x+2)$.', 'Signes : $+$, $-$, $+$. Au-dessus : $]-\\infty;-2[\\cup]2;+\\infty[$ ; en dessous : $]-2;2[$ ; elles se coupent en $x=-2$ et $x=2$.'] });
+X(tPos, 'po5', 3, 'Position relative (2)', '$f(x)=-x^2+2x+4$ et $g(x)=x^2+4$ (exercice 12).', [
+  { t: 'expr', q: 'Calcule $f(x)-g(x)$ et factorise-le (ex. $2x(\\dots)$) :', a: '2x(-x+1)', vars: ['x'], ph: 'ex. 2x(-x+1)', why: '$f(x)-g(x)=-x^2+2x+4-x^2-4=-2x^2+2x=2x(-x+1)$.', show: '$2x(-x+1)$' },
+  { t: 'signtable', cols: ['-\\infty', '0', '1', '+\\infty'], rows: [{ l: '2x', s: '-++'.split(''), m: ['', '0', '', ''] }, { l: '-x+1', s: '++-'.split(''), m: ['', '', '0', ''] }, { l: 'f(x)-g(x)', s: '-+-'.split(''), m: ['', '0', '0', ''], res: true }] },
+  { t: 'set', q: '$\\mathcal C_f$ au-dessus de $\\mathcal C_g$ sur :', a: ']0;1[' },
+  { t: 'set', q: '$\\mathcal C_f$ en dessous de $\\mathcal C_g$ sur :', a: ']-inf;0[U]1;+inf[' },
+  { t: 'num', q: 'Ordonnée des deux points d’intersection d’abscisse 1 : $g(1)=$', a: 5 }
+], { hints: ['Mets 2x en facteur : $-2x^2+2x=2x(-x+1)$.', '$-x+1$ s’annule en $x=1$ et est décroissante (coefficient $-1$).'], sol: ['$f(x)-g(x)=-2x^2+2x=2x(-x+1)$.', '$2x$ : $-$ puis $+$ ; $-x+1$ : $+$ puis $-$ (racine 1). Produit : $-$, $+$, $-$.', '$\\mathcal C_f$ est au-dessus de $\\mathcal C_g$ sur $]0;1[$ et en dessous ailleurs. Points communs : $(0;4)$ et $(1;5)$.'] });
+X(tPos, 'po6', 3, 'Un seul point commun', 'Montre que $P : y=-x^2$ et $d : y=-4x+4$ ont un seul point commun.', [
+  { t: 'fill', lines: ['$-x^2=-4x+4 \\iff x^2-4x+$ [[1]] $=0 \\iff (x-$ [[2]] $)^2=0 \\iff x=$ [[3]]', 'Alors $y=-x^2=$ [[4]]. Le point commun est $A(2\\,;$ [[4]] $)$.'], b: [{ k: 'n', a: 4 }, { k: 'n', a: 2 }, { k: 'n', a: 2 }, { k: 'n', a: -4 }] }
+], { hints: ['Passe tout dans le même membre : $0=x^2-4x+4$.'], sol: ['$-x^2=-4x+4 \\iff 0=x^2-4x+4 \\iff (x-2)^2=0 \\iff x=2$.', '$y=-2^2=-4$ ; vérification : $-4\\cdot2+4=-4$ ✓. Un seul point : $A(2;-4)$.'] });
+tPos.gens.push(() => {
+  const k = rnd(1, 5) * pick([1, -1]);
+  return { id: 'gen_po_' + Math.random(), topic: 'position', level: 2, title: 'Intersection (variante)', intro: `$P : y=x^2$ et $d : y=${2 * k}x${-k * k < 0 ? '-' : '+'}${k * k}$. Montre qu’il y a un seul point commun.`, parts: [{ t: 'num', q: 'Abscisse $x$ du point commun :', a: k }, { t: 'num', q: 'Ordonnée $y$ du point commun :', a: k * k }], hints: [`$x^2=${2 * k}x${-k * k < 0 ? '-' : '+'}${k * k} \\iff x^2${-2 * k < 0 ? '-' : '+'}${Math.abs(2 * k)}x+${k * k}=0$ : identité remarquable.`], sol: [`$x^2-${2 * k}x+${k * k}=0 \\iff (x-${k})^2=0 \\iff x=${k}$ (pour $k<0$ : $(x+${-k})^2$).`, `$y=${k}^2=${k * k}$. Point commun : $A(${k};${k * k})$.`] };
+});
+
+/* =================== 14. équation du second degré =================== */
+const tEq = topic({
+  id: 'equation', ch: 2, n: '2.2', title: 'Équation du second degré : a, b, c', icon: 'ax²',
+  lesson: `<div class="rule"><b class="t">Définition</b>Une équation du <b>second degré</b> à une inconnue $x$ s’écrit sous la <b>forme normale</b> $$ax^2+bx+c=0$$ où $a$, $b$, $c$ sont des réels donnés avec $a\\neq0$. (Le plus grand exposant de $x$ est 2.)</div>
+  <div class="rule ex"><b class="t">Méthode — mettre sous forme normale</b><ol class="steps"><li>Développe les parenthèses.</li><li>Passe <b>tous</b> les termes dans le même membre (change le signe de ceux qui traversent le « = »), pour avoir 0 de l’autre côté.</li><li>Regroupe les termes en $x^2$, en $x$ et les constantes.</li><li>Lis $a$, $b$, $c$ <b>avec leur signe</b>. Terme absent ⇒ coefficient $0$.</li></ol>
+  Exemple : $3x^2+3x=2x^2-9x+7 \\iff 3x^2-2x^2+3x+9x-7=0 \\iff x^2+12x-7=0$ : $a=1$, $b=12$, $c=-7$.</div>
+  <div class="rule warn"><b class="t">Attention</b>$x^2-4+3x=2x^2-x$ donne $-x^2+4x-4=0$ : $a=-1$ (négatif !). Dans $2x-x^2=0$ : $a=-1$, $b=2$, $c=0$.</div>`
+});
+X(tEq, 'eq1', 1, 'Est-ce du second degré ?', '', [
+  { t: 'tf', q: '$3x^2+2=0$ est une équation du second degré.', a: true, why: 'Le plus grand exposant est 2 (avec $b=0$).' },
+  { t: 'tf', q: '$2x+1=0$ est une équation du second degré.', a: false, why: 'Le plus grand exposant est 1 : premier degré.' },
+  { t: 'tf', q: '$x^3+x^2=0$ est une équation du second degré.', a: false, why: 'Il y a un $x^3$ : le plus grand exposant est 3.' },
+  { t: 'tf', q: '$x^2=9$ est une équation du second degré.', a: true, why: '$x^2-9=0$ : $a=1$, $b=0$, $c=-9$.' }
+], { sol: ['Second degré ⇔ plus grand exposant de $x$ égal à 2, avec $a\\neq0$.'] });
+X(tEq, 'eq2', 1, 'Lire a, b, c', 'Identifie $a$, $b$ et $c$ (exercice 13 du cours).', [
+  { t: 'fill', lines: ['a) $x^2-2x-3=0$ : $a=$ [[1]] , $b=$ [[2]] , $c=$ [[3]]', 'b) $2x^2-9=0$ : $a=$ [[4]] , $b=$ [[5]] , $c=$ [[6]]', 'c) $2x-x^2=0$ : $a=$ [[7]] , $b=$ [[8]] , $c=$ [[9]]'], b: [{ k: 'n', a: 1 }, { k: 'n', a: -2 }, { k: 'n', a: -3 }, { k: 'n', a: 2 }, { k: 'n', a: 0, why: 'Il n’y a pas de terme en $x$ : $b=0$.' }, { k: 'n', a: -9 }, { k: 'n', a: -1, why: '$-x^2$ s’écrit $-1\\cdot x^2$ : $a=-1$.' }, { k: 'n', a: 2 }, { k: 'n', a: 0, why: 'Pas de terme constant : $c=0$.' }] }
+], { hints: ['Terme absent ⇒ 0. Si $x^2$ est écrit sans nombre, le coefficient est 1 (ou −1 avec le signe −).'], sol: ['a) $1,-2,-3$ ; b) $2,0,-9$ ; c) $-1,2,0$ (on remet dans l’ordre $-x^2+2x+0=0$).'] });
+X(tEq, 'eq3', 2, 'Forme normale pas à pas', 'Mets $3x^2+3x=2x^2-9x+7$ sous la forme $ax^2+bx+c=0$ en complétant.', [
+  { t: 'fill', lines: ['$3x^2+3x=2x^2-9x+7$', '$\\iff 3x^2-2x^2+3x+9x-7=0$', '$\\iff x^2+$ [[1]] $x-$ [[2]] $=0$', 'Donc $a=$ [[3]] , $b=$ [[4]] , $c=$ [[5]]'], b: [{ k: 'n', a: 12 }, { k: 'n', a: 7 }, { k: 'n', a: 1 }, { k: 'n', a: 12 }, { k: 'n', a: -7 }] }
+], { hints: ['On soustrait $2x^2$, on ajoute $9x$, on soustrait 7 aux deux membres.'], sol: ['Membre de droite → gauche : $-2x^2$, $+9x$, $-7$.', '$3x^2-2x^2=x^2$ ; $3x+9x=12x$ ; constante $-7$.', '$a=1,\\ b=12,\\ c=-7$.'] });
+X(tEq, 'eq4', 2, 'Deux équations à ranger', 'Écris sous forme normale puis donne $a$, $b$, $c$.', [
+  { t: 'fill', lines: ['a) $x^2-4+3x=2x^2-x$ : $a=$ [[1]] , $b=$ [[2]] , $c=$ [[3]]', 'b) $4x^2-3x+1=2x^2+5$ : $a=$ [[4]] , $b=$ [[5]] , $c=$ [[6]]'], b: [{ k: 'n', a: -1, why: 'Tout à gauche : $x^2-4+3x-2x^2+x=-x^2+4x-4$.' }, { k: 'n', a: 4 }, { k: 'n', a: -4 }, { k: 'n', a: 2 }, { k: 'n', a: -3 }, { k: 'n', a: -4, why: '$1-5=-4$.' }] }
+], { hints: ['Passe tout du côté gauche en changeant les signes de ce que tu déplaces.'], sol: ['a) $x^2-4+3x-2x^2+x=0 \\iff -x^2+4x-4=0$ : $a=-1$, $b=4$, $c=-4$.', 'b) $4x^2-3x+1-2x^2-5=0 \\iff 2x^2-3x-4=0$ : $a=2$, $b=-3$, $c=-4$.'] });
+X(tEq, 'eq5', 3, 'Avec développement', 'Développe puis mets sous forme normale.', [
+  { t: 'fill', lines: ['a) $(x-3)^2=2x+1$ : $a=$ [[1]] , $b=$ [[2]] , $c=$ [[3]]', 'b) $2x(x-3)=x^2-5$ : $a=$ [[4]] , $b=$ [[5]] , $c=$ [[6]]'], b: [{ k: 'n', a: 1 }, { k: 'n', a: -8, why: '$(x-3)^2=x^2-6x+9$ ; puis $-6x-2x=-8x$.' }, { k: 'n', a: 8, why: '$9-1=8$.' }, { k: 'n', a: 1, why: '$2x^2-x^2=x^2$.' }, { k: 'n', a: -6 }, { k: 'n', a: 5, why: '$-(-5)=+5$.' }] }
+], { hints: ['$(x-3)^2=x^2-6x+9$ et $2x(x-3)=2x^2-6x$.'], sol: ['a) $x^2-6x+9-2x-1=0 \\iff x^2-8x+8=0$ : $1,-8,8$.', 'b) $2x^2-6x-x^2+5=0 \\iff x^2-6x+5=0$ : $1,-6,5$.'] });
+X(tEq, 'eq6', 3, 'Cas simples à résoudre', 'Quand $b=0$ ou quand le membre est un carré, on peut résoudre. Donne les solutions (« aucun » s’il n’y en a pas).', [
+  { t: 'numset', q: '$x^2-9=0$', a: [3, -3] }, { t: 'numset', q: '$2x^2-8=0$', a: [2, -2] }, { t: 'numset', q: '$x^2+4=0$', a: [], noneWhy: '$x^2=-4$ est impossible.' }, { t: 'numset', q: '$x^2-6x+9=0$', a: [3], why: '$x^2-6x+9=(x-3)^2$, nul seulement pour $x=3$.' }
+], { hints: ['$2x^2-8=0 \\iff x^2=4$. Pour $x^2-6x+9$ : identité remarquable.'], sol: ['$x^2=9 \\iff x=\\pm3$ ; $x^2=4 \\iff x=\\pm2$ ; $x^2=-4$ impossible ; $(x-3)^2=0 \\iff x=3$.'] });
+tEq.gens.push(() => {
+  let a1, b1, c1, a2, b2, c2;
+  do { a1 = rnd(-3, 4); b1 = rnd(-5, 5); c1 = rnd(-6, 6); a2 = rnd(-3, 4); b2 = rnd(-5, 5); c2 = rnd(-6, 6); } while (a1 === a2 || (!a1 && !b1 && !c1) || (!a2 && !b2 && !c2));
+  const A = a1 - a2, B = b1 - b2, C = c1 - c2;
+  return { id: 'gen_eq_' + Math.random(), topic: 'equation', level: 2, title: 'Forme normale (variante)', intro: `Mets $${poly(a1, b1, c1)}=${poly(a2, b2, c2)}$ sous la forme $ax^2+bx+c=0$.`, parts: [{ t: 'fill', lines: ['$a=$ [[1]] , $b=$ [[2]] , $c=$ [[3]]'], b: [{ k: 'n', a: A }, { k: 'n', a: B }, { k: 'n', a: C }] }], hints: ['Passe tout à gauche en changeant les signes, puis regroupe.'], sol: [`$${poly(a1, b1, c1)}-(${poly(a2, b2, c2)})=0 \\iff ${poly(A, B, C)}=0$`, `$a=${A},\\ b=${B},\\ c=${C}$.`] };
+});
+
+'use strict';
+/* =========================================================
+   EXAMENS BLANCS (sans indices, correction à la fin)
+   Pas de barème officiel dans le cours : 1 point par sous-question.
+   ========================================================= */
+const GA_ = G(CV.CE, { w: 540, h: 330 }), GB_ = G(CV.CF, { w: 540, h: 330 });
+const EXAMS = [
+  {
+    id: 'A', title: 'Examen blanc A', desc: 'Fonctions, domaines, lecture de graphique, parabole, position relative.', ex: [
+      { id: 'xa1', ch: 1, topic: 'fonction', title: 'Exercice 1 — Images et antécédents', intro: 'Soit $f$ la fonction définie sur $\\R$ par $f(x)=(2x+1)^2$.', parts: [
+        { t: 'num', q: 'a) Calcule l’image de $-2$.', a: 9 },
+        { t: 'num', q: 'b) Calcule l’image de $\\frac12$.', a: 4 },
+        { t: 'numset', q: 'c) Détermine les antécédents de 0.', a: [-0.5], fill: '-1/2', show: '$-\\frac12$' },
+        { t: 'numset', q: 'd) Détermine les antécédents de $-4$.', a: [], noneWhy: 'un carré ne peut pas être négatif.' }
+      ], sol: ['a) $f(-2)=(-4+1)^2=(-3)^2=9$ ; b) $f(\\frac12)=(1+1)^2=4$.', 'c) $(2x+1)^2=0 \\iff 2x+1=0 \\iff x=-\\frac12$.', 'd) $(2x+1)^2=-4$ est impossible : aucun antécédent.'] },
+      { id: 'xa2', ch: 1, topic: 'domaine', title: 'Exercice 2 — Domaines de définition', intro: 'Détermine le domaine de définition de chaque fonction.', parts: [
+        { t: 'set', q: 'a) $f(x)=\\frac{5}{x^2-9}$', a: 'R\\{-3;3}' },
+        { t: 'set', q: 'b) $g(x)=\\sqrt{4-2x}$', a: ']-inf;2]' },
+        { t: 'set', q: 'c) $h(x)=\\frac{1}{\\sqrt{x+3}}$', a: ']-3;+inf[' },
+        { t: 'signtable', q: 'd) $k(x)=\\sqrt{(x+1)(5-x)}$ : complète le tableau de signes de $(x+1)(5-x)$.', cols: ['-\\infty', '-1', '5', '+\\infty'], rows: [{ l: 'x+1', s: '-++'.split(''), m: ['', '0', '', ''] }, { l: '5-x', s: '++-'.split(''), m: ['', '', '0', ''] }, { l: '(x+1)(5-x)', s: '-+-'.split(''), m: ['', '0', '0', ''], res: true }] },
+        { t: 'set', q: '   puis $D_k=$', a: '[-1;5]' }
+      ], sol: ['a) $x^2-9\\neq0 \\iff x\\neq\\pm3$.', 'b) $4-2x\\geq0 \\iff x\\leq2$.', 'c) $x+3>0 \\iff x>-3$.', 'd) Produit $\\geq0$ entre les racines : $[-1;5]$.'] },
+      { id: 'xa3', ch: 1, topic: 'tableau', title: 'Exercice 3 — Lecture graphique', intro: 'Voici la courbe d’une fonction $f$ définie sur $[-4;5]$.', fig: GA_, parts: [
+        { t: 'num', q: 'a) Quelle est l’image de 1 ?', a: -2 },
+        { t: 'numset', q: 'b) Détermine graphiquement les antécédents de 0.', a: [-3, 0, 3], cv: { f: CV.CE, k: 0, rel: '=' } },
+        { t: 'set', q: 'c) Résous graphiquement $f(x)\\geq0$.', a: '[-3;0]U[3;5]', cv: { f: CV.CE, k: 0, rel: '>=' } },
+        { t: 'num', q: 'd) Quel est le maximum de $f$ ?', a: 3 },
+        { t: 'num', q: 'e) Pour quelle valeur de $x$ est-il atteint ?', a: -2 },
+        { t: 'vartable', q: 'f) Dresse le tableau de variation de $f$.', xs: [-4, -2, 1, 5], vals: [-1, 3, -2, 2], arrows: ['up', 'down', 'up'] }
+      ], sol: ['a) $f(1)=-2$ ; b) $\\{-3;0;3\\}$ ; c) $[-3;0]\\cup[3;5]$ ; d) 3 ; e) $-2$.', 'f) $-1\\nearrow3\\searrow-2\\nearrow2$.'] },
+      { id: 'xa4', ch: 1, topic: 'graphique', title: 'Exercice 4 — Courbe et points', intro: 'Soit $f(x)=x^2-2x+3$ et $\\mathcal C_f$ sa courbe.', parts: [
+        { t: 'table', q: 'a) Complète le tableau de valeurs.', xs: [-1, 0, 1, 2, 3], f: x => x * x - 2 * x + 3 },
+        { t: 'tf', q: 'b) $A(2;3)$ appartient à $\\mathcal C_f$.', a: true, why: '$f(2)=4-4+3=3$.' },
+        { t: 'tf', q: 'c) $B(-1;5)$ appartient à $\\mathcal C_f$.', a: false, why: '$f(-1)=1+2+3=6\\neq5$.' },
+        { t: 'num', q: 'd) Ordonnée du point où $\\mathcal C_f$ coupe l’axe des ordonnées :', a: 3, why: '$f(0)=3$.' }
+      ], sol: ['a) $6,\\ 3,\\ 2,\\ 3,\\ 6$ ; b) vrai ; c) faux ($f(-1)=6$) ; d) $f(0)=3$.'] },
+      { id: 'xa5', ch: 2, topic: 'facteur', title: 'Exercice 5 — Paraboles', intro: 'Questions sur le second degré.', parts: [
+        { t: 'fill', q: 'a) $f(x)=5-3x^2$ :', lines: ['$a=$ [[1]] → la parabole est tournée vers le [[2]]'], b: [{ k: 'n', a: -3 }, { k: 's', o: HB, a: 'bas' }] },
+        { t: 'fill', q: 'b) Mets $3x^2-x=x^2+4x-5$ sous la forme $ax^2+bx+c=0$ :', lines: ['$a=$ [[1]] , $b=$ [[2]] , $c=$ [[3]]'], b: [{ k: 'n', a: 2 }, { k: 'n', a: -5 }, { k: 'n', a: 5 }] },
+        { t: 'fill', q: 'c) Compare avec $x^2$ :', lines: ['$g(x)=(x-4)^2$ : sommet $(\\,$ [[1]] $;0)$, déplacement vers la [[2]]', '$h(x)=x^2+3$ : sommet $(0\\,;$ [[3]] $)$, déplacement vers le [[4]]'], b: [{ k: 'n', a: 4 }, { k: 's', o: ['gauche', 'droite'], a: 'droite' }, { k: 'n', a: 3 }, { k: 's', o: HB, a: 'haut' }] },
+        { t: 'vartable', q: 'd) Tableau de variation de $f(x)=-3x^2$ :', xs: ['−∞', 0, '+∞'], vals: [null, 0, null], arrows: ['up', 'down'] }
+      ], sol: ['a) $a=-3$ → bas ; b) $2x^2-5x+5=0$ ; c) sommet $(4;0)$ vers la droite ; $(0;3)$ vers le haut ; d) $\\nearrow$ puis $\\searrow$, maximum 0.'] },
+      { id: 'xa6', ch: 2, topic: 'position', title: 'Exercice 6 — Intersection et position relative', intro: 'Soit $f(x)=2x^2+3x$ et $g(x)=x^2$.', parts: [
+        { t: 'expr', q: 'a) Calcule $f(x)-g(x)$ :', a: 'x^2+3x', vars: ['x'], show: '$x^2+3x=x(x+3)$' },
+        { t: 'signtable', q: 'b) Tableau de signes de $f(x)-g(x)=x(x+3)$ :', cols: ['-\\infty', '-3', '0', '+\\infty'], rows: [{ l: 'x', s: '--+'.split(''), m: ['', '', '0', ''] }, { l: 'x+3', s: '-++'.split(''), m: ['', '0', '', ''] }, { l: 'f(x)-g(x)', s: '+-+'.split(''), m: ['', '0', '0', ''], res: true }] },
+        { t: 'set', q: 'c) $\\mathcal C_f$ est au-dessus de $\\mathcal C_g$ sur :', a: ']-inf;-3[U]0;+inf[' },
+        { t: 'numset', q: 'd) Abscisses des points d’intersection :', a: [-3, 0] },
+        { t: 'fill', q: 'e) La parabole $P : y=x^2$ et la droite $d : y=2x-1$ ont un seul point commun :', lines: ['$x^2=2x-1 \\iff x^2-2x+$ [[1]] $=0 \\iff (x-$ [[2]] $)^2=0 \\iff x=$ [[3]]', 'Le point commun est $A(1\\,;$ [[4]] $)$'], b: [{ k: 'n', a: 1 }, { k: 'n', a: 1 }, { k: 'n', a: 1 }, { k: 'n', a: 1 }] }
+      ], sol: ['a) $2x^2+3x-x^2=x^2+3x$.', 'b)–c) Signes $+,-,+$ : au-dessus sur $]-\\infty;-3[\\cup]0;+\\infty[$.', 'd) $x=-3$ et $x=0$.', 'e) $(x-1)^2=0 \\iff x=1$ ; $y=1$ : $A(1;1)$.'] }
+    ]
+  },
+  {
+    id: 'B', title: 'Examen blanc B', desc: 'Même structure, autres nombres et autres graphiques.', ex: [
+      { id: 'xb1', ch: 1, topic: 'fonction', title: 'Exercice 1 — Images et antécédents', intro: 'Soit $g(x)=\\sqrt{2x+5}$ et $h(x)=\\dfrac{3}{x^2+2}$.', parts: [
+        { t: 'num', q: 'a) $g(2)=$', a: 3 },
+        { t: 'numset', q: 'b) Antécédents de 1 par $g$ :', a: [-2] },
+        { t: 'numset', q: 'c) Antécédents de 0 par $g$ :', a: [-2.5], fill: '-5/2', show: '$-\\frac52$' },
+        { t: 'numset', q: 'd) Antécédents de $-1$ par $g$ :', a: [], noneWhy: 'une racine carrée est toujours positive ou nulle.' },
+        { t: 'num', q: 'e) $h(1)=$', a: 1 },
+        { t: 'numset', q: 'f) Antécédents de 1 par $h$ :', a: [1, -1] }
+      ], sol: ['a) $\\sqrt{9}=3$ ; b) $2x+5=1 \\iff x=-2$ ; c) $2x+5=0 \\iff x=-\\frac52$ ; d) aucun.', 'e) $\\frac{3}{3}=1$ ; f) $\\frac{3}{x^2+2}=1 \\iff x^2+2=3 \\iff x^2=1 \\iff x=\\pm1$.'] },
+      { id: 'xb2', ch: 1, topic: 'domaine', title: 'Exercice 2 — Domaines de définition', intro: 'Détermine le domaine de définition.', parts: [
+        { t: 'set', q: 'a) $f(x)=\\frac{1}{x^2-x}$', a: 'R\\{0;1}' },
+        { t: 'set', q: 'b) $g(x)=\\sqrt{3x-6}$', a: '[2;+inf[' },
+        { t: 'set', q: 'c) $h(x)=\\frac1x+\\sqrt{2-x}$', a: ']-inf;0[U]0;2]' },
+        { t: 'signtable', q: 'd) $k(x)=\\sqrt{\\frac{x-2}{x+4}}$ : tableau de signes du quotient.', cols: ['-\\infty', '-4', '2', '+\\infty'], rows: [{ l: 'x-2', s: '--+'.split(''), m: ['', '', '0', ''] }, { l: 'x+4', s: '-++'.split(''), m: ['', '0', '', ''] }, { l: '\\frac{x-2}{x+4}', s: '+-+'.split(''), m: ['', '|', '0', ''], res: true }] },
+        { t: 'set', q: '   puis $D_k=$', a: ']-inf;-4[U[2;+inf[' }
+      ], sol: ['a) $x(x-1)\\neq0$ ; b) $x\\geq2$ ; c) $x\\neq0$ et $x\\leq2$ ; d) −4 exclu, 2 inclus.'] },
+      { id: 'xb3', ch: 1, topic: 'resolution', title: 'Exercice 3 — Lecture graphique', intro: 'Courbe d’une fonction $f$ définie sur $[-5;4]$.', fig: GB_, parts: [
+        { t: 'num', q: 'a) $f(2)=$', a: 1 },
+        { t: 'numset', q: 'b) Résous $f(x)=1$.', a: [-5, -1, 2], cv: { f: CV.CF, k: 1, rel: '=' } },
+        { t: 'set', q: 'c) Résous $f(x)<1$.', a: ']-5;-1[U]2;4]', cv: { f: CV.CF, k: 1, rel: '<' } },
+        { t: 'num', q: 'd) Maximum de $f$ :', a: 3 },
+        { t: 'num', q: 'e) Il est atteint en $x=$', a: 1 },
+        { t: 'vartable', q: 'f) Tableau de variation de $f$.', xs: [-5, -3, 1, 4], vals: [1, -2, 3, -1], arrows: ['down', 'up', 'down'] }
+      ], sol: ['a) 1 ; b) $\\{-5;-1;2\\}$ ; c) $]-5;-1[\\cup]2;4]$ ; d) 3 ; e) 1.', 'f) $1\\searrow-2\\nearrow3\\searrow-1$.'] },
+      { id: 'xb4', ch: 1, topic: 'graphique', title: 'Exercice 4 — Courbe et points', intro: 'Soit $f(x)=x^2-4x$.', parts: [
+        { t: 'table', q: 'a) Complète le tableau.', xs: [0, 1, 2, 3, 4], f: x => x * x - 4 * x },
+        { t: 'tf', q: 'b) $A(5;5)\\in\\mathcal C_f$.', a: true, why: '$f(5)=25-20=5$.' },
+        { t: 'tf', q: 'c) $B(-1;-3)\\in\\mathcal C_f$.', a: false, why: '$f(-1)=1+4=5\\neq-3$.' },
+        { t: 'num', q: 'd) Ordonnée du point de $\\mathcal C_f$ d’abscisse $-2$ :', a: 12 }
+      ], sol: ['a) $0,-3,-4,-3,0$ ; b) vrai ; c) faux ; d) $f(-2)=4+8=12$.'] },
+      { id: 'xb5', ch: 2, topic: 'equation', title: 'Exercice 5 — Second degré', intro: 'Questions sur les paraboles et la forme normale.', parts: [
+        { t: 'fill', q: 'a) $f(x)=2x(3-x)$ :', lines: ['$a=$ [[1]] → la parabole est tournée vers le [[2]]'], b: [{ k: 'n', a: -2 }, { k: 's', o: HB, a: 'bas' }] },
+        { t: 'fill', q: 'b) Mets $5x^2-2x=3x^2+x-4$ sous la forme normale :', lines: ['$a=$ [[1]] , $b=$ [[2]] , $c=$ [[3]]'], b: [{ k: 'n', a: 2 }, { k: 'n', a: -3 }, { k: 'n', a: 4 }] },
+        { t: 'fill', q: 'c) Compare avec $x^2$ :', lines: ['$g(x)=(x+3)^2$ : sommet $(\\,$ [[1]] $;0)$, vers la [[2]]', '$h(x)=x^2-2$ : sommet $(0\\,;$ [[3]] $)$, vers le [[4]]'], b: [{ k: 'n', a: -3 }, { k: 's', o: ['gauche', 'droite'], a: 'gauche' }, { k: 'n', a: -2 }, { k: 's', o: HB, a: 'bas' }] },
+        { t: 'vartable', q: 'd) Tableau de variation de $f(x)=\\frac12x^2$ :', xs: ['−∞', 0, '+∞'], vals: [null, 0, null], arrows: ['down', 'up'] }
+      ], sol: ['a) $6x-2x^2$ : $a=-2$ ; b) $2x^2-3x+4=0$ ; c) $(-3;0)$ gauche ; $(0;-2)$ bas ; d) ↘ puis ↗, minimum 0.'] },
+      { id: 'xb6', ch: 2, topic: 'position', title: 'Exercice 6 — Position relative', intro: 'Soit $f(x)=-x^2+3x$ et $g(x)=2x$.', parts: [
+        { t: 'expr', q: 'a) Calcule et factorise $f(x)-g(x)$ :', a: 'x(1-x)', vars: ['x'], show: '$-x^2+x=x(1-x)$' },
+        { t: 'signtable', q: 'b) Tableau de signes :', cols: ['-\\infty', '0', '1', '+\\infty'], rows: [{ l: 'x', s: '-++'.split(''), m: ['', '0', '', ''] }, { l: '1-x', s: '++-'.split(''), m: ['', '', '0', ''] }, { l: 'f(x)-g(x)', s: '-+-'.split(''), m: ['', '0', '0', ''], res: true }] },
+        { t: 'set', q: 'c) $\\mathcal C_f$ est au-dessus de $\\mathcal C_g$ sur :', a: ']0;1[' },
+        { t: 'numset', q: 'd) Abscisses des points d’intersection :', a: [0, 1] },
+        { t: 'fill', q: 'e) $P : y=x^2$ et $d : y=-2x-1$ ont un seul point commun :', lines: ['$x^2=-2x-1 \\iff x^2+2x+$ [[1]] $=0 \\iff (x+$ [[2]] $)^2=0 \\iff x=$ [[3]]', 'Le point commun est $A(-1\\,;$ [[4]] $)$'], b: [{ k: 'n', a: 1 }, { k: 'n', a: 1 }, { k: 'n', a: -1 }, { k: 'n', a: 1 }] }
+      ], sol: ['a) $-x^2+3x-2x=-x^2+x=x(1-x)$.', 'b)–c) $-,+,-$ : au-dessus sur $]0;1[$.', 'd) $x=0$ et $x=1$.', 'e) $(x+1)^2=0 \\iff x=-1$ ; $y=1$ : $A(-1;1)$.'] }
+    ]
+  }
+];
+function mixedExam() {
+  const all = TOPICS.flatMap(t => t.ex), pool = ch => all.filter(e => TOPICS.find(t => t.id === e.topic).ch === ch && e.level >= 2 && e.parts.length >= 2);
+  const pickN = (arr, n) => shuffle(arr).slice(0, n).map(e => Object.assign({}, e, { ch: TOPICS.find(t => t.id === e.topic).ch }));
+  return { id: 'M', title: 'Examen mixte (aléatoire)', desc: 'Exercices tirés au hasard des niveaux 2 et 3 des deux chapitres.', ex: [...pickN(pool(1), 4), ...pickN(pool(2), 3)] };
+}
+
+'use strict';
+/* =========================================================
+   APPLICATION : état, navigation, exercices, atelier, examens
+   ========================================================= */
+let S = { ex: {}, drill: {}, exams: [] };
+try { const raw = sessionStorage.getItem('mathtrainer3gcm'); if (raw) S = Object.assign(S, JSON.parse(raw)); } catch (e) { }
+const save = () => { try { sessionStorage.setItem('mathtrainer3gcm', JSON.stringify(S)); } catch (e) { } };
+const LV = { 1: ['Niveau 1', 'Comprendre les bases'], 2: ['Niveau 2', 'Appliquer (plusieurs étapes)'], 3: ['Niveau 3', 'Niveau contrôle'] };
+const topicById = id => TOPICS.find(t => t.id === id);
+const main = () => $('#main');
+let timer = null, lastInput = null;
+document.addEventListener('focusin', e => { if (e.target.matches && e.target.matches('input[type=text]')) lastInput = e.target; });
+
+/* ---------- statistiques ---------- */
+function tstat(t) {
+  const r = { total: t.ex.length, ok: 0, ko: 0, lv: { 1: { n: 0, ok: 0 }, 2: { n: 0, ok: 0 }, 3: { n: 0, ok: 0 } } };
+  t.ex.forEach(e => { const s = S.ex[e.id], L = r.lv[e.level]; L.n++; if (s && s.st === 'ok') { r.ok++; L.ok++; } else if (s && s.st === 'ko') r.ko++; });
+  const need = l => Math.max(1, Math.round(l.n * 0.7));
+  r.valid = [1, 2, 3].map(l => r.lv[l].n > 0 && r.lv[l].ok >= need(r.lv[l]));
+  r.level = r.valid[0] ? (r.valid[1] ? (r.valid[2] ? 3 : 2) : 1) : 0;
+  const att = r.ok + r.ko; r.weak = att >= 1 && (r.ko >= 2 || (att >= 2 && r.ok / att < 0.6));
+  return r;
+}
+function totals() {
+  let ok = 0, ko = 0, total = 0;
+  TOPICS.forEach(t => { const s = tstat(t); ok += s.ok; ko += s.ko; total += s.total; });
+  Object.values(S.drill).forEach(d => { ok += d.ok; ko += d.ko; });
+  return { ok, ko, total, att: ok + ko };
+}
+const stars = n => `<span class="stars">${'★'.repeat(n)}<span class="off">${'★'.repeat(3 - n)}</span></span>`;
+function record(ex, ok, tries, flags) {
+  if (ex.id.startsWith('gen_')) {
+    const d = S.drill[ex.topic] || (S.drill[ex.topic] = { ok: 0, ko: 0 });
+    if (ok && !flags.okc) { d.ok++; flags.okc = true; } else if (!ok && !flags.koc && !flags.okc) { d.ko++; flags.koc = true; }
+  } else {
+    const r = S.ex[ex.id] || (S.ex[ex.id] = { st: 'new', tries: 0 });
+    r.tries++;
+    if (ok) r.st = 'ok'; else if (r.st !== 'ok') r.st = 'ko';
+  }
+  save();
+}
+
+/* ---------- navigation ---------- */
+const TABS = [['home', 'Accueil'], ['ch1', 'Chapitre 1'], ['ch2', 'Chapitre 2'], ['atelier', 'Atelier'], ['exam', 'Examen blanc'], ['prog', 'Progression']];
+function setTab(k) { $$('#tabs button').forEach(b => b.classList.toggle('on', b.dataset.k === k)); }
+function go(view, arg) {
+  if (timer) { clearInterval(timer); timer = null; }
+  window.scrollTo(0, 0); const m = main(); m.innerHTML = '';
+  $('#sym').style.display = 'none';
+  ({ home: vHome, ch1: () => vChapter(1), ch2: () => vChapter(2), topic: () => vTopic(arg), atelier: () => vAtelier(arg), exam: vExamMenu, prog: vProg }[view] || vHome)();
+  setTab(['ch1', 'ch2'].includes(view) ? view : view === 'topic' ? 'ch' + topicById(arg).ch : view);
+}
+function nextStep() {
+  for (const t of TOPICS) { const s = tstat(t); for (let l = 1; l <= 3; l++) if (!s.valid[l - 1] && s.lv[l].n) return { t, l, s }; }
+  return null;
+}
+function topicCard(t) {
+  const s = tstat(t), pct = Math.round(100 * s.ok / s.total);
+  return h('div', { class: 'card tcard', onclick: () => go('topic', t.id) },
+    h('span', { class: 'tag' }, `${t.n} · Chapitre ${t.ch}`), h('h3', { html: T(t.title) }),
+    h('div', { class: 'pbar' }, h('i', { style: `width:${pct}%` })),
+    h('div', { class: 'row small muted' }, h('span', null, `${s.ok}/${s.total} réussis`), h('span', { html: stars(s.level) }), s.weak ? h('span', { class: 'badge2' }, 'à revoir') : null));
+}
+/* ---------- accueil ---------- */
+function vHome() {
+  const m = main(), tt = totals(), ns = nextStep();
+  m.append(h('div', { class: 'hero' }, h('h1', null, 'Ton tuteur de mathématiques'),
+    h('p', null, 'Mathématiques 3GCM — Variations des fonctions & Le second degré. Réfléchis et calcule d’abord, vérifie ensuite : chaque erreur est expliquée.'),
+    h('div', { class: 'stats' }, [['' + tt.ok, 'exercices réussis'], ['' + tt.ko, 'à retravailler'], [tt.att ? Math.round(100 * tt.ok / tt.att) + ' %' : '–', 'taux de réussite'], [tt.ok + ' / ' + tt.total, 'programme couvert']].map(([a, b]) => h('div', { class: 'stat' }, h('b', null, a), h('span', null, b)))),
+    h('div', { class: 'bar' }, ns ? h('button', { class: 'btn', onclick: () => startLevel(ns.t, ns.l) }, `Continuer : ${ns.t.title.replace(/\$/g, '')} – ${LV[ns.l][0]}`) : h('span', null, 'Bravo : tous les niveaux sont validés !'), h('button', { class: 'btn ghost', onclick: () => go('exam') }, 'Examen blanc'))));
+  const weak = TOPICS.filter(t => tstat(t).weak), ko = TOPICS.flatMap(t => t.ex).filter(e => S.ex[e.id] && S.ex[e.id].st === 'ko');
+  m.append(h('div', { class: 'card' }, h('h2', { style: 'margin-top:0' }, 'À revoir'),
+    weak.length ? h('div', null, h('p', null, 'Ces thèmes te posent encore des difficultés :'), h('div', null, weak.map(t => h('span', { class: 'pill', style: 'cursor:pointer', onclick: () => go('topic', t.id), html: T(t.title) })))) : h('p', { class: 'muted' }, 'Aucune difficulté détectée pour l’instant. Les thèmes ratés apparaîtront ici.'),
+    h('div', { class: 'bar' }, h('button', { class: 'btn warn', disabled: !ko.length, onclick: () => runner(ko, { title: 'Exercices à refaire', back: () => go('home') }) }, `Refaire mes erreurs (${ko.length})`))));
+  [1, 2].forEach(ch => { m.append(h('h2', null, ch === 1 ? 'Chapitre 1 — Variations des fonctions' : 'Chapitre 2 — Le second degré'), h('div', { class: 'grid g3' }, TOPICS.filter(t => t.ch === ch).map(topicCard))); });
+}
+function vChapter(ch) {
+  main().append(h('h1', null, ch === 1 ? 'Chapitre 1 · Variations des fonctions' : 'Chapitre 2 · Le second degré'), h('p', { class: 'muted' }, 'Choisis un thème : rappel de cours, puis trois niveaux d’exercices.'), h('div', { class: 'grid g3' }, TOPICS.filter(t => t.ch === ch).map(topicCard)));
+}
+function vTopic(id) {
+  const t = topicById(id), s = tstat(t), m = main();
+  m.append(h('button', { class: 'back', onclick: () => go('ch' + t.ch) }, '← Chapitre ' + t.ch), h('h1', { html: T(t.title) }));
+  m.append(h('details', { class: 'card', open: true }, h('summary', { style: 'font-weight:700;cursor:pointer' }, 'Rappel de cours'), h('div', { html: T(t.lesson) })));
+  const bar = h('div', { class: 'bar' });
+  if (t.explorer) bar.append(h('button', { class: 'btn ghost', onclick: () => go('atelier', t.explorer) }, '🔬 Essayer dans l’atelier'));
+  if (t.gens.length) bar.append(h('button', { class: 'btn ghost', onclick: () => drill(t) }, '♻ Variantes à volonté'));
+  bar.append(h('button', { class: 'btn ghost', onclick: () => { t.ex.forEach(e => delete S.ex[e.id]); save(); go('topic', id); } }, 'Recommencer ce thème'));
+  m.append(h('h2', null, 'Exercices'), h('div', { class: 'lvlrow' }, [1, 2, 3].map(l => {
+    const L = s.lv[l]; if (!L.n) return null;
+    return h('button', { class: 'lvlbtn', onclick: () => startLevel(t, l) }, h('span', { class: 'lvl l' + l }, LV[l][0]), h('b', null, LV[l][1]), h('div', { class: 'pbar' }, h('i', { style: `width:${100 * L.ok / L.n}%` })), h('span', { class: 'small muted' }, `${L.ok}/${L.n} réussis` + (s.valid[l - 1] ? ' · ✔ validé' : '')));
+  })), bar);
+}
+function startLevel(t, l) { runner(t.ex.filter(e => e.level === l), { title: `${t.title} — ${LV[l][0]}`, back: () => go('topic', t.id), topic: t }); }
+function drill(t) {
+  let n = 0;
+  runner(null, { title: `${t.title} — variantes`, back: () => go('topic', t.id), topic: t, gen: () => { const e = pick(t.gens)(); e.n = ++n; return e; } });
+}
+
+/* ---------- carte d'exercice ---------- */
+function exerciseCard(ex, o) {
+  o = o || {};
+  const parts = ex.parts.map(buildPart), flags = {};
+  const el = h('div', { class: 'card ex' });
+  el.append(h('div', { class: 'exhead' }, h('h2', { style: 'margin:0', html: T(ex.title) }), ex.level && !o.exam ? h('span', { class: 'lvl l' + ex.level }, LV[ex.level][0]) : null));
+  if (ex.intro) el.append(h('div', { class: 'intro', html: T(ex.intro) }));
+  if (ex.fig) { const f = h('div', { class: 'pfig' }); ex.fig(f); el.append(f); }
+  parts.forEach(p => el.append(p.el));
+  const card = { el, parts, ex };
+  if (o.exam) return card;
+  let tries = 0, hintN = 0, solved = false, last = [];
+  const fb = h('div'), hb = h('div'), sb = h('div');
+  const bHint = h('button', { class: 'btn ghost', onclick: () => hint() }, '💡 Indice'), bChk = h('button', { class: 'btn', onclick: () => check() }, 'Vérifier'),
+    bSol = h('button', { class: 'btn ghost', style: 'display:none', onclick: () => showSol() }, 'Voir le chemin de résolution'),
+    bRe = h('button', { class: 'btn ghost', style: 'display:none', onclick: () => reset() }, '↺ Réessayer'),
+    bNext = h('button', { class: 'btn ok', style: 'display:none', onclick: () => o.next && o.next() }, 'Suivant →');
+  el.append(h('div', { class: 'bar' }, bHint, bChk, bSol, bRe, bNext), fb, hb, sb);
+  function hint() {
+    const hs = ex.hints || [];
+    if (!hs.length) { hb.innerHTML = ''; hb.append(h('div', { class: 'fb hint', html: '💡 Relis le rappel de cours, puis décompose le calcul étape par étape.' })); return; }
+    const i = Math.min(hintN, hs.length - 1); hintN++;
+    hb.innerHTML = ''; hb.append(h('div', { class: 'fb hint', html: `💡 Indice ${Math.min(hintN, hs.length)}/${hs.length} : ` + T(hs[i]) }));
+  }
+  function check() {
+    const res = parts.map(p => p.grade());
+    if (res.every(r => r.empty)) { fb.innerHTML = ''; fb.append(h('div', { class: 'fb hint' }, 'Écris d’abord ta réponse (réfléchis et calcule), puis clique sur « Vérifier ».')); return; }
+    tries++; last = res; parts.forEach((p, i) => p.mark(res[i], false));
+    const all = res.every(r => r.score === 1); fb.innerHTML = ''; sb.innerHTML = '';
+    if (all) {
+      solved = true; record(ex, true, tries, flags);
+      fb.append(h('div', { class: 'fb ok', html: (tries === 1 ? '🎉 Bravo, c’est juste du premier coup ! ' : '✓ Correct, bien rattrapé ! ') + (ex.ok ? T(ex.ok) : 'Le raisonnement est bon.') }));
+      bSol.style.display = ''; bSol.textContent = 'Voir la méthode'; bNext.style.display = ''; bRe.style.display = 'none';
+    } else {
+      record(ex, false, tries, flags);
+      const nb = res.filter(r => r.score < 1).length;
+      fb.append(h('div', { class: 'fb ko', html: `<b>Pas encore.</b> ${nb} question${nb > 1 ? 's sont' : ' est'} à corriger (en rouge) : lis l’explication sous chaque réponse, puis réessaie.` }));
+      if (ex.hints && ex.hints.length) { hb.innerHTML = ''; const i = Math.min(hintN, ex.hints.length - 1); hintN++; hb.append(h('div', { class: 'fb hint', html: '💡 Piste pour réessayer : ' + T(ex.hints[i]) })); }
+      bSol.style.display = ''; bSol.textContent = 'Voir le chemin de résolution'; bRe.style.display = '';
+      if (tries >= 2) showSol();
+    }
+    refreshLive();
+  }
+  function showSol() {
+    sb.innerHTML = '';
+    const box = h('div', { class: 'solbox' }, h('h3', null, 'Chemin de résolution'));
+    if (ex.sol && ex.sol.length) box.append(h('ol', { class: 'steps' }, ex.sol.map(s => h('li', { html: T(s) }))));
+    box.append(h('h3', null, 'Réponses attendues'));
+    parts.forEach((p, i) => { box.append(h('div', { class: 'part', html: (p.spec.q ? '<div class="pq">' + T(p.spec.q) + '</div>' : '') + '<div>' + p.ansHtml() + '</div>' })); });
+    sb.append(box); if (!solved) bNext.style.display = '';
+  }
+  function reset() { parts.forEach(p => p.reset()); fb.innerHTML = ''; sb.innerHTML = ''; hb.innerHTML = ''; bRe.style.display = 'none'; }
+  card.reset = reset;
+  return card;
+}
+function liveLine() { const t = totals(); return `<span class="pill">✓ ${t.ok} réussis</span><span class="pill" style="background:var(--ko2);color:var(--ko)">✗ ${t.ko} à revoir</span>`; }
+let refreshLive = () => { };
+
+/* ---------- séance d'exercices ---------- */
+function runner(queue, o) {
+  const m = main(); m.innerHTML = ''; window.scrollTo(0, 0);
+  $('#sym').style.display = 'flex';
+  let idx = 0; const list = queue ? queue.slice() : [];
+  const head = h('div'), body = h('div'), live = h('div', { class: 'small', style: 'margin:6px 0' });
+  m.append(h('button', { class: 'back', onclick: o.back }, '← Quitter la séance'), h('h1', { html: T(o.title) }), live, head, body);
+  refreshLive = () => { live.innerHTML = liveLine(); drawDots(); };
+  function drawDots() {
+    head.innerHTML = '';
+    if (!queue) { head.append(h('div', { class: 'muted small' }, `Variante n°${list.length ? idx + 1 : 1} — exercices illimités`)); return; }
+    head.append(h('div', { class: 'dots' }, list.map((e, i) => { const s = S.ex[e.id]; return h('span', { class: 'dot' + (i === idx ? ' cur' : '') + (s ? ' ' + s.st : ''), title: e.title.replace(/\$/g, ''), onclick: () => { idx = i; show(); } }); })));
+  }
+  function show() {
+    if (queue && idx >= list.length) return done();
+    if (!queue && idx >= list.length) list.push(o.gen());
+    const ex = list[idx]; body.innerHTML = '';
+    const card = exerciseCard(ex, { next: () => { idx++; show(); window.scrollTo(0, 0); } });
+    body.append(card.el);
+    const nav = h('div', { class: 'bar' }, idx > 0 ? h('button', { class: 'btn ghost sm', onclick: () => { idx--; show(); } }, '← Précédent') : null, h('button', { class: 'btn ghost sm', onclick: () => { idx++; show(); } }, queue ? 'Passer →' : 'Autre variante →'));
+    body.append(nav); refreshLive();
+  }
+  function done() {
+    body.innerHTML = ''; head.innerHTML = '';
+    const ok = list.filter(e => S.ex[e.id] && S.ex[e.id].st === 'ok').length, ko = list.filter(e => S.ex[e.id] && S.ex[e.id].st === 'ko');
+    body.append(h('div', { class: 'card' }, h('h2', { style: 'margin-top:0' }, 'Séance terminée'), h('p', null, `${ok} exercice(s) réussi(s) sur ${list.length}.`),
+      h('div', { class: 'bar' }, ko.length ? h('button', { class: 'btn warn', onclick: () => runner(ko, o) }, `Refaire les ${ko.length} raté(s)`) : null, h('button', { class: 'btn', onclick: o.back }, 'Retour'))));
+  }
+  show();
+}
+
+/* ---------- Atelier : explorateurs interactifs ---------- */
+function slider(label, min, max, step, val, on) {
+  const out = h('b', null, String(val).replace('.', ',')), inp = h('input', { type: 'range', min, max, step, value: val });
+  inp.addEventListener('input', () => { out.textContent = String(+inp.value).replace('.', ','); on(+inp.value); });
+  return h('div', { class: 'sliderrow' }, h('span', { html: T(label) }), inp, out);
+}
+function seg(opts, cur, on) {
+  const w = h('div', { class: 'seg' });
+  opts.forEach(([k, t]) => { const b = h('button', { class: k === cur ? 'on' : '', onclick: () => { $$('button', w).forEach(x => x.classList.remove('on')); b.classList.add('on'); on(k); } }, t); w.append(b); });
+  return w;
+}
+const EXPL = {
+  machine: ['La machine à fonctions', (box) => {
+    const F = [
+      { tex: 'x^2+3', f: x => x * x + 3, ante: y => y < 3 ? [] : y === 3 ? [0] : [Math.sqrt(y - 3), -Math.sqrt(y - 3)] },
+      { tex: '\\frac{1}{x}', f: x => x === 0 ? NaN : 1 / x, ante: y => y === 0 ? [] : [1 / y] },
+      { tex: '\\sqrt{x-2}', f: x => x < 2 ? NaN : Math.sqrt(x - 2), ante: y => y < 0 ? [] : [y * y + 2] },
+      { tex: '(3x-2)^2', f: x => (3 * x - 2) ** 2, ante: y => y < 0 ? [] : y === 0 ? [2 / 3] : [(2 + Math.sqrt(y)) / 3, (2 - Math.sqrt(y)) / 3] }];
+    let cur = 0, x = 2, y = 7; const info = h('div', { class: 'rule' }), gh = h('div'), selF = h('select', { class: 'sel' }, F.map((f, i) => h('option', { value: i, html: '' }, ['x²+3', '1/x', '√(x−2)', '(3x−2)²'][i])));
+    const xin = h('input', { class: 'inp', value: '2', style: 'width:8ch' }), yin = h('input', { class: 'inp', value: '7', style: 'width:8ch' });
+    function upd() {
+      const f = F[cur]; x = parseNum(xin.value); y = parseNum(yin.value);
+      const fx = f.f(x), an = isNaN(y) ? [] : f.ante(y);
+      info.innerHTML = T(`$f(x)=${f.tex}$<br>` + (isNaN(x) ? 'Entre un nombre pour $x$.' : (isNaN(fx) ? `<b>Image de ${nStr(x)}</b> : n’existe pas (hors du domaine de définition).` : `<b>Image</b> de $${nTex(x)}$ : $f(${nTex(x)})=${nTex(fx)}$`)) + '<br>' + (isNaN(y) ? 'Entre un nombre pour $y$.' : (an.length ? `<b>Antécédent(s)</b> de $${nTex(y)}$ : ` + an.map(v => '$' + nTex(v) + '$').join(' et ') + (an.some(v => !toFrac(v)) ? ' (valeurs arrondies)' : '') : `<b>Antécédents</b> de ${nStr(y)} : aucun.`)));
+      plot(gh, { xmin: -5, xmax: 5, ymin: -3, ymax: 12, w: 560, h: 340, curves: [{ fn: f.f, x0: -5, x1: 5 }, ...(f.tex.includes('frac') ? [] : [])], hlines: isNaN(y) ? [] : [{ y, color: '#d97706' }], points: [...(isNaN(fx) || isNaN(x) ? [] : [{ x, y: fx, color: '#059669', label: 'image' }]), ...an.map(a => ({ x: a, y, color: '#d97706' }))] });
+    }
+    selF.onchange = () => { cur = +selF.value; upd(); }; xin.oninput = yin.oninput = upd;
+    box.append(h('p', { html: 'Choisis une fonction, entre un x pour voir son <b>image</b>, entre un y pour voir ses <b>antécédents</b>.' }), h('div', { class: 'row' }, selF, h('span', null, 'x ='), xin, h('span', null, 'y ='), yin), info, gh); upd();
+  }],
+  refs: ['Les fonctions de référence', (box) => {
+    const F = [['x', x => x, '\\text{droite}'], ['x²', x => x * x, '\\text{parabole}'], ['x³', x => x ** 3, ''], ['√x', x => x < 0 ? NaN : Math.sqrt(x), ''], ['1/x', x => x === 0 ? NaN : 1 / x, '']];
+    const desc = ['Croissante sur ℝ. Droite passant par O.', 'Décroissante sur ]−∞;0], croissante sur [0;+∞[. Minimum 0 en 0.', 'Croissante sur ℝ. Passe par (−1;−1), (0;0), (1;1).', 'Définie sur [0;+∞[. Croissante.', 'Définie sur ℝ\\{0}. Décroissante sur ]−∞;0[ et sur ]0;+∞[.'];
+    let cur = 1, x = 1.5; const gh = h('div'), info = h('div', { class: 'rule' });
+    function upd() {
+      const f = F[cur][1], fx = f(x);
+      info.innerHTML = `<b>f(x) = ${F[cur][0]}</b> — ${desc[cur]}<br>${isNaN(fx) ? `f(${nStr(x)}) n’existe pas.` : `f(${nStr(+x.toFixed(2))}) = ${nStr(+fx.toFixed(3))}`}`;
+      const pieces = cur === 4 ? [{ fn: f, x0: -5, x1: -0.08 }, { fn: f, x0: 0.08, x1: 5 }] : [{ fn: f, x0: cur === 3 ? 0 : -5, x1: 5 }];
+      plot(gh, { xmin: -5, xmax: 5, ymin: -5, ymax: 8, w: 560, h: 340, curves: pieces, points: isNaN(fx) ? [] : [{ x, y: fx, color: '#e11d48', label: `(${nStr(+x.toFixed(1))} ; ${nStr(+fx.toFixed(2))})` }], vlines: [{ x, color: '#d97706' }] });
+    }
+    box.append(seg(F.map((f, i) => [i, f[0]]), 1, k => { cur = +k; upd(); }), slider('x =', -4.5, 4.5, 0.1, 1.5, v => { x = v; upd(); }), info, gh); upd();
+  }],
+  parabole: ['Les paraboles', (box) => {
+    let mode = 'a', a = 2, c = 0; const gh = h('div'), info = h('div', { class: 'rule' }), sl = h('div');
+    function upd() {
+      let fn, txt;
+      if (mode === 'a') { if (a === 0) { info.innerHTML = '<b>a doit être différent de 0</b> (sinon ce n’est plus une parabole).'; plot(gh, { xmin: -5, xmax: 5, ymin: -6, ymax: 8, w: 560, h: 340, curves: [{ fn: x => x * x, x0: -5, x1: 5, color: '#94a3b8', dash: '5 4' }] }); return; } fn = x => a * x * x; txt = T(`$f(x)=${nTex(a)}x^2$ : parabole tournée vers le <b>${a > 0 ? 'haut' : 'bas'}</b> ; le sommet $O$ est un <b>${a > 0 ? 'minimum' : 'maximum'}</b>. ${Math.abs(a) > 1 ? 'Plus $|a|$ est grand, plus elle est étroite.' : 'Avec $|a|<1$ elle est plus large que $x^2$.'}`); }
+      else if (mode === 'v') { fn = x => x * x + c; txt = T(`$g(x)=x^2${c < 0 ? '-' : '+'}${Math.abs(c)}$ : translation <b>verticale</b> de $${nTex(Math.abs(c))}$ vers le <b>${c >= 0 ? 'haut' : 'bas'}</b> ; sommet $(0\\,;${nTex(c)})$.`); }
+      else { fn = x => (x - c) ** 2; txt = T(`$h(x)=(x${c < 0 ? '+' : '-'}${nTex(Math.abs(c))})^2$ : translation <b>horizontale</b> de $${nTex(Math.abs(c))}$ vers la <b>${c >= 0 ? 'droite' : 'gauche'}</b> ; sommet $(${nTex(c)}\\,;0)$.`); }
+      info.innerHTML = txt;
+      const vx = mode === 'h' ? c : 0, vy = mode === 'v' ? c : 0;
+      plot(gh, { xmin: -6, xmax: 6, ymin: -6, ymax: 8, w: 560, h: 340, curves: [{ fn: x => x * x, x0: -6, x1: 6, color: '#94a3b8', dash: '5 4', w: 1.8 }, { fn, x0: -6, x1: 6, color: '#4f46e5' }], points: [{ x: vx, y: vy, color: '#e11d48', label: 'sommet' }] });
+    }
+    function build() {
+      sl.innerHTML = '';
+      sl.append(mode === 'a' ? slider('$a =$', -4, 4, 0.5, a, v => { a = v; upd(); }) : slider(mode === 'v' ? '$c =$' : '$c =$', -5, 5, 1, c, v => { c = v; upd(); }));
+      upd();
+    }
+    box.append(seg([['a', 'f(x) = a·x²'], ['v', 'x² + c'], ['h', '(x − c)²']], 'a', k => { mode = k; c = 0; build(); }), sl, info, gh, h('p', { class: 'muted small' }, 'Pointillés gris : la parabole de référence $x^2$.'.replace(/\$x\^2\$/, 'x²'))); build();
+  }],
+  resolution: ['Résolution graphique', (box) => {
+    const CS = [['R1 : sur [−4;2]', CV.R1], ['R2 : sur [−5;4]', CV.R2], ['R3 : avec une partie plate', CV.R3], ['S3 : trois zéros', CV.S3], ['Q1 : sur [−3;5]', CV.Q1]];
+    let ci = 0, k = 3, rel = '=', f = CS[0][1]; const gh = h('div'), info = h('div', { class: 'rule' });
+    const sel = h('select', { class: 'sel' }, CS.map((c, i) => h('option', { value: i }, c[0])));
+    const RELS = [['=', '='], ['<', '<'], ['<=', '≤'], ['>', '>'], ['>=', '≥']];
+    let sk;
+    function upd() {
+      const sol = solveCurve(f, k, rel), segs = [], pts = [];
+      sol.forEach(iv => { if (iv.hi - iv.lo < 0.02) pts.push({ x: iv.lo, y: 0, color: '#059669' }); else segs.push({ x1: iv.lo, x2: iv.hi }); });
+      info.innerHTML = T(`$f(x)${RELS.find(r => r[0] === rel)[1]}${nTex(k)}$ ⟹ $S=$ `) + (sol.length ? ivToStr(sol.map(iv => (iv.hi - iv.lo < 0.02 ? mkIv(+((iv.lo + iv.hi) / 2).toFixed(2), +((iv.lo + iv.hi) / 2).toFixed(2), true, true) : iv))) : '∅') + ' <span class="muted small">(valeurs approchées)</span>';
+      const [lo, hi] = yRange(f);
+      plot(gh, { xmin: Math.floor(f.x0) - 1, xmax: Math.ceil(f.x1) + 1, ymin: Math.floor(lo) - 1, ymax: Math.ceil(hi) + 1, w: 560, h: 340, curves: [{ fn: f }, ...(rel === '=' ? [] : sol.filter(iv => iv.hi - iv.lo >= 0.02).map(iv => ({ fn: f, x0: iv.lo, x1: iv.hi, color: '#059669', w: 6, opacity: .45 })))], hlines: [{ y: k, color: '#d97706' }], segs, points: [{ x: f.x0, y: f(f.x0) }, { x: f.x1, y: f(f.x1) }, ...pts, ...(rel === '=' ? sol.filter(iv => iv.hi - iv.lo < 0.02).map(iv => ({ x: iv.lo, y: k, color: '#059669' })) : [])] });
+    }
+    function setCurve() { f = CS[ci][1]; const [lo, hi] = yRange(f); sk.querySelector('input').min = Math.floor(lo) - 1; sk.querySelector('input').max = Math.ceil(hi) + 1; k = Math.round((lo + hi) / 2); sk.querySelector('input').value = k; sk.querySelector('b').textContent = String(k); upd(); }
+    sel.onchange = () => { ci = +sel.value; setCurve(); };
+    sk = slider('$k =$', -4, 8, 0.5, k, v => { k = v; upd(); });
+    box.append(h('div', { class: 'row' }, sel, seg(RELS, '=', r => { rel = r; upd(); })), sk, info, gh, h('p', { class: 'muted small' }, 'Droite orange : $y=k$. En vert : les solutions lues sur l’axe des abscisses.'.replace(/\$y=k\$/, 'y = k'))); setCurve();
+  }],
+  intersect: ['Parabole et droite', (box) => {
+    let a = 1, m = 2, p = -1; const gh = h('div'), info = h('div', { class: 'rule' });
+    function upd() {
+      const A = a, B = -m, C = -p, D = B * B - 4 * A * C; let txt = T(`$P : y=${nTex(a)}x^2$ et $d : y=${nTex(m)}x${p < 0 ? '-' : '+'}${nTex(Math.abs(p))}$.<br>`);
+      const pts = [], segs = []; let roots = [];
+      if (a === 0) { info.innerHTML = 'a ≠ 0'; return; }
+      if (D > 1e-9) { roots = [(-B - Math.sqrt(D)) / (2 * A), (-B + Math.sqrt(D)) / (2 * A)].sort((x, y) => x - y); }
+      else if (Math.abs(D) <= 1e-9) roots = [-B / (2 * A)];
+      roots.forEach(r => pts.push({ x: r, y: a * r * r, color: '#e11d48', label: `(${nStr(+r.toFixed(2))} ; ${nStr(+(a * r * r).toFixed(2))})` }));
+      txt += roots.length === 0 ? 'Aucun point commun : la parabole et la droite ne se coupent pas.' : roots.length === 1 ? '<b>Un seul point commun</b> (la droite est tangente à la parabole).' : '<b>Deux points communs</b>.';
+      const above = (x0, x1) => { const xm = isFinite(x0) && isFinite(x1) ? (x0 + x1) / 2 : isFinite(x0) ? x0 + 1 : x1 - 1; return a * xm * xm - m * xm - p > 0; };
+      const bnds = [-6, ...roots.filter(r => r > -6 && r < 6), 6];
+      for (let i = 0; i < bnds.length - 1; i++) segs.push({ x1: bnds[i], x2: bnds[i + 1], color: above(bnds[i], bnds[i + 1]) ? '#059669' : '#e11d48' });
+      info.innerHTML = txt + '<br><span class="muted small">Axe des x : vert = parabole <b>au-dessus</b> de la droite ($f(x)-g(x)>0$) ; rouge = en dessous.</span>'.replace(/\$f\(x\)-g\(x\)>0\$/, 'f(x)−g(x) > 0');
+      plot(gh, { xmin: -6, xmax: 6, ymin: -8, ymax: 10, w: 560, h: 360, curves: [{ fn: x => a * x * x, x0: -6, x1: 6 }, { fn: x => m * x + p, x0: -6, x1: 6, color: '#d97706' }], points: pts, segs });
+    }
+    box.append(slider('$a =$', -2, 2, 0.5, 1, v => { a = v; upd(); }), slider('pente $m =$', -6, 6, 1, 2, v => { m = v; upd(); }), slider('ordonnée à l’origine $p =$', -6, 6, 1, -1, v => { p = v; upd(); }), info, gh); upd();
+  }]
+};
+function vAtelier(k) {
+  const m = main(); k = k || 'machine';
+  m.append(h('h1', null, 'Atelier interactif'), h('p', { class: 'muted' }, 'Manipule, observe, puis retourne t’exercer : on comprend mieux ce qu’on a vu bouger.'));
+  m.append(h('div', { class: 'row', style: 'margin-bottom:8px' }, Object.keys(EXPL).map(id => h('button', { class: 'btn sm ' + (id === k ? '' : 'ghost'), onclick: () => go('atelier', id) }, EXPL[id][0]))));
+  const box = h('div', { class: 'card' }, h('h2', { style: 'margin-top:0' }, EXPL[k][0])); m.append(box); EXPL[k][1](box);
+}
+
+/* ---------- Progression ---------- */
+function vProg() {
+  const m = main(), tt = totals();
+  m.append(h('h1', null, 'Ma progression'), h('p', { class: 'muted' }, `${tt.ok} exercice(s) réussi(s), ${tt.ko} à revoir, sur ${tt.total} au programme (+ variantes).`));
+  const rows = TOPICS.map(t => { const s = tstat(t); return h('tr', null, h('td', { html: T(t.title) }), h('td', null, `${s.ok}/${s.total}`), h('td', { html: [1, 2, 3].map(l => s.lv[l].n ? `N${l}: ${s.lv[l].ok}/${s.lv[l].n}${s.valid[l - 1] ? ' ✔' : ''}` : '').join(' · ') }), h('td', { html: stars(s.level) }), h('td', null, s.weak ? h('span', { class: 'badge2' }, 'à revoir') : (s.ok + s.ko ? h('span', { class: 'badge2 good' }, 'ok') : '–')), h('td', null, h('button', { class: 'btn ghost sm', onclick: () => go('topic', t.id) }, 'Ouvrir'))); });
+  m.append(h('div', { class: 'card tscroll' }, h('table', { class: 'vt', style: 'width:100%;text-align:left' }, h('tr', null, ['Thème', 'Réussis', 'Par niveau', 'Niveau atteint', 'État', ''].map(x => h('th', null, x))), rows)));
+  m.append(h('p', { class: 'muted small' }, 'Un niveau est « validé » quand environ 70 % de ses exercices sont réussis. Étoiles = nombre de niveaux validés.'));
+  const ko = TOPICS.flatMap(t => t.ex).filter(e => S.ex[e.id] && S.ex[e.id].st === 'ko');
+  m.append(h('div', { class: 'bar' }, h('button', { class: 'btn warn', disabled: !ko.length, onclick: () => runner(ko, { title: 'Exercices à refaire', back: () => go('prog') }) }, `Refaire mes erreurs (${ko.length})`), h('button', { class: 'btn ghost', onclick: () => { if (confirm('Effacer toute la progression de cette séance ?')) { S = { ex: {}, drill: {}, exams: [] }; save(); go('prog'); } } }, 'Tout réinitialiser')));
+  if (S.exams.length) m.append(h('h2', null, 'Examens blancs'), h('div', { class: 'card' }, S.exams.map(e => h('div', null, `${e.title} — ${nStr(+e.score.toFixed(1))} / ${e.max} points (${e.pct} %)`))));
+}
+
+/* ---------- Examens blancs ---------- */
+function vExamMenu() {
+  const m = main();
+  m.append(h('h1', null, 'Examen blanc'), h('div', { class: 'card' }, h('p', { style: 'margin-top:0' }, 'Conditions d’examen : <b>aucun indice</b>, aucun retour pendant l’épreuve ; <b>la correction détaillée</b> et le score n’apparaissent qu’à la fin.'.replace(/<\/?b>/g, '')),
+    h('p', { class: 'muted small' }, 'Barème : le cours ne fixe pas de barème officiel. Ici : 1 point par sous-question (crédit partiel pour les tableaux et les cases multiples) — c’est un repère d’entraînement, pas une note.')));
+  const mixed = mixedExam;
+  m.append(h('div', { class: 'grid g3' }, [...EXAMS, null].map(ex => h('div', { class: 'card' }, h('h3', { style: 'margin-top:0' }, ex ? ex.title : 'Examen mixte (aléatoire)'), h('p', { class: 'muted' }, ex ? ex.desc : 'Exercices de niveau 2 et 3 tirés au hasard dans les deux chapitres.'),
+    h('p', { class: 'small' }, ex ? `${ex.ex.length} exercices · ${ex.ex.reduce((s, e) => s + e.parts.length, 0)} sous-questions` : '7 exercices'), h('button', { class: 'btn', onclick: () => examRun(ex || mixed()) }, 'Commencer')))));
+}
+function examRun(E) {
+  const m = main(); m.innerHTML = ''; window.scrollTo(0, 0); $('#sym').style.display = 'flex';
+  const cards = E.ex.map(e => exerciseCard(e, { exam: true })), t0 = Date.now(); let cur = 0, finished = false;
+  const clock = h('span', { class: 'pill' }, '00:00'); timer = setInterval(() => { const s = Math.floor((Date.now() - t0) / 1000); clock.textContent = String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0'); }, 1000);
+  const tabs = h('div', { class: 'dots' }), holder = h('div');
+  m.append(h('h1', null, E.title), h('div', { class: 'row' }, clock, h('span', { class: 'muted small' }, 'Pas d’indices — correction à la fin (temps indicatif, non limité).')), tabs, holder);
+  cards.forEach((c, i) => { c.el.style.display = i ? 'none' : ''; holder.append(c.el); });
+  const dots = cards.map((c, i) => h('span', { class: 'dot' + (i === 0 ? ' cur' : ''), title: 'Exercice ' + (i + 1), onclick: () => show(i) })); tabs.append(dots);
+  function show(i) { cur = i; cards.forEach((c, j) => c.el.style.display = j === i ? '' : 'none'); dots.forEach((d, j) => d.classList.toggle('cur', j === i)); window.scrollTo(0, 0); }
+  const nav = h('div', { class: 'bar' }, h('button', { class: 'btn ghost', onclick: () => show(Math.max(0, cur - 1)) }, '← Précédent'), h('button', { class: 'btn ghost', onclick: () => show(Math.min(cards.length - 1, cur + 1)) }, 'Suivant →'), h('button', { class: 'btn ok', onclick: finish }, 'Terminer et corriger'));
+  m.append(nav);
+  function finish() {
+    if (finished) return;
+    const empty = cards.reduce((s, c) => s + c.parts.filter(p => { const r = p.grade(); p.reset(); return r.empty; }).length, 0);
+    if (empty && !confirm(`Il reste ${empty} sous-question(s) sans réponse. Terminer quand même ?`)) return;
+    finished = true; clearInterval(timer); timer = null; $('#sym').style.display = 'none';
+    // les reset ci-dessus ont vidé les champs : on reconstruit l'état via re-grade impossible -> on regrade depuis les saisies sauvegardées
+    showResult();
+  }
+  // sauvegarde des saisies avant le test de vide
+  const saved = new Map();
+  function snapshot() { cards.forEach(c => c.parts.forEach(p => { saved.set(p, collectInputs(p)); })); }
+  function collectInputs(p) { return $$('input,select', p.el).map(e => e.type === 'checkbox' || e.type === 'radio' ? e.checked : e.value); }
+  function restore(p) { const v = saved.get(p); if (!v) return; $$('input,select', p.el).forEach((e, i) => { if (e.type === 'checkbox' || e.type === 'radio') e.checked = v[i]; else e.value = v[i]; }); }
+  const finishOrig = finish;
+  nav.lastChild.onclick = () => {
+    if (finished) return; snapshot();
+    const emptyN = cards.reduce((s, c) => s + c.parts.filter(p => p.grade().empty).length, 0);
+    cards.forEach(c => c.parts.forEach(p => { p.reset(); restore(p); }));
+    if (emptyN && !confirm(`Il reste ${emptyN} sous-question(s) sans réponse. Terminer quand même ?`)) return;
+    finished = true; clearInterval(timer); timer = null; $('#sym').style.display = 'none'; showResult();
+  };
+  function showResult() {
+    let score = 0, max = 0; const byCh = { 1: [0, 0], 2: [0, 0] }, per = [];
+    cards.forEach((c, i) => { let s = 0; c.parts.forEach(p => { const r = p.grade(); const sc = r.empty ? 0 : r.score; s += sc; p.mark(r.empty ? { score: 0, msg: 'Pas de réponse.' } : r, true); p.lock(true); p.el.classList.toggle('ko', sc < 1); }); const n = c.parts.length; score += s; max += n; byCh[E.ex[i].ch || 1][0] += s; byCh[E.ex[i].ch || 1][1] += n; per.push([E.ex[i], s, n]);
+      if (E.ex[i].sol) c.el.append(h('div', { class: 'solbox' }, h('h3', null, 'Correction détaillée'), h('ol', { class: 'steps' }, E.ex[i].sol.map(x => h('li', { html: T(x) }))))); });
+    const pct = Math.round(100 * score / max);
+    S.exams.push({ title: E.title, score, max, pct }); save();
+    holder.parentNode.insertBefore(h('div', { class: 'card', style: 'text-align:center' }, h('div', { class: 'muted' }, 'Résultat'), h('div', { class: 'examres' }, `${nStr(+score.toFixed(1))} / ${max}`), h('div', { style: 'font-size:1.3rem;font-weight:700' }, pct + ' %'),
+      h('p', { class: 'muted small' }, '1 point par sous-question, crédit partiel pour les tableaux (repère d’entraînement : le cours ne donne pas de barème).'),
+      h('div', { class: 'row', style: 'justify-content:center' }, [1, 2].map(ch => h('span', { class: 'pill' }, `Chapitre ${ch} : ${nStr(+byCh[ch][0].toFixed(1))}/${byCh[ch][1]}`)))), tabs);
+    tabs.innerHTML = ''; cards.forEach(c => c.el.style.display = '');
+    const weak = per.filter(([e, s, n]) => s / n < 0.7).map(([e]) => topicById(e.topic)).filter(Boolean);
+    holder.parentNode.insertBefore(h('div', { class: 'card' }, h('h2', { style: 'margin-top:0' }, 'À retravailler'), weak.length ? h('div', null, [...new Set(weak)].map(t => h('span', { class: 'pill', style: 'cursor:pointer', onclick: () => go('topic', t.id), html: T(t.title) }))) : h('p', null, 'Rien de gravement raté : continue à t’entraîner pour consolider !'), h('p', { class: 'muted small' }, 'Défile vers le bas : chaque sous-question est corrigée avec la réponse attendue et le chemin de résolution.')), tabs);
+    nav.innerHTML = ''; nav.append(h('button', { class: 'btn', onclick: () => go('exam') }, 'Retour aux examens'), h('button', { class: 'btn ghost', onclick: () => go('home') }, 'Accueil')); window.scrollTo(0, 0);
+  }
+}
+
+/* ---------- démarrage ---------- */
+function boot() {
+  const tabs = $('#tabs'); TABS.forEach(([k, t]) => tabs.append(h('button', { 'data-k': k, onclick: () => go(k) }, t)));
+  $('.brand').onclick = () => go('home');
+  const sym = $('#sym'); sym.append(h('span', { class: 'lab' }, 'Symboles :'));
+  ['√', '∞', '∪', 'ℝ', '[', ']', ';', '{', '}', '/', '^', '−', '≤', '≥', '∅'].forEach(ch => sym.append(h('button', { type: 'button', onmousedown: e => e.preventDefault(), onclick: () => { const i = lastInput; if (!i || i.disabled) return; const s = i.selectionStart == null ? i.value.length : i.selectionStart, e = i.selectionEnd == null ? s : i.selectionEnd; i.value = i.value.slice(0, s) + ch + i.value.slice(e); i.focus(); const p = s + ch.length; try { i.setSelectionRange(p, p); } catch (x) { } } }, ch)));
+  go('home');
+}
+document.addEventListener('DOMContentLoaded', boot);
+</script></body></html>
